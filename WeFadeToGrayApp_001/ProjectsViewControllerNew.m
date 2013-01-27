@@ -14,7 +14,7 @@
 
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView;
+@synthesize userName, userPassword, myTableView, headerView, footerView;
 
 XMLProjectsParser *xmlProjectsParser;
 XMLDailiesParser *xmlDailiesParser;
@@ -31,6 +31,9 @@ XMLDailiesParser *xmlDailiesParser;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
+    self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
     
     xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
     

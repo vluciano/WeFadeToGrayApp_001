@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) NSString *userName;
 @property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @end
