@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8337A52C16B42AAC00C173C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A52B16B42AAC00C173C1 /* LoginViewController.m */; };
+		8337A52F16B42C4400C173C1 /* startPage_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8337A52D16B42C4400C173C1 /* startPage_bg@2x.png */; };
+		8337A53016B42C4400C173C1 /* startPage_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8337A52E16B42C4400C173C1 /* startPage_bg.png */; };
+		8337A53316B4378700C173C1 /* XMLLoginParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A53216B4378700C173C1 /* XMLLoginParser.m */; };
+		8337A53716B43CA500C173C1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A53616B43CA500C173C1 /* User.m */; };
 		834B6C3D16B3477000AA00EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C3C16B3477000AA00EA /* UIKit.framework */; };
 		834B6C3F16B3477000AA00EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C3E16B3477000AA00EA /* Foundation.framework */; };
 		834B6C4116B3477000AA00EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C4016B3477000AA00EA /* CoreGraphics.framework */; };
@@ -18,9 +23,28 @@
 		834B6C5316B3477000AA00EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C5216B3477000AA00EA /* Default-568h@2x.png */; };
 		834B6C5616B3477000AA00EA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C5416B3477000AA00EA /* MainStoryboard.storyboard */; };
 		834B6C5916B3477000AA00EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C5816B3477000AA00EA /* ViewController.m */; };
+		834B6C6116B34DBD00AA00EA /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C6016B34DBD00AA00EA /* ProjectsViewController.m */; };
+		834B6C6816B34E8000AA00EA /* Daily.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C6716B34E8000AA00EA /* Daily.m */; };
+		834B6C7116B34E9B00AA00EA /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C6A16B34E9B00AA00EA /* Project.m */; };
+		834B6C7216B34E9B00AA00EA /* XMLProjectsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C6C16B34E9B00AA00EA /* XMLProjectsParser.m */; };
+		834B6C7316B34E9B00AA00EA /* XMLDailiesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C6E16B34E9B00AA00EA /* XMLDailiesParser.m */; };
+		834B6C7416B34E9B00AA00EA /* DailySimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C7016B34E9B00AA00EA /* DailySimple.m */; };
+		834B6C7616B3FC7300AA00EA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C7516B3FC7300AA00EA /* Default-Landscape~ipad.png */; };
+		834B6C7816B3FC8000AA00EA /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C7716B3FC8000AA00EA /* Default-Landscape@2x~ipad.png */; };
+		834B6C8016B4056100AA00EA /* login_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C7E16B4056100AA00EA /* login_btn.png */; };
+		834B6C8116B4056100AA00EA /* login_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834B6C7F16B4056100AA00EA /* login_btn@2x.png */; };
+		83A28BC616B58BCC00666029 /* ProjectsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A28BC516B58BCC00666029 /* ProjectsViewControllerNew.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8337A52A16B42AAC00C173C1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8337A52B16B42AAC00C173C1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8337A52D16B42C4400C173C1 /* startPage_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startPage_bg@2x.png"; sourceTree = "<group>"; };
+		8337A52E16B42C4400C173C1 /* startPage_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPage_bg.png; sourceTree = "<group>"; };
+		8337A53116B4378700C173C1 /* XMLLoginParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLLoginParser.h; sourceTree = "<group>"; };
+		8337A53216B4378700C173C1 /* XMLLoginParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLLoginParser.m; sourceTree = "<group>"; };
+		8337A53516B43CA500C173C1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8337A53616B43CA500C173C1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		834B6C3816B3477000AA00EA /* WeFadeToGrayApp_001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeFadeToGrayApp_001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B6C3C16B3477000AA00EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834B6C3E16B3477000AA00EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +61,24 @@
 		834B6C5516B3477000AA00EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		834B6C5716B3477000AA00EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		834B6C5816B3477000AA00EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		834B6C5F16B34DBD00AA00EA /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
+		834B6C6016B34DBD00AA00EA /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
+		834B6C6616B34E8000AA00EA /* Daily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Daily.h; sourceTree = "<group>"; };
+		834B6C6716B34E8000AA00EA /* Daily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Daily.m; sourceTree = "<group>"; };
+		834B6C6916B34E9B00AA00EA /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		834B6C6A16B34E9B00AA00EA /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		834B6C6B16B34E9B00AA00EA /* XMLProjectsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLProjectsParser.h; sourceTree = "<group>"; };
+		834B6C6C16B34E9B00AA00EA /* XMLProjectsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLProjectsParser.m; sourceTree = "<group>"; };
+		834B6C6D16B34E9B00AA00EA /* XMLDailiesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDailiesParser.h; sourceTree = "<group>"; };
+		834B6C6E16B34E9B00AA00EA /* XMLDailiesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDailiesParser.m; sourceTree = "<group>"; };
+		834B6C6F16B34E9B00AA00EA /* DailySimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailySimple.h; sourceTree = "<group>"; };
+		834B6C7016B34E9B00AA00EA /* DailySimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailySimple.m; sourceTree = "<group>"; };
+		834B6C7516B3FC7300AA00EA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		834B6C7716B3FC8000AA00EA /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		834B6C7E16B4056100AA00EA /* login_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn.png; sourceTree = "<group>"; };
+		834B6C7F16B4056100AA00EA /* login_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn@2x.png"; sourceTree = "<group>"; };
+		83A28BC416B58BCC00666029 /* ProjectsViewControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewControllerNew.h; sourceTree = "<group>"; };
+		83A28BC516B58BCC00666029 /* ProjectsViewControllerNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewControllerNew.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +95,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8337A52816B42A1200C173C1 /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				834B6C6B16B34E9B00AA00EA /* XMLProjectsParser.h */,
+				834B6C6C16B34E9B00AA00EA /* XMLProjectsParser.m */,
+				834B6C6D16B34E9B00AA00EA /* XMLDailiesParser.h */,
+				834B6C6E16B34E9B00AA00EA /* XMLDailiesParser.m */,
+				8337A53116B4378700C173C1 /* XMLLoginParser.h */,
+				8337A53216B4378700C173C1 /* XMLLoginParser.m */,
+			);
+			name = parser;
+			sourceTree = "<group>";
+		};
+		8337A53416B43C5D00C173C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				834B6C6916B34E9B00AA00EA /* Project.h */,
+				834B6C6A16B34E9B00AA00EA /* Project.m */,
+				834B6C6616B34E8000AA00EA /* Daily.h */,
+				834B6C6716B34E8000AA00EA /* Daily.m */,
+				834B6C6F16B34E9B00AA00EA /* DailySimple.h */,
+				834B6C7016B34E9B00AA00EA /* DailySimple.m */,
+				8337A53516B43CA500C173C1 /* User.h */,
+				8337A53616B43CA500C173C1 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		834B6C2D16B3477000AA00EA = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +153,20 @@
 		834B6C4216B3477000AA00EA /* WeFadeToGrayApp_001 */ = {
 			isa = PBXGroup;
 			children = (
+				8337A53416B43C5D00C173C1 /* Model */,
 				834B6C4B16B3477000AA00EA /* AppDelegate.h */,
 				834B6C4C16B3477000AA00EA /* AppDelegate.m */,
 				834B6C5416B3477000AA00EA /* MainStoryboard.storyboard */,
 				834B6C5716B3477000AA00EA /* ViewController.h */,
 				834B6C5816B3477000AA00EA /* ViewController.m */,
+				8337A52816B42A1200C173C1 /* parser */,
 				834B6C4316B3477000AA00EA /* Supporting Files */,
+				834B6C5F16B34DBD00AA00EA /* ProjectsViewController.h */,
+				834B6C6016B34DBD00AA00EA /* ProjectsViewController.m */,
+				83A28BC416B58BCC00666029 /* ProjectsViewControllerNew.h */,
+				83A28BC516B58BCC00666029 /* ProjectsViewControllerNew.m */,
+				8337A52A16B42AAC00C173C1 /* LoginViewController.h */,
+				8337A52B16B42AAC00C173C1 /* LoginViewController.m */,
 			);
 			path = WeFadeToGrayApp_001;
 			sourceTree = "<group>";
@@ -96,15 +174,29 @@
 		834B6C4316B3477000AA00EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				834B6C7D16B4052D00AA00EA /* pics */,
 				834B6C4416B3477000AA00EA /* WeFadeToGrayApp_001-Info.plist */,
 				834B6C4516B3477000AA00EA /* InfoPlist.strings */,
 				834B6C4816B3477000AA00EA /* main.m */,
 				834B6C4A16B3477000AA00EA /* WeFadeToGrayApp_001-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		834B6C7D16B4052D00AA00EA /* pics */ = {
+			isa = PBXGroup;
+			children = (
+				8337A52D16B42C4400C173C1 /* startPage_bg@2x.png */,
+				8337A52E16B42C4400C173C1 /* startPage_bg.png */,
+				834B6C7E16B4056100AA00EA /* login_btn.png */,
+				834B6C7F16B4056100AA00EA /* login_btn@2x.png */,
+				834B6C7716B3FC8000AA00EA /* Default-Landscape@2x~ipad.png */,
+				834B6C7516B3FC7300AA00EA /* Default-Landscape~ipad.png */,
 				834B6C4E16B3477000AA00EA /* Default.png */,
 				834B6C5016B3477000AA00EA /* Default@2x.png */,
 				834B6C5216B3477000AA00EA /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = pics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +255,12 @@
 				834B6C5116B3477000AA00EA /* Default@2x.png in Resources */,
 				834B6C5316B3477000AA00EA /* Default-568h@2x.png in Resources */,
 				834B6C5616B3477000AA00EA /* MainStoryboard.storyboard in Resources */,
+				834B6C7616B3FC7300AA00EA /* Default-Landscape~ipad.png in Resources */,
+				834B6C7816B3FC8000AA00EA /* Default-Landscape@2x~ipad.png in Resources */,
+				834B6C8016B4056100AA00EA /* login_btn.png in Resources */,
+				834B6C8116B4056100AA00EA /* login_btn@2x.png in Resources */,
+				8337A52F16B42C4400C173C1 /* startPage_bg@2x.png in Resources */,
+				8337A53016B42C4400C173C1 /* startPage_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +274,16 @@
 				834B6C4916B3477000AA00EA /* main.m in Sources */,
 				834B6C4D16B3477000AA00EA /* AppDelegate.m in Sources */,
 				834B6C5916B3477000AA00EA /* ViewController.m in Sources */,
+				834B6C6116B34DBD00AA00EA /* ProjectsViewController.m in Sources */,
+				834B6C6816B34E8000AA00EA /* Daily.m in Sources */,
+				834B6C7116B34E9B00AA00EA /* Project.m in Sources */,
+				834B6C7216B34E9B00AA00EA /* XMLProjectsParser.m in Sources */,
+				834B6C7316B34E9B00AA00EA /* XMLDailiesParser.m in Sources */,
+				834B6C7416B34E9B00AA00EA /* DailySimple.m in Sources */,
+				8337A52C16B42AAC00C173C1 /* LoginViewController.m in Sources */,
+				8337A53316B4378700C173C1 /* XMLLoginParser.m in Sources */,
+				8337A53716B43CA500C173C1 /* User.m in Sources */,
+				83A28BC616B58BCC00666029 /* ProjectsViewControllerNew.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +402,7 @@
 				834B6C5E16B3477000AA00EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
