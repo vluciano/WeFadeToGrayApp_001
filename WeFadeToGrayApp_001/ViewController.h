@@ -10,4 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *startLoginBtn;
+
+- (IBAction)startLoginBtnClick:(id)sender;
+
 @end
