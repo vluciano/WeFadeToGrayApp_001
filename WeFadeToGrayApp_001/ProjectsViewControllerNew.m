@@ -58,6 +58,7 @@ XMLDailiesParser *xmlDailiesParser;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *CellIdentifier = @"ProjectCell";
     Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.row];
     
@@ -69,7 +70,6 @@ XMLDailiesParser *xmlDailiesParser;
     }
     
     
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -78,9 +78,17 @@ XMLDailiesParser *xmlDailiesParser;
     NSString *rowText = [NSString stringWithFormat:@"%@ - %@ - %@", [currentProject name], [currentProject production], [currentProject dop]];
     
     cell.textLabel.text = rowText;
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    
+    UIColor *myColor = [UIColor colorWithRed:255.0/255.0 green:237.0/255.0 blue:0.0/255.0 alpha:1];
+    
+    cell.textLabel.textColor = myColor;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0;
 }
 
 
