@@ -59,30 +59,34 @@ XMLDailiesParser *xmlDailiesParser;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    /*
+     NSMutableArray *currentDailies = [[NSMutableArray alloc] initWithArray:currentProject.dailies];
+     NSLog(@"currentDailies --------------------");
+     for (DailySimple *val in currentDailies) {
+     NSLog(@"value Name is %@",val.name);
+     }
+     */
+    
     static NSString *CellIdentifier = @"ProjectCell";
-    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.row];
     
-    NSMutableArray *currentDailies = [[NSMutableArray alloc] initWithArray:currentProject.dailies];
-    
-    NSLog(@"currentDailies --------------------");
-    for (DailySimple *val in currentDailies) {
-        NSLog(@"value Name is %@",val.name);
-    }
-    
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSString *rowText = [NSString stringWithFormat:@"%@ - %@ - %@", [currentProject name], [currentProject production], [currentProject dop]];
     
-    cell.textLabel.text = rowText;
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    
+    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.row];
     UIColor *myColor = [UIColor colorWithRed:255.0/255.0 green:237.0/255.0 blue:0.0/255.0 alpha:1];
     
-    cell.textLabel.textColor = myColor;
+    cell.projectTitle.text = [currentProject name];
+    cell.projectProduction.text = [currentProject production];
+    cell.projectDoP.text = [currentProject dop];
+    cell.projectRegie.text = [currentProject director];
+    
+    cell.projectTitle.textColor = myColor;
+    cell.projectProduction.textColor = myColor;
+    cell.projectDoP.textColor = myColor;
+    cell.projectRegie.textColor = myColor;
     
     return cell;
 }
