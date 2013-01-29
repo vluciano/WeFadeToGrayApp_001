@@ -85,6 +85,16 @@ XMLDailiesParser *xmlDailiesParser;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"-------> click row");
+    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.row];
+    NSMutableArray *currentDailies = [[NSMutableArray alloc] initWithArray:currentProject.dailies];
+    NSLog(@"currentDailies --------------------");
+    for (DailySimple *val in currentDailies) {
+        NSLog(@"value Name is %@",val.name);
+    }
+    
+
+    
+    
     
 }
 

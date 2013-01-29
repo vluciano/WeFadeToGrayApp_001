@@ -154,6 +154,7 @@
                         <outlet property="txtPassword" destination="VJV-lf-l5V" id="L0T-qk-qua"/>
                         <outlet property="txtUserName" destination="Mdp-ME-6es" id="qUi-3X-tEt"/>
                         <segue destination="HnR-mq-Uqg" kind="modal" identifier="fromLoginToProjectList" modalTransitionStyle="crossDissolve" id="ipY-ix-ZyU"/>
+                        <segue destination="TPd-7Y-B9G" kind="modal" identifier="fromLoginToProjectListNew" modalTransitionStyle="crossDissolve" id="vWz-sP-dcH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LZ-bw-HT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shh-ay-za6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2023" y="80"/>
+            <point key="canvasLocation" x="3175" y="-544"/>
         </scene>
         <!--Projects View Controller New-->
         <scene sceneID="MBv-kI-kBJ">
@@ -214,7 +215,7 @@
                                     <constraint firstAttribute="height" constant="577" id="IC8-0n-TS5"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="left" selectionStyle="gray" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ProjectCell" rowHeight="100" id="nnv-Qw-dza" customClass="ProjectCell">
+                                    <tableViewCell autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="left" selectionStyle="gray" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ProjectCell" rowHeight="100" id="nnv-Qw-dza" customClass="ProjectCell">
                                         <rect key="frame" x="0.0" y="22" width="1024" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -406,6 +407,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="00B-ap-dvH"/>
+        <segue reference="ipY-ix-ZyU"/>
+        <segue reference="vWz-sP-dcH"/>
     </inferredMetricsTieBreakers>
 </document>
