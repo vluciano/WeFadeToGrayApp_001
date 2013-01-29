@@ -2,7 +2,7 @@
 //  ProjectsViewController.h
 //  WeFadeToGrayApp_001
 //
-//  Created by Vladimir Luciano on 1/26/13.
+//  Created by Vladimir Luciano on 1/27/13.
 //  Copyright (c) 2013 Vladimir Luciano. All rights reserved.
 //
 
@@ -11,11 +11,14 @@
 #import "XMLDailiesParser.h"
 #import "Project.h"
 #import "DailySimple.h"
+#import "ProjectCell.h"
 
+@interface ProjectsViewController : UIViewController
 
-@interface ProjectsViewController : UITableViewController
-
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) NSString *userName;
 @property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @end

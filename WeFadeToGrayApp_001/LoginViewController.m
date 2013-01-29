@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "XMLLoginParser.h"
-#import "ProjectsViewControllerNew.h"
+#import "ProjectsViewController.h"
 
 @interface LoginViewController ()
     
@@ -125,7 +125,7 @@ bool switchValue = NO;
     
     if([segue.identifier isEqualToString:@"fromLoginToProjectListNew"]){
         
-        ProjectsViewControllerNew *vc = [segue destinationViewController];
+        ProjectsViewController *vc = [segue destinationViewController];
         vc.userName = userName;
         vc.userPassword = userPass;
     }

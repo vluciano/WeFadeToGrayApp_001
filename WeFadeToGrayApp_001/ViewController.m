@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ProjectsViewControllerNew.h"
+#import "ProjectsViewController.h"
 
 @interface ViewController ()
 
@@ -60,7 +60,7 @@
         NSString *userPass = [userPref objectForKey:@"userPassword"];
 
         
-        ProjectsViewControllerNew *vc = [segue destinationViewController];
+        ProjectsViewController *vc = [segue destinationViewController];
         vc.userName = userName;
         vc.userPassword = userPass;
     }
