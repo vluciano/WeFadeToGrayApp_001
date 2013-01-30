@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "XMLLoginParser.h"
-#import "ProjectsViewController.h"
+#import "ProjectsViewControllerNew.h"
 
 @interface LoginViewController ()
     
@@ -77,7 +77,7 @@ bool switchValue = NO;
         
         
         //go to the Project List
-        [self performSegueWithIdentifier:@"fromLoginToProjectList" sender:self];
+        [self performSegueWithIdentifier:@"fromLoginToProjectListNew" sender:self];
         
         
     }else {
@@ -120,14 +120,15 @@ bool switchValue = NO;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    NSString *userName = [txtUserName text];
-    NSString *userPass = [txtPassword text];
+    NSString *userNameX = [txtUserName text];
+    NSString *userPassX = [txtPassword text];
     
-    if([segue.identifier isEqualToString:@"fromLoginToProjectList"]){
+    if([segue.identifier isEqualToString:@"fromLoginToProjectListNew"]){
         
-        ProjectsViewController *vc = [segue destinationViewController];
-        vc.userName = userName;
-        vc.userPassword = userPass;
+        ProjectsViewControllerNew *vc = [segue destinationViewController];
+    
+        vc.userName = userNameX;
+        vc.userPassword = userPassX;
     }
 }
 
