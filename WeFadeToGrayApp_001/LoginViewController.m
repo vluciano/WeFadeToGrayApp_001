@@ -77,7 +77,7 @@ bool switchValue = NO;
         
         
         //go to the Project List
-        [self performSegueWithIdentifier:@"fromLoginToProjectListNew" sender:self];
+        [self performSegueWithIdentifier:@"fromLoginToProjectList" sender:self];
         
         
     }else {
@@ -123,7 +123,7 @@ bool switchValue = NO;
     NSString *userName = [txtUserName text];
     NSString *userPass = [txtPassword text];
     
-    if([segue.identifier isEqualToString:@"fromLoginToProjectListNew"]){
+    if([segue.identifier isEqualToString:@"fromLoginToProjectList"]){
         
         ProjectsViewController *vc = [segue destinationViewController];
         vc.userName = userName;

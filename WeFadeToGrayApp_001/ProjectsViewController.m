@@ -108,8 +108,6 @@ XMLDailiesParser *xmlDailiesParser;
         NSLog(@"value Name is %@",val.name);
     }
     
-    
-    
 }
 
 @end

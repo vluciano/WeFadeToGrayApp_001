@@ -2,7 +2,7 @@
 //  ProjectsViewControllerNew.h
 //  WeFadeToGrayApp_001
 //
-//  Created by Vladimir Luciano on 1/27/13.
+//  Created by Vladimir Luciano on 1/29/13.
 //  Copyright (c) 2013 Vladimir Luciano. All rights reserved.
 //
 
@@ -20,5 +20,7 @@
 @property (weak, nonatomic) NSString *userPassword;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
+
+
 
 @end

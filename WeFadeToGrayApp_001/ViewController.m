@@ -40,7 +40,7 @@
     NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
     if ([[userPref objectForKey:@"isLogin"] intValue] == 1) {
         //go to the Project List
-        [self performSegueWithIdentifier:@"fromStartToProjectListNew" sender:self];
+        [self performSegueWithIdentifier:@"fromStartToProjectList" sender:self];
         
     }else{
         //user not log in - go to the login page
@@ -52,7 +52,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if([segue.identifier isEqualToString:@"fromStartToProjectListNew"]){
+    if([segue.identifier isEqualToString:@"fromStartToProjectList"]){
         
         NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
         
