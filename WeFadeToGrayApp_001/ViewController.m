@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ProjectsViewController.h"
+#import "ProjectsViewControllerNew.h"
 
 @interface ViewController ()
 
@@ -40,7 +40,7 @@
     NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
     if ([[userPref objectForKey:@"isLogin"] intValue] == 1) {
         //go to the Project List
-        [self performSegueWithIdentifier:@"fromStartToProjectList" sender:self];
+        [self performSegueWithIdentifier:@"fromStartToProjectListNew" sender:self];
         
     }else{
         //user not log in - go to the login page
@@ -52,7 +52,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if([segue.identifier isEqualToString:@"fromStartToProjectList"]){
+    if([segue.identifier isEqualToString:@"fromStartToProjectListNew"]){
         
         NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
         
@@ -60,7 +60,7 @@
         NSString *userPass = [userPref objectForKey:@"userPassword"];
 
         
-        ProjectsViewController *vc = [segue destinationViewController];
+        ProjectsViewControllerNew *vc = [segue destinationViewController];
         vc.userName = userName;
         vc.userPassword = userPass;
     }

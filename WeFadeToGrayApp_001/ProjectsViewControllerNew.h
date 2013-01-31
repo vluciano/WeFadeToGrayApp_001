@@ -11,7 +11,7 @@
 #import "XMLDailiesParser.h"
 #import "Project.h"
 #import "DailySimple.h"
-#import "ProjectCell.h"
+#import "DailyCell.h"
 
 @interface ProjectsViewControllerNew : UIViewController
 
