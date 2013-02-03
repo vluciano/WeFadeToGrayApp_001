@@ -250,45 +250,6 @@
         <image name="logo_pl.png" width="103" height="103"/>
         <image name="startPage_bg.png" width="1024" height="748"/>
     </resources>
-    <classes>
-        <class className="DailyCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginBtnClick:"/>
-                <relationship kind="action" name="switchTapped:"/>
-                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
-            <relationships>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startLoginBtnClick:"/>
-                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

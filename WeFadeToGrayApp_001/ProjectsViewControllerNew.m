@@ -7,16 +7,61 @@
 //
 
 #import "ProjectsViewControllerNew.h"
+#import "SectionHeaderView.h"
+#import "SectionInfo.h"
 
 @interface ProjectsViewControllerNew ()
 
 @end
 
+
+#define DEFAULT_ROW_HEIGHT 100
+#define HEADER_HEIGHT 149
+
+
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView, headerView, footerView;
+@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex;
 
 XMLProjectsParser *xmlProjectsParser;
+
+
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	[super viewWillAppear:animated];
+	
+    if ((self.sectionInfoArray == nil) || ([self.sectionInfoArray count] != [self numberOfSectionsInTableView:self.myTableView])) {
+		
+        // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
+		NSMutableArray *infoArray = [[NSMutableArray alloc] init];
+		
+		for (Project *project in [xmlProjectsParser projects]) {
+			
+			SectionInfo *sectionInfo = [[SectionInfo alloc] init];
+			sectionInfo.project = project;
+			sectionInfo.open = NO;
+			
+            NSNumber *defaultRowHeight = [NSNumber numberWithInteger:DEFAULT_ROW_HEIGHT];
+			NSInteger countOfDailies = [[sectionInfo.project dailies] count];
+			for (NSInteger i = 0; i < countOfDailies; i++) {
+				[sectionInfo insertObject:defaultRowHeight inRowHeightsAtIndex:i];
+			}
+			
+			[infoArray addObject:sectionInfo];
+		}
+		
+		self.sectionInfoArray = infoArray;
+	}
+	
+}
+
+
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +82,9 @@ XMLProjectsParser *xmlProjectsParser;
     
     xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
     
+    openSectionIndex = NSNotFound;
+
+    
     [self.myTableView reloadData];
 }
 
@@ -50,87 +98,24 @@ XMLProjectsParser *xmlProjectsParser;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
+    
+    /*
+     Create the section header views lazily.
+     */
+    
     Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:section];
-    
-    // create the parent view that will hold header Label
-    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,149)];
-    [customView setBackgroundColor:[UIColor blackColor]];
-    
-    UIColor *myColor = [UIColor colorWithRed:255.0/255.0 green:237.0/255.0 blue:0.0/255.0 alpha:1];
-    
-    // create the label objects
-    UILabel *titelText = [[UILabel alloc] initWithFrame:CGRectZero];
-    titelText.backgroundColor = [UIColor clearColor];
-    titelText.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    titelText.frame = CGRectMake(30,30,600,20);
-    titelText.text =  currentProject.name;
-    titelText.textColor = myColor;
-    
-    //---------------------------------------//
-    UILabel *productionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    productionLabel.backgroundColor = [UIColor clearColor];
-    productionLabel.textColor = [UIColor whiteColor];
-    productionLabel.text = @"Production";
-    productionLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-    productionLabel.frame = CGRectMake(30,70,150,20);
-    
-    UILabel *productionText = [[UILabel alloc] initWithFrame:CGRectZero];
-    productionText.backgroundColor = [UIColor clearColor];
-    productionText.font = [UIFont fontWithName:@"Helvetica" size:13];
-    productionText.frame = CGRectMake(30,90,200,20);
-    productionText.text =  currentProject.production;
-    productionText.textColor = myColor;
-
-    //---------------------------------------//
-    
-    
-    UILabel *directorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    directorLabel.backgroundColor = [UIColor clearColor];
-    directorLabel.textColor = [UIColor whiteColor];
-    directorLabel.text = @"Director";
-    directorLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-    directorLabel.frame = CGRectMake(300,70,150,20);
-    
-    UILabel *directorText = [[UILabel alloc] initWithFrame:CGRectZero];
-    directorText.backgroundColor = [UIColor clearColor];
-    directorText.font = [UIFont fontWithName:@"Helvetica" size:13];
-    directorText.frame = CGRectMake(300,90,200,20);
-    directorText.text =  currentProject.director;
-    directorText.textColor = myColor;
 
     
-    //---------------------------------------//
+	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     
+    if (!sectionInfo.headerView) {
+		
+        sectionInfo.headerView = [[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.myTableView.bounds.size.width, HEADER_HEIGHT) AndProject:currentProject section:section delegate:self];
+        
+    }
     
-    UILabel *dopLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    dopLabel.backgroundColor = [UIColor clearColor];
-    dopLabel.textColor = [UIColor whiteColor];
-    dopLabel.text = @"DoP";
-    dopLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-    dopLabel.frame = CGRectMake(600,70,150,20);
-    
-    UILabel *dopText = [[UILabel alloc] initWithFrame:CGRectZero];
-    dopText.backgroundColor = [UIColor clearColor];
-    dopText.font = [UIFont fontWithName:@"Helvetica" size:13];
-    dopText.frame = CGRectMake(600,90,200,20);
-    dopText.text =  currentProject.dop;
-    dopText.textColor = myColor;
-
-    //---------------------------------------//
-    
-    
-    [customView addSubview:titelText];
-    
-    [customView addSubview:productionLabel];
-    [customView addSubview:productionText];
-    
-    [customView addSubview:directorLabel];
-    [customView addSubview:directorText];
-    
-    [customView addSubview:dopLabel];
-    [customView addSubview:dopText];
-    
-    return customView;
+    return sectionInfo.headerView; 
+        
 }
 
 

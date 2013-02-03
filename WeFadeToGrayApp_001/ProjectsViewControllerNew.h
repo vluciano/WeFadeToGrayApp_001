@@ -12,6 +12,7 @@
 #import "Project.h"
 #import "DailySimple.h"
 #import "DailyCell.h"
+#import "SectionHeaderView.h"
 
 @interface ProjectsViewControllerNew : UIViewController
 
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
-
+@property (nonatomic, strong) NSMutableArray* sectionInfoArray;
+@property (nonatomic, assign) NSInteger openSectionIndex;
 
 @end
