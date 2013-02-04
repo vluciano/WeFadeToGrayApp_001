@@ -14,7 +14,7 @@
 #import "DailyCell.h"
 #import "SectionHeaderView.h"
 
-@interface ProjectsViewControllerNew : UIViewController
+@interface ProjectsViewControllerNew : UIViewController <SectionHeaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) NSString *userName;
@@ -24,5 +24,7 @@
 
 @property (nonatomic, strong) NSMutableArray* sectionInfoArray;
 @property (nonatomic, assign) NSInteger openSectionIndex;
+
+@property (nonatomic, assign) NSInteger uniformRowHeight;
 
 @end

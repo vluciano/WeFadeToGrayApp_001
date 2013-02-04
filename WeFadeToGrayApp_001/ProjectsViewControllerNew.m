@@ -21,7 +21,7 @@
 
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex;
+@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_;
 
 XMLProjectsParser *xmlProjectsParser;
 
@@ -83,8 +83,15 @@ XMLProjectsParser *xmlProjectsParser;
     xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
     
     openSectionIndex = NSNotFound;
-
     
+    
+    // Set up default values.
+    self.myTableView.sectionHeaderHeight = HEADER_HEIGHT;
+	/*
+     The section info array is thrown away in viewWillUnload, so it's OK to set the default values here. If you keep the section information etc. then set the default values in the designated initializer.
+     */
+    rowHeight_ = DEFAULT_ROW_HEIGHT;
+
     [self.myTableView reloadData];
 }
 
@@ -110,7 +117,7 @@ XMLProjectsParser *xmlProjectsParser;
     
     if (!sectionInfo.headerView) {
 		
-        sectionInfo.headerView = [[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.myTableView.bounds.size.width, HEADER_HEIGHT) AndProject:currentProject section:section delegate:self];
+        sectionInfo.headerView = [[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024, HEADER_HEIGHT) AndProject:currentProject section:section delegate:self];
         
     }
     
@@ -127,9 +134,18 @@ XMLProjectsParser *xmlProjectsParser;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
-    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:section];
-    return [[currentProject dailies] count];
+    SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
+	NSInteger numDailiesInSection = [[sectionInfo.project dailies] count];
+	
+    return sectionInfo.open ? numDailiesInSection : 0;
+    
 }
+
+
+
+
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -150,17 +166,33 @@ XMLProjectsParser *xmlProjectsParser;
     return cell;
 }
 
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1.0;
 }
+*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 149.0;
 }
 
+
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100.0;
 }
+*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+    
+	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:indexPath.section];
+    
+    CGFloat height = [[sectionInfo objectInRowHeightsAtIndex:indexPath.row] floatValue];
+    
+    return height;
+    // Alternatively, return rowHeight.
+}
+
 
 
 #pragma mark - Table view delegate
@@ -168,13 +200,88 @@ XMLProjectsParser *xmlProjectsParser;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"-------> click row");
-    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.row];
-    NSMutableArray *currentDailies = [[NSMutableArray alloc] initWithArray:currentProject.dailies];
-    NSLog(@"currentDailies --------------------");
-    for (DailySimple *val in currentDailies) {
-        NSLog(@"value Name is %@",val.name);
-    }
     
 }
+
+#pragma mark Section header delegate
+
+-(void)sectionHeaderView:(SectionHeaderView*)sectionHeaderView sectionOpened:(NSInteger)sectionOpened {
+	
+	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:sectionOpened];
+	
+	sectionInfo.open = YES;
+    
+    /*
+     Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
+     */
+    NSInteger countOfRowsToInsert = [sectionInfo.project.dailies count];
+    NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
+        [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
+    }
+    
+    /*
+     Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the previously-open section, if there was one.
+     */
+    NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+    
+    NSInteger previousOpenSectionIndex = self.openSectionIndex;
+    if (previousOpenSectionIndex != NSNotFound) {
+		
+		SectionInfo *previousOpenSection = [self.sectionInfoArray objectAtIndex:previousOpenSectionIndex];
+        previousOpenSection.open = NO;
+        [previousOpenSection.headerView toggleOpenWithUserAction:NO];
+        NSInteger countOfRowsToDelete = [previousOpenSection.project.dailies count];
+        for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
+            [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:previousOpenSectionIndex]];
+        }
+    }
+    
+    // Style the animation so that there's a smooth flow in either direction.
+    UITableViewRowAnimation insertAnimation;
+    UITableViewRowAnimation deleteAnimation;
+    if (previousOpenSectionIndex == NSNotFound || sectionOpened < previousOpenSectionIndex) {
+        insertAnimation = UITableViewRowAnimationTop;
+        deleteAnimation = UITableViewRowAnimationBottom;
+    }
+    else {
+        insertAnimation = UITableViewRowAnimationBottom;
+        deleteAnimation = UITableViewRowAnimationTop;
+    }
+    
+    // Apply the updates.
+    [self.myTableView beginUpdates];
+    [self.myTableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:insertAnimation];
+    [self.myTableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:deleteAnimation];
+    [self.myTableView endUpdates];
+    self.openSectionIndex = sectionOpened;
+    
+    [self.myTableView reloadData];
+    
+}
+
+
+-(void)sectionHeaderView:(SectionHeaderView*)sectionHeaderView sectionClosed:(NSInteger)sectionClosed {
+    
+    /*
+     Create an array of the index paths of the rows in the section that was closed, then delete those rows from the table view.
+     */
+	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:sectionClosed];
+	
+    sectionInfo.open = NO;
+    NSInteger countOfRowsToDelete = [self.myTableView numberOfRowsInSection:sectionClosed];
+    
+    if (countOfRowsToDelete > 0) {
+        NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
+            [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:sectionClosed]];
+        }
+        [self.myTableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
+    }
+    self.openSectionIndex = NSNotFound;
+    
+    [self.myTableView reloadData];
+}
+
 
 @end

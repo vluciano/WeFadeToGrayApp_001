@@ -53,16 +53,11 @@
 @implementation SectionHeaderView
 
 
-@synthesize titleLabel=_titleLabel, disclosureButton=_disclosureButton, delegate=_delegate, section=_section;
+@synthesize disclosureButton=_disclosureButton, delegate=_delegate, section=_section;
 
 
-+ (Class)layerClass {
-    
-    return [CAGradientLayer class];
-}
 
-
--(id)initWithFrame:(CGRect)frame AndProject:(Project*)project section:(NSInteger)sectionNumber delegate:(id <SectionHeaderViewDelegate>)delegate {
+-(id)initWithFrame:(CGRect)frame AndProject:(Project*)currentProject section:(NSInteger)sectionNumber delegate:(id <SectionHeaderViewDelegate>)delegate {
     
     self = [super initWithFrame:frame];
     
@@ -76,20 +71,84 @@
         self.userInteractionEnabled = YES;
         
         
-        // Create and configure the title label.
-        _section = sectionNumber;
-        CGRect titleLabelFrame = self.bounds;
-        titleLabelFrame.origin.x += 35.0;
-        titleLabelFrame.size.width -= 35.0;
-        CGRectInset(titleLabelFrame, 0.0, 5.0);
-        UILabel *label = [[UILabel alloc] initWithFrame:titleLabelFrame];
-        label.text = project.name;
-        label.font = [UIFont boldSystemFontOfSize:17.0];
-        label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [UIColor clearColor];
-        [self addSubview:label];
-        _titleLabel = label;
+        // create the parent view that will hold header Label
         
+        [self setBackgroundColor:[UIColor blackColor]];
+        
+        UIColor *myColor = [UIColor colorWithRed:255.0/255.0 green:237.0/255.0 blue:0.0/255.0 alpha:1];
+        
+        // create the label objects
+        UILabel *titelText = [[UILabel alloc] initWithFrame:CGRectZero];
+        titelText.backgroundColor = [UIColor clearColor];
+        titelText.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+        titelText.frame = CGRectMake(30,30,600,20);
+        titelText.text =  currentProject.name;
+        titelText.textColor = myColor;
+        
+        //---------------------------------------//
+        UILabel *productionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        productionLabel.backgroundColor = [UIColor clearColor];
+        productionLabel.textColor = [UIColor whiteColor];
+        productionLabel.text = @"Production";
+        productionLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+        productionLabel.frame = CGRectMake(30,70,150,20);
+        
+        UILabel *productionText = [[UILabel alloc] initWithFrame:CGRectZero];
+        productionText.backgroundColor = [UIColor clearColor];
+        productionText.font = [UIFont fontWithName:@"Helvetica" size:13];
+        productionText.frame = CGRectMake(30,90,200,20);
+        productionText.text =  currentProject.production;
+        productionText.textColor = myColor;
+        
+        //---------------------------------------//
+        
+        
+        UILabel *directorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        directorLabel.backgroundColor = [UIColor clearColor];
+        directorLabel.textColor = [UIColor whiteColor];
+        directorLabel.text = @"Director";
+        directorLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+        directorLabel.frame = CGRectMake(300,70,150,20);
+        
+        UILabel *directorText = [[UILabel alloc] initWithFrame:CGRectZero];
+        directorText.backgroundColor = [UIColor clearColor];
+        directorText.font = [UIFont fontWithName:@"Helvetica" size:13];
+        directorText.frame = CGRectMake(300,90,200,20);
+        directorText.text =  currentProject.director;
+        directorText.textColor = myColor;
+        
+        
+        //---------------------------------------//
+        
+        
+        UILabel *dopLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        dopLabel.backgroundColor = [UIColor clearColor];
+        dopLabel.textColor = [UIColor whiteColor];
+        dopLabel.text = @"DoP";
+        dopLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+        dopLabel.frame = CGRectMake(600,70,150,20);
+        
+        UILabel *dopText = [[UILabel alloc] initWithFrame:CGRectZero];
+        dopText.backgroundColor = [UIColor clearColor];
+        dopText.font = [UIFont fontWithName:@"Helvetica" size:13];
+        dopText.frame = CGRectMake(600,90,200,20);
+        dopText.text =  currentProject.dop;
+        dopText.textColor = myColor;
+        
+        //---------------------------------------//
+        
+        
+        [self addSubview:titelText];
+        
+        [self addSubview:productionLabel];
+        [self addSubview:productionText];
+        
+        [self addSubview:directorLabel];
+        [self addSubview:directorText];
+        
+        [self addSubview:dopLabel];
+        [self addSubview:dopText];
+
         
         // Create and configure the disclosure button.
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -99,118 +158,16 @@
         [button addTarget:self action:@selector(toggleOpen:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         _disclosureButton = button;
+
+        _section = sectionNumber;
         
         
-        // Set the colors for the gradient layer.
-        static NSMutableArray *colors = nil;
-        if (colors == nil) {
-            colors = [[NSMutableArray alloc] initWithCapacity:3];
-            UIColor *color = nil;
-            color = [UIColor colorWithRed:0.82 green:0.84 blue:0.87 alpha:1.0];
-            [colors addObject:(id)[color CGColor]];
-            color = [UIColor colorWithRed:0.41 green:0.41 blue:0.59 alpha:1.0];
-            [colors addObject:(id)[color CGColor]];
-            color = [UIColor colorWithRed:0.41 green:0.41 blue:0.59 alpha:1.0];
-            [colors addObject:(id)[color CGColor]];
-        }
-        [(CAGradientLayer *)self.layer setColors:colors];
-        [(CAGradientLayer *)self.layer setLocations:[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:0.48], [NSNumber numberWithFloat:1.0], nil]];
+        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.borderWidth = 1.0f;
+                
     }
     
     return self;
-    
-    
-    
-    
-    /*
-     
-     // create the parent view that will hold header Label
-     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,149)];
-     [customView setBackgroundColor:[UIColor blackColor]];
-     
-     UIColor *myColor = [UIColor colorWithRed:255.0/255.0 green:237.0/255.0 blue:0.0/255.0 alpha:1];
-     
-     // create the label objects
-     UILabel *titelText = [[UILabel alloc] initWithFrame:CGRectZero];
-     titelText.backgroundColor = [UIColor clearColor];
-     titelText.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-     titelText.frame = CGRectMake(30,30,600,20);
-     titelText.text =  currentProject.name;
-     titelText.textColor = myColor;
-     
-     //---------------------------------------//
-     UILabel *productionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-     productionLabel.backgroundColor = [UIColor clearColor];
-     productionLabel.textColor = [UIColor whiteColor];
-     productionLabel.text = @"Production";
-     productionLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-     productionLabel.frame = CGRectMake(30,70,150,20);
-     
-     UILabel *productionText = [[UILabel alloc] initWithFrame:CGRectZero];
-     productionText.backgroundColor = [UIColor clearColor];
-     productionText.font = [UIFont fontWithName:@"Helvetica" size:13];
-     productionText.frame = CGRectMake(30,90,200,20);
-     productionText.text =  currentProject.production;
-     productionText.textColor = myColor;
-     
-     //---------------------------------------//
-     
-     
-     UILabel *directorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-     directorLabel.backgroundColor = [UIColor clearColor];
-     directorLabel.textColor = [UIColor whiteColor];
-     directorLabel.text = @"Director";
-     directorLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-     directorLabel.frame = CGRectMake(300,70,150,20);
-     
-     UILabel *directorText = [[UILabel alloc] initWithFrame:CGRectZero];
-     directorText.backgroundColor = [UIColor clearColor];
-     directorText.font = [UIFont fontWithName:@"Helvetica" size:13];
-     directorText.frame = CGRectMake(300,90,200,20);
-     directorText.text =  currentProject.director;
-     directorText.textColor = myColor;
-     
-     
-     //---------------------------------------//
-     
-     
-     UILabel *dopLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-     dopLabel.backgroundColor = [UIColor clearColor];
-     dopLabel.textColor = [UIColor whiteColor];
-     dopLabel.text = @"DoP";
-     dopLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
-     dopLabel.frame = CGRectMake(600,70,150,20);
-     
-     UILabel *dopText = [[UILabel alloc] initWithFrame:CGRectZero];
-     dopText.backgroundColor = [UIColor clearColor];
-     dopText.font = [UIFont fontWithName:@"Helvetica" size:13];
-     dopText.frame = CGRectMake(600,90,200,20);
-     dopText.text =  currentProject.dop;
-     dopText.textColor = myColor;
-     
-     //---------------------------------------//
-     
-     
-     [customView addSubview:titelText];
-     
-     [customView addSubview:productionLabel];
-     [customView addSubview:productionText];
-     
-     [customView addSubview:directorLabel];
-     [customView addSubview:directorText];
-     
-     [customView addSubview:dopLabel];
-     [customView addSubview:dopText];
-     
-     return customView;
-
-     
-     */
-    
-    
-    
-    
-    
     
 }
 

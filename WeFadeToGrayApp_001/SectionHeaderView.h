@@ -55,7 +55,6 @@
 
 @interface SectionHeaderView : UIView 
 
-@property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UIButton *disclosureButton;
 @property (nonatomic, assign) NSInteger section;
 @property (nonatomic, weak) id <SectionHeaderViewDelegate> delegate;
