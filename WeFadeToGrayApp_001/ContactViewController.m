@@ -66,4 +66,25 @@
     [self performSegueWithIdentifier:@"fromContactToStart" sender:self];
 
 }
+
+- (IBAction)telBtnClick:(id)sender {
+    NSLog(@"telBtnClick-----");
+    [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: @"tel:+49221998088320"]];
+}
+
+- (IBAction)mapBtnClick:(id)sender {
+    NSLog(@"mapBtnClick-----");
+    [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: @"http://maps.apple.com/?q=Hansaring+88,50670,cologne,germany"]];
+    
+}
+
+- (IBAction)mailBtnClick:(id)sender {
+    NSLog(@"mailBtnClick-----");
+    [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: @"mailto:info@wefadetogrey.de"]];
+}
+
+- (IBAction)webBtnClick:(id)sender {
+    NSLog(@"webBtnClick-----");
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.wefadetogrey.de/"]];
+}
 @end

@@ -17,10 +17,26 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (weak, nonatomic) IBOutlet UILabel *loginUserName;
 @property (weak, nonatomic) NSString *userName;
+@property (weak, nonatomic) IBOutlet UIButton *telBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mapBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mailBtn;
+@property (weak, nonatomic) IBOutlet UIButton *webBtn;
+
+
+
 
 - (IBAction)dailiesListBtnClick:(id)sender;
 - (IBAction)overviewBtnClick:(id)sender;
 - (IBAction)backBtnClick:(id)sender;
 - (IBAction)logoutBtnClick:(id)sender;
+
+- (IBAction)telBtnClick:(id)sender;
+- (IBAction)mapBtnClick:(id)sender;
+- (IBAction)mailBtnClick:(id)sender;
+- (IBAction)webBtnClick:(id)sender;
+
+
+
+
 
 @end
