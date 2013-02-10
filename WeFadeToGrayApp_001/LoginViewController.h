@@ -10,6 +10,12 @@
 #import "XMLLoginParser.h"
 #import "User.h"
 
+@protocol DismissPopoverDelegate
+- (void) dismissPopover:(BOOL)transferToProjectView withUserName: (NSString *) userName UndPassword:(NSString *) userPass;
+@end
+
+
+
 @interface LoginViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
@@ -19,9 +25,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtError;
 @property (weak, nonatomic) IBOutlet UISwitch *saveCredentials;
 
+
 - (IBAction)switchTapped:(id)sender;
 - (IBAction)loginBtnClick:(id)sender;
  
 - (void) getLoginResponse;
+
+
+@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
 
 @end

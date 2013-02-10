@@ -25,7 +25,8 @@ DailySimple *currentDailySimple;
 Boolean isDaily = NO;
 
 -(id) loadXMLByURL:(NSString *)urlString AnduserName:(NSString *)user AndPassword:(NSString *)pass {
-	NSLog(@"inside loadXMLByURL()");
+	
+    NSLog(@"inside XMLProjectsParser.loadXMLByURL()");
     
     _projects = [[NSMutableArray alloc] init];
     
@@ -50,8 +51,6 @@ Boolean isDaily = NO;
     
     NSData *serverReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
-    
-    
     NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
     
 	parser	= [[NSXMLParser alloc] initWithData:serverReply];
@@ -62,13 +61,13 @@ Boolean isDaily = NO;
 
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-	NSLog(@"inside parser()");
+	//NSLog(@"inside parser()");
     currentNodeContent = (NSMutableString *) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementname namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	NSLog(@"inside didStartElement():  %@", elementname);
+	//NSLog(@"inside didStartElement():  %@", elementname);
     if ([elementname isEqualToString:@"project"]) {
 		currentProject = [Project alloc];
         isDaily = NO;
@@ -87,7 +86,7 @@ Boolean isDaily = NO;
 
 - (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementname namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSLog(@"inside didEndElement():  %@", elementname);
+    //NSLog(@"inside didEndElement():  %@", elementname);
     
     if ([elementname isEqualToString:@"name"]) {
         

@@ -18,7 +18,7 @@
                                     <constraint firstAttribute="height" constant="64" id="6IY-3H-tmH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="login_btn.png">
+                                <state key="normal" image="start_btn.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -50,19 +50,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1035" y="-1000"/>
+            <point key="canvasLocation" x="-827" y="-3584"/>
         </scene>
         <!--Login View Controller - Login PopUp-->
         <scene sceneID="bkO-D6-FS5">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" title="Login PopUp" modalTransitionStyle="crossDissolve" modalPresentationStyle="formSheet" id="3IW-Ld-BRb" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFit" id="zqW-we-Zc7">
+                    <view key="view" alpha="0.89999999999999991" contentMode="scaleAspectFit" id="zqW-we-Zc7">
                         <rect key="frame" x="0.0" y="20" width="540" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-rs-pc8">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RIj-B5-RbK"/>
+                                    <constraint firstAttribute="height" constant="18" id="lyW-y8-lYJ"/>
                                     <constraint firstAttribute="width" constant="328" id="rPA-gV-IK3"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,12 +71,12 @@
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3A-JS-hYK">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="password: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPk-8u-UdF">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mdp-ME-6es">
@@ -91,15 +91,11 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="xA6-MP-pag"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdP-rL-8Bg">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="HQP-NO-tLu"/>
-                                    <constraint firstAttribute="width" constant="283" id="y7O-tg-uCj"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdP-rL-8Bg">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="LOGIN">
+                                <state key="normal" backgroundImage="login_btn.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,31 +112,31 @@
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="save credentials: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-Ao-vuf">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.92941182850000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="VJV-lf-l5V" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="216" id="0c5-kJ-2WN"/>
-                            <constraint firstItem="C3A-JS-hYK" firstAttribute="top" secondItem="VwE-rs-pc8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4Ia-t2-p0t"/>
                             <constraint firstItem="dPk-8u-UdF" firstAttribute="trailing" secondItem="C3A-JS-hYK" secondAttribute="trailing" type="default" id="FVA-n3-Pje"/>
                             <constraint firstAttribute="trailing" secondItem="xA6-MP-pag" secondAttribute="trailing" constant="213" id="IHX-dj-yIM"/>
                             <constraint firstItem="Mdp-ME-6es" firstAttribute="centerX" secondItem="VwE-rs-pc8" secondAttribute="centerX" type="default" id="Kvu-A9-sST"/>
-                            <constraint firstItem="B7x-Ao-vuf" firstAttribute="bottom" secondItem="Wur-Fa-Rjk" secondAttribute="bottom" type="default" id="Q0x-pY-2kT"/>
+                            <constraint firstItem="VwE-rs-pc8" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="141" id="MEg-Zc-zmz"/>
+                            <constraint firstAttribute="centerX" secondItem="GdP-rL-8Bg" secondAttribute="centerX" type="user" id="Oqp-XP-Sos"/>
+                            <constraint firstItem="C3A-JS-hYK" firstAttribute="top" secondItem="Mdp-ME-6es" secondAttribute="top" type="default" id="P0V-kH-wPd"/>
+                            <constraint firstItem="Wur-Fa-Rjk" firstAttribute="bottom" secondItem="B7x-Ao-vuf" secondAttribute="bottom" type="default" id="QVA-OQ-AG6"/>
                             <constraint firstItem="dPk-8u-UdF" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="220" id="UfL-aj-gBF"/>
                             <constraint firstAttribute="centerX" secondItem="Mdp-ME-6es" secondAttribute="centerX" type="user" id="WLH-dx-ocG"/>
                             <constraint firstItem="VJV-lf-l5V" firstAttribute="leading" secondItem="Mdp-ME-6es" secondAttribute="leading" type="default" id="Ypc-xz-YG6"/>
                             <constraint firstItem="xA6-MP-pag" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="264" id="e13-bi-vTr"/>
-                            <constraint firstItem="Mdp-ME-6es" firstAttribute="top" secondItem="VwE-rs-pc8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eAz-UE-UUO"/>
-                            <constraint firstAttribute="centerX" secondItem="GdP-rL-8Bg" secondAttribute="centerX" type="user" id="ern-ZV-2Gw"/>
                             <constraint firstAttribute="centerX" secondItem="VJV-lf-l5V" secondAttribute="centerX" type="user" id="fOt-wO-8Cl"/>
                             <constraint firstItem="B7x-Ao-vuf" firstAttribute="leading" secondItem="zqW-we-Zc7" secondAttribute="leading" constant="30" id="jsr-Cd-WtH"/>
-                            <constraint firstItem="VwE-rs-pc8" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="126" id="oR4-aO-hbK"/>
+                            <constraint firstAttribute="bottom" secondItem="GdP-rL-8Bg" secondAttribute="bottom" constant="203" id="twl-RB-CIZ"/>
                             <constraint firstItem="B7x-Ao-vuf" firstAttribute="trailing" secondItem="dPk-8u-UdF" secondAttribute="trailing" type="default" id="ueB-XR-yNu"/>
                             <constraint firstItem="Wur-Fa-Rjk" firstAttribute="leading" secondItem="zqW-we-Zc7" secondAttribute="leading" constant="184" id="vG7-am-abA"/>
                             <constraint firstItem="Wur-Fa-Rjk" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="260" id="vvT-b5-vE4"/>
-                            <constraint firstAttribute="bottom" secondItem="GdP-rL-8Bg" secondAttribute="bottom" constant="236" id="zzU-UM-Dho"/>
+                            <constraint firstItem="C3A-JS-hYK" firstAttribute="top" secondItem="zqW-we-Zc7" secondAttribute="top" constant="164" id="wlw-0w-loU"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -152,12 +148,141 @@
                         <outlet property="txtError" destination="VwE-rs-pc8" id="6d9-v7-6nv"/>
                         <outlet property="txtPassword" destination="VJV-lf-l5V" id="L0T-qk-qua"/>
                         <outlet property="txtUserName" destination="Mdp-ME-6es" id="qUi-3X-tEt"/>
-                        <segue destination="kHY-Ue-L6K" kind="modal" identifier="fromLoginToProjectListNew" modalTransitionStyle="crossDissolve" id="qjJ-lD-Yoe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LZ-bw-HT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1199" y="-2546"/>
+            <point key="canvasLocation" x="1143" y="-3820"/>
+        </scene>
+        <!--Contact View Controller-->
+        <scene sceneID="8d9-QY-7rK">
+            <objects>
+                <viewController id="F4I-vg-gJS" customClass="ContactViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5sJ-yI-qgc">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aD-f3-XXW" userLabel="View header">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbL-ze-NcQ">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Dailies List">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dailiesListBtnClick:" destination="F4I-vg-gJS" eventType="touchUpInside" id="uCu-bx-veN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWO-nh-OUB">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Overview">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="overviewBtnClick:" destination="F4I-vg-gJS" eventType="touchUpInside" id="OF1-E1-0MT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrB-0a-LBa" userLabel="Button - Back">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="back.png">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backBtnClick:" destination="F4I-vg-gJS" eventType="touchUpInside" id="jse-TN-O8x"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="FrB-0a-LBa" firstAttribute="leading" secondItem="9aD-f3-XXW" secondAttribute="leading" constant="130" id="8u8-7b-PIt"/>
+                                    <constraint firstItem="BWO-nh-OUB" firstAttribute="centerY" secondItem="9aD-f3-XXW" secondAttribute="centerY" type="default" id="amH-Ob-xjg"/>
+                                    <constraint firstAttribute="trailing" secondItem="BWO-nh-OUB" secondAttribute="trailing" constant="71" id="atA-2d-VCl"/>
+                                    <constraint firstItem="KbL-ze-NcQ" firstAttribute="baseline" secondItem="BWO-nh-OUB" secondAttribute="baseline" type="default" id="bvV-wA-k6d"/>
+                                    <constraint firstItem="BWO-nh-OUB" firstAttribute="top" secondItem="9aD-f3-XXW" secondAttribute="top" constant="28" id="dx2-3y-ZCg"/>
+                                    <constraint firstAttribute="trailing" secondItem="KbL-ze-NcQ" secondAttribute="trailing" constant="182" id="g5z-Ji-XKf"/>
+                                    <constraint firstAttribute="bottom" secondItem="FrB-0a-LBa" secondAttribute="bottom" constant="10" id="h9Z-Xf-ya7"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo_contact.png" translatesAutoresizingMaskIntoConstraints="NO" id="p3g-cB-ICs" userLabel="logo"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTj-QS-ugn" userLabel="view footer">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDV-i3-eP1" userLabel="Button - logout">
+                                        <accessibility key="accessibilityConfiguration" label=""/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="logout.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logoutBtnClick:" destination="F4I-vg-gJS" eventType="touchUpInside" id="6FU-0n-E3Q"/>
+                                            <action selector="logoutBtnClick:" destination="kHY-Ue-L6K" eventType="touchUpInside" id="CVo-Uu-ER4"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBv-Cw-GVu" userLabel="Label - User Name">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="265" id="JjW-Gf-iD2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                        <color key="textColor" red="0.49749698370000001" green="0.49509361660000001" blue="0.4999003508" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="FBv-Cw-GVu" firstAttribute="top" secondItem="zTj-QS-ugn" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Eqf-EH-kbk"/>
+                                    <constraint firstItem="FBv-Cw-GVu" firstAttribute="leading" secondItem="zTj-QS-ugn" secondAttribute="leading" constant="128" id="hgS-vQ-EVT"/>
+                                    <constraint firstAttribute="bottom" secondItem="FBv-Cw-GVu" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="vc1-fz-Vv2"/>
+                                    <constraint firstItem="dDV-i3-eP1" firstAttribute="leading" secondItem="zTj-QS-ugn" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="yKo-Jg-A8w"/>
+                                    <constraint firstItem="dDV-i3-eP1" firstAttribute="top" secondItem="zTj-QS-ugn" secondAttribute="top" constant="15" id="yyX-MQ-mpK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zTj-QS-ugn" firstAttribute="trailing" secondItem="5sJ-yI-qgc" secondAttribute="trailing" type="default" id="4ux-ZZ-V3R"/>
+                            <constraint firstItem="9aD-f3-XXW" firstAttribute="trailing" secondItem="5sJ-yI-qgc" secondAttribute="trailing" type="default" id="HYd-Ic-yvE"/>
+                            <constraint firstItem="9aD-f3-XXW" firstAttribute="top" secondItem="5sJ-yI-qgc" secondAttribute="top" type="default" id="ICm-dN-Yej"/>
+                            <constraint firstItem="zTj-QS-ugn" firstAttribute="top" secondItem="5sJ-yI-qgc" secondAttribute="top" constant="678" id="IzO-o9-lYh"/>
+                            <constraint firstItem="zTj-QS-ugn" firstAttribute="bottom" secondItem="5sJ-yI-qgc" secondAttribute="bottom" type="default" id="NFL-mD-Ez8"/>
+                            <constraint firstItem="9aD-f3-XXW" firstAttribute="leading" secondItem="5sJ-yI-qgc" secondAttribute="leading" type="default" id="SbR-lD-Ss6"/>
+                            <constraint firstItem="p3g-cB-ICs" firstAttribute="top" secondItem="5sJ-yI-qgc" secondAttribute="top" constant="11" id="oQY-pR-xhq"/>
+                            <constraint firstItem="p3g-cB-ICs" firstAttribute="leading" secondItem="5sJ-yI-qgc" secondAttribute="leading" constant="5" id="sQE-1p-Ifd"/>
+                            <constraint firstItem="zTj-QS-ugn" firstAttribute="leading" secondItem="5sJ-yI-qgc" secondAttribute="leading" type="default" id="xDh-NK-bMe"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="backBtn" destination="FrB-0a-LBa" id="sMi-vL-E7t"/>
+                        <outlet property="contactFooterView" destination="zTj-QS-ugn" id="ZhO-u7-klc"/>
+                        <outlet property="contactHeaderView" destination="9aD-f3-XXW" id="QeP-IY-oCg"/>
+                        <outlet property="dailiesListBtn" destination="KbL-ze-NcQ" id="l9y-FI-CvK"/>
+                        <outlet property="loginUserName" destination="FBv-Cw-GVu" id="uJJ-f3-koP"/>
+                        <outlet property="logoutBtn" destination="dDV-i3-eP1" id="PZL-L8-Q05"/>
+                        <outlet property="overviewBtn" destination="BWO-nh-OUB" id="suH-bc-4AT"/>
+                        <segue destination="2" kind="modal" identifier="fromContactToStart" id="sk9-Ai-ZVq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9N2-Bp-nfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="488" y="-2115"/>
         </scene>
         <!--Projects View Controller New-->
         <scene sceneID="O8P-pZ-pcQ">
@@ -168,10 +293,92 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZ6-DV-wyO" userLabel="View header">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5I-2R-Zag" userLabel="Button - contact">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="contact.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="contactBtnClick:" destination="kHY-Ue-L6K" eventType="touchUpInside" id="nxo-Wt-iOC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-ef-yDC">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Dailies List">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dailiesBtnClick:" destination="kHY-Ue-L6K" eventType="touchUpInside" id="e5k-G3-flO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxR-in-JTC">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Overview">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="overviewBtnClick:" destination="kHY-Ue-L6K" eventType="touchUpInside" id="OAZ-Qy-Gjg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="m5I-2R-Zag" firstAttribute="leading" secondItem="SZ6-DV-wyO" secondAttribute="leading" constant="130" id="Mor-R8-VaV"/>
+                                    <constraint firstItem="Mpa-ef-yDC" firstAttribute="centerY" secondItem="SZ6-DV-wyO" secondAttribute="centerY" type="default" id="UR7-MP-DY3"/>
+                                    <constraint firstAttribute="bottom" secondItem="m5I-2R-Zag" secondAttribute="bottom" constant="10" id="XRH-cb-pdH"/>
+                                    <constraint firstItem="WxR-in-JTC" firstAttribute="baseline" secondItem="Mpa-ef-yDC" secondAttribute="baseline" type="default" id="f4V-Wi-dlc"/>
+                                    <constraint firstAttribute="trailing" secondItem="WxR-in-JTC" secondAttribute="trailing" constant="71" id="skK-CY-zNc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mpa-ef-yDC" secondAttribute="trailing" constant="182" id="zql-aE-ap8"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jg0-aD-9Sj" userLabel="view footer">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iz-j8-FAP" userLabel="Button - logout">
+                                        <accessibility key="accessibilityConfiguration" label=""/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="logout.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logoutBtnClick:" destination="kHY-Ue-L6K" eventType="touchUpInside" id="dzX-K1-aFI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXC-Wk-XEe" userLabel="Label - User Name">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="265" id="lB6-04-Xss"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                        <color key="textColor" red="0.49749698369431911" green="0.49509361662333207" blue="0.49990035076530615" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dXC-Wk-XEe" firstAttribute="leading" secondItem="jg0-aD-9Sj" secondAttribute="leading" constant="128" id="BDN-mP-wDN"/>
+                                    <constraint firstItem="dXC-Wk-XEe" firstAttribute="top" secondItem="jg0-aD-9Sj" secondAttribute="top" constant="20" symbolic="YES" type="default" id="D7e-yp-Vbd"/>
+                                    <constraint firstItem="7iz-j8-FAP" firstAttribute="leading" secondItem="jg0-aD-9Sj" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="IEf-Hc-wg5"/>
+                                    <constraint firstItem="7iz-j8-FAP" firstAttribute="top" secondItem="jg0-aD-9Sj" secondAttribute="top" constant="15" id="mLu-w8-IN0"/>
+                                    <constraint firstAttribute="bottom" secondItem="dXC-Wk-XEe" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="qHC-Mt-gCq"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-Km-wkg">
                                 <color key="backgroundColor" red="1" green="0.94901967050000002" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
@@ -235,27 +442,103 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="contactBtn" destination="m5I-2R-Zag" id="85J-7R-fch"/>
+                        <outlet property="dailiesListBtn" destination="Mpa-ef-yDC" id="dLW-Jv-Ca4"/>
                         <outlet property="footerView" destination="jg0-aD-9Sj" id="LoJ-YT-z2I"/>
                         <outlet property="headerView" destination="SZ6-DV-wyO" id="rhV-Pf-6YR"/>
+                        <outlet property="loginUserName" destination="dXC-Wk-XEe" id="5Es-JQ-vsd"/>
+                        <outlet property="logoutBtn" destination="7iz-j8-FAP" id="NOh-eB-Izh"/>
                         <outlet property="myTableView" destination="SMN-Km-wkg" id="UIM-qR-lZr"/>
+                        <outlet property="overviewBtn" destination="WxR-in-JTC" id="aSR-Lv-4No"/>
+                        <segue destination="2" kind="modal" identifier="fromProjectListToStart" id="pRI-Sv-f9x"/>
+                        <segue destination="F4I-vg-gJS" kind="modal" identifier="fromProjectListToContact" modalTransitionStyle="crossDissolve" id="TdW-hD-e2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xaw-gD-JmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2644" y="-983"/>
+            <point key="canvasLocation" x="3032" y="-2544"/>
         </scene>
     </scenes>
     <resources>
+        <image name="back.png" width="36" height="12"/>
+        <image name="contact.png" width="56" height="12"/>
         <image name="login_btn.png" width="137" height="63"/>
+        <image name="logo_contact.png" width="103" height="103"/>
         <image name="logo_pl.png" width="103" height="103"/>
+        <image name="logout.png" width="77" height="37"/>
         <image name="startPage_bg.png" width="1024" height="748"/>
+        <image name="start_btn.png" width="137" height="63"/>
     </resources>
+    <classes>
+        <class className="ContactViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backBtnClick:"/>
+                <relationship kind="action" name="dailiesListBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="backBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DailyCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginBtnClick:"/>
+                <relationship kind="action" name="switchTapped:"/>
+                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startLoginBtnClick:"/>
+                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ta-4q-ORZ"/>
+        <segue reference="pRI-Sv-f9x"/>
     </inferredMetricsTieBreakers>
 </document>

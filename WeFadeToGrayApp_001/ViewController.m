@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ProjectsViewControllerNew.h"
+#import "LoginViewController.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,9 @@
 @implementation ViewController
 
 
-@synthesize startLoginBtn;
+
+
+@synthesize startLoginBtn, popControler, userName, userPassword;
 
 - (void)viewDidLoad {
     
@@ -30,6 +33,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void) dismissPopover:(BOOL) isTransferToProjectView withUserName: (NSString *) userNameX UndPassword:(NSString *) userPassX {
+    
+        
+    NSLog(@"dismissPopover----");
+    
+    if(isTransferToProjectView){
+        
+        self.userName = userNameX;
+        self.userPassword = userPassX;
+        
+        [self.popControler dismissPopoverAnimated:NO];
+        [self performSegueWithIdentifier:@"fromStartToProjectListNew" sender:self];
+       
+    }
+    
 }
 
 
@@ -56,14 +77,34 @@
         
         NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
         
-        NSString *userName = [userPref objectForKey:@"userName"];
-        NSString *userPass = [userPref objectForKey:@"userPassword"];
-
+        if ([[userPref objectForKey:@"isLogin"] intValue] == 1) {
+            self.userName = [userPref objectForKey:@"userName"];
+            self.userPassword = [userPref objectForKey:@"userPassword"];
+        }
         
+
         ProjectsViewControllerNew *vc = [segue destinationViewController];
-        vc.userName = userName;
-        vc.userPassword = userPass;
+        vc.userName = self.userName;
+        vc.userPassword = self.userPassword;
+    }
+    
+    
+    else if ([segue.identifier isEqualToString:@"fromStartToLogin"]){
+        
+        LoginViewController *vc = (LoginViewController*)[segue destinationViewController];
+        vc.delegate = self;
+        
+        self.popControler = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
     }
 }
+
+
+
+
+
+
+
+
 
 @end

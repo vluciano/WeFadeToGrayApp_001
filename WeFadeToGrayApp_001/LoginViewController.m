@@ -59,11 +59,10 @@ bool switchValue = NO;
         NSLog(@"errorDescription: %@",xmlLoginParser.errorDescription);
         
         //save the credentials
+        NSString *userName = [txtUserName text];
+        NSString *userPass = [txtPassword text];
         
         if (switchValue) {
-            
-            NSString *userName = [txtUserName text];
-            NSString *userPass = [txtPassword text];
             
             NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
             [userPref setObject:userName forKey:@"userName"];
@@ -75,9 +74,9 @@ bool switchValue = NO;
 
         }
         
-        
         //go to the Project List
-        [self performSegueWithIdentifier:@"fromLoginToProjectListNew" sender:self];
+        [self dismissPopoverWithUserName:userName UndPassword:userPass ];
+        //[self performSegueWithIdentifier:@"fromLoginToProjectListNew" sender:self];
         
         
     }else {
@@ -98,12 +97,14 @@ bool switchValue = NO;
     if(txtUserName.text.length < 3 || txtPassword.text.length < 3){
         txtError.text = @"Please fill the fields correctly";
     }else {
+        
         [ai setHidden:NO];
         [ai startAnimating];
         loginBtn.enabled = FALSE;
         
         [self performSelector:@selector(getLoginResponse) withObject:nil afterDelay:0];
     }
+    
 }
 
 
@@ -129,9 +130,14 @@ bool switchValue = NO;
     
         vc.userName = userNameX;
         vc.userPassword = userPassX;
+        
     }
 }
 
+- (void) dismissPopoverWithUserName: (NSString *) userName UndPassword:(NSString *) userPass {
+    
+    [self.delegate dismissPopover:YES withUserName: userName UndPassword: userPass ];
+}
 
 
 @end

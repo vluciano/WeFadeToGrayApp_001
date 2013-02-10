@@ -81,7 +81,7 @@
         UILabel *titelText = [[UILabel alloc] initWithFrame:CGRectZero];
         titelText.backgroundColor = [UIColor clearColor];
         titelText.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-        titelText.frame = CGRectMake(30,30,600,20);
+        titelText.frame = CGRectMake(30,30,600,26);
         titelText.text =  currentProject.name;
         titelText.textColor = myColor;
         

@@ -21,7 +21,7 @@ Boolean isSequence = NO;
 
 -(id) loadXMLByURL:(NSString *)urlString AndProjectIdent:(NSString *) ident AndUserName:(NSString *)user AndPassword:(NSString *)pass {
     
-	NSLog(@"inside loadXMLByURL()");
+	//NSLog(@"inside XMLDailiesParser.loadXMLByURL()");
     
     _dailies = [[NSMutableArray alloc] init];
 	NSURL *url	= [NSURL URLWithString:urlString];
@@ -44,10 +44,8 @@ Boolean isSequence = NO;
     // send it
     
     NSData *serverReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
-    
-    
-    NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
+    //NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
+    //NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
     
 	parser	= [[NSXMLParser alloc] initWithData:serverReply];
 	parser.delegate = self;
@@ -56,13 +54,13 @@ Boolean isSequence = NO;
 }
 
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-	NSLog(@"inside parser()");
+	//NSLog(@"inside parser()");
     currentNodeContent = (NSMutableString *) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementname namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
-	NSLog(@"inside didStartElement():  %@", elementname);
+	//NSLog(@"inside didStartElement():  %@", elementname);
     if ([elementname isEqualToString:@"daily"]) {
 		currentDaily = [Daily alloc];
         isSequence = NO;
@@ -75,7 +73,7 @@ Boolean isSequence = NO;
 
 - (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementname namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    NSLog(@"inside didEndElement():  %@", elementname);
+    //NSLog(@"inside didEndElement():  %@", elementname);
     
     if ([elementname isEqualToString:@"name"]) {
         if (!isSequence) {

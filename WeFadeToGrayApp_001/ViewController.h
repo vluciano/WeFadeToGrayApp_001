@@ -7,11 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <DismissPopoverDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *startLoginBtn;
 
-- (IBAction)startLoginBtnClick:(id)sender;
+@property (strong, nonatomic) UIPopoverController* popControler;
+
+@property (weak, nonatomic) NSString *userName;
+@property (weak, nonatomic) NSString *userPassword;
+
+
+-(IBAction)startLoginBtnClick:(id)sender;
+
+
+
+
 
 @end

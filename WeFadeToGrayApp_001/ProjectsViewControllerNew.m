@@ -9,6 +9,7 @@
 #import "ProjectsViewControllerNew.h"
 #import "SectionHeaderView.h"
 #import "SectionInfo.h"
+#import "ContactViewController.h"
 
 @interface ProjectsViewControllerNew ()
 
@@ -21,7 +22,7 @@
 
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_;
+@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName;
 
 XMLProjectsParser *xmlProjectsParser;
 
@@ -80,6 +81,8 @@ XMLProjectsParser *xmlProjectsParser;
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
     
+    self.loginUserName.text = self.userName;
+    
     xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
     
     openSectionIndex = NSNotFound;
@@ -91,6 +94,8 @@ XMLProjectsParser *xmlProjectsParser;
      The section info array is thrown away in viewWillUnload, so it's OK to set the default values here. If you keep the section information etc. then set the default values in the designated initializer.
      */
     rowHeight_ = DEFAULT_ROW_HEIGHT;
+    
+    self.myTableView.indicatorStyle=UIScrollViewIndicatorStyleWhite;
 
     [self.myTableView reloadData];
 }
@@ -142,11 +147,6 @@ XMLProjectsParser *xmlProjectsParser;
 }
 
 
-
-
-
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"ProjectCellNew";
@@ -166,22 +166,11 @@ XMLProjectsParser *xmlProjectsParser;
     return cell;
 }
 
-/*
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1.0;
-}
-*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 149.0;
 }
 
-
-/*
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0;
-}
-*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
     
@@ -281,6 +270,44 @@ XMLProjectsParser *xmlProjectsParser;
     self.openSectionIndex = NSNotFound;
     
     [self.myTableView reloadData];
+}
+
+
+- (IBAction)contactBtnClick:(id)sender {
+    
+    NSLog(@"contactBtnClick-----");
+    [self performSegueWithIdentifier:@"fromProjectListToContact" sender:self];
+}
+
+- (IBAction)dailiesBtnClick:(id)sender {
+    NSLog(@"dailiesBtnClick-----");
+}
+
+- (IBAction)overviewBtnClick:(id)sender {
+    NSLog(@"overviewBtnClick-----");
+}
+
+- (IBAction)logoutBtnClick:(id)sender {
+    
+    NSLog(@"logoutBtnClick-----");
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userPassword"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isLogin"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"switchValue"];
+    
+    [self performSegueWithIdentifier:@"fromProjectListToStart" sender:self];
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+        
+    if([segue.identifier isEqualToString:@"fromProjectListToContact"]){
+        
+        ContactViewController *vc = [segue destinationViewController];
+        vc.userName = self.userName;
+    }
 }
 
 

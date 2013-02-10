@@ -21,9 +21,20 @@
 @property (weak, nonatomic) NSString *userPassword;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIButton *contactBtn;
+@property (weak, nonatomic) IBOutlet UIButton *dailiesListBtn;
+@property (weak, nonatomic) IBOutlet UIButton *overviewBtn;
+@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
+@property (weak, nonatomic) IBOutlet UILabel *loginUserName;
+
 
 @property (nonatomic, strong) NSMutableArray* sectionInfoArray;
 @property (nonatomic, assign) NSInteger openSectionIndex;
+
+- (IBAction)contactBtnClick:(id)sender;
+- (IBAction)dailiesBtnClick:(id)sender;
+- (IBAction)overviewBtnClick:(id)sender;
+- (IBAction)logoutBtnClick:(id)sender;
 
 @property (nonatomic, assign) NSInteger uniformRowHeight;
 
