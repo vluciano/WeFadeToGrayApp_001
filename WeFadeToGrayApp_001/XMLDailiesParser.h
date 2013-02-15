@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Daily.h"
+#import "Clip.h"
 
 @interface XMLDailiesParser : NSObject <NSXMLParserDelegate>
 
 @property (strong, readonly) NSMutableArray *dailies;
+@property (strong, readonly) NSMutableArray *clips;
+
+
 -(id) loadXMLByURL:(NSString *)urlString AndProjectIdent:(NSString *) ident AndUserName:(NSString *)user AndPassword:(NSString *)pass;
 
 @end

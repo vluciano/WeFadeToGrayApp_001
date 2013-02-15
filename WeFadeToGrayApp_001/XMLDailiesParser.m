@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "XMLDailiesParser.h"
 
+
 @implementation XMLDailiesParser
 
 @synthesize dailies = _dailies;
+@synthesize clips = _clips;
 
 NSMutableString	*currentNodeContent;
 NSXMLParser	*parser;
 Daily	*currentDaily;
 Boolean isSequence = NO;
+Boolean isClip = NO;
+
+Clip *currentClip;
 
 
 -(id) loadXMLByURL:(NSString *)urlString AndProjectIdent:(NSString *) ident AndUserName:(NSString *)user AndPassword:(NSString *)pass {
@@ -44,8 +49,8 @@ Boolean isSequence = NO;
     // send it
     
     NSData *serverReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    //NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
-    //NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
+    NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
+    NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
     
 	parser	= [[NSXMLParser alloc] initWithData:serverReply];
 	parser.delegate = self;
@@ -64,10 +69,26 @@ Boolean isSequence = NO;
     if ([elementname isEqualToString:@"daily"]) {
 		currentDaily = [Daily alloc];
         isSequence = NO;
+        isClip = NO;
 	}
     if ([elementname isEqualToString:@"sequence"]) {
         isSequence = YES;
+        isClip = NO;
     }
+
+    if ([elementname isEqualToString:@"clip"]) {
+        currentClip = [Clip alloc];
+        isClip = YES;
+        isSequence = NO;
+    }
+    
+    if ([elementname isEqualToString:@"clips"]) {
+        _clips = [[NSMutableArray alloc] init];
+        
+    }
+    
+    
+    
     
 }
 
@@ -76,10 +97,12 @@ Boolean isSequence = NO;
     //NSLog(@"inside didEndElement():  %@", elementname);
     
     if ([elementname isEqualToString:@"name"]) {
-        if (!isSequence) {
+        if (!isSequence && !isClip) {
             currentDaily.name = currentNodeContent;
-        }else{
+        }else if (isSequence && !isClip) {
             currentDaily.sec_name = currentNodeContent;
+        }else if (!isSequence && isClip){
+            currentClip.clipName = currentNodeContent;
         }
     }
     
@@ -114,10 +137,46 @@ Boolean isSequence = NO;
         currentDaily.sec_duration = currentNodeContent;
     }
     
-    if ([elementname isEqualToString:@"clips"]) {
+    if ([elementname isEqualToString:@"url"]) {
+        currentDaily.url = currentNodeContent;
+    }
+    
+    
+    if (isSequence && !isClip && [elementname isEqualToString:@"clips"]) {
         currentDaily.sec_clips = currentNodeContent;
     }
-
+    
+    //Clip
+    if ([elementname isEqualToString:@"start"]) {
+        currentClip.start = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"length"]) {
+        currentClip.length = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"path"]) {
+        currentClip.thumbnail_path = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"width"]) {
+        currentClip.thumbnail_size_width = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"height"]) {
+        currentClip.thumbnail_size_height = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"trackingclip"]) {
+        currentClip.trackingclip = currentNodeContent;
+    }
+    
+    
+    if ([elementname isEqualToString:@"clip"]) {
+        [_clips addObject:currentClip];
+        currentClip = nil;
+    }
+    
+    if (isClip && [elementname isEqualToString:@"clips"]) {
+        isClip = NO;
+        currentDaily.clips = _clips;
+        _clips = nil;
+    }
     
 	if ([elementname isEqualToString:@"daily"]) {
 		[self.dailies addObject:currentDaily];
@@ -125,7 +184,5 @@ Boolean isSequence = NO;
 		currentNodeContent = nil;
 	}
 }
-
-
 
 @end

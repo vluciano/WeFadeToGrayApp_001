@@ -10,7 +10,7 @@
 
 @implementation DailyCell
 
-@synthesize dailyTitle;
+@synthesize dailyTitle, selectedProjectView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

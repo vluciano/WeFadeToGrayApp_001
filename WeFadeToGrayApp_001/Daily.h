@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *ident;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *created;
+@property (strong, nonatomic) NSString *url;
 
 //Info
 @property (strong, nonatomic) NSString *director;
@@ -25,6 +26,8 @@
 @property (strong, nonatomic) NSString *sec_name;
 @property (strong, nonatomic) NSString *sec_duration;
 @property (strong, nonatomic) NSString *sec_clips;
+
+@property (strong, nonatomic)NSMutableArray *clips;
 
 
 @end

@@ -11,5 +11,6 @@
 @interface DailyCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *dailyTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedProjectView;
 
 @end

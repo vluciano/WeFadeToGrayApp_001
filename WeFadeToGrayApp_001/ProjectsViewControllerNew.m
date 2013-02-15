@@ -10,6 +10,7 @@
 #import "SectionHeaderView.h"
 #import "SectionInfo.h"
 #import "ContactViewController.h"
+#import "DailiesOverviewViewController.h"
 
 @interface ProjectsViewControllerNew ()
 
@@ -17,14 +18,15 @@
 
 
 #define DEFAULT_ROW_HEIGHT 100
-#define HEADER_HEIGHT 149
+#define HEADER_HEIGHT 145
 
 
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName;
+@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
 
 XMLProjectsParser *xmlProjectsParser;
+Boolean isProjectSelected = NO;
 
 
 
@@ -86,6 +88,9 @@ XMLProjectsParser *xmlProjectsParser;
     xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
     
     openSectionIndex = NSNotFound;
+    
+    [self.dailiesListBtn setSelected:YES];
+    [self.overviewBtn setEnabled:NO];
     
     
     // Set up default values.
@@ -163,12 +168,19 @@ XMLProjectsParser *xmlProjectsParser;
     
     cell.dailyTitle.text = currentDaily.name;
     
+    if (indexPath.row == 0) {
+        [cell.selectedProjectView setHidden:NO];
+    }else {
+        [cell.selectedProjectView setHidden:YES];
+    }
+    
+    
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 149.0;
+    return HEADER_HEIGHT;
 }
 
 
@@ -243,7 +255,12 @@ XMLProjectsParser *xmlProjectsParser;
     [self.myTableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:insertAnimation];
     [self.myTableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:deleteAnimation];
     [self.myTableView endUpdates];
+    
     self.openSectionIndex = sectionOpened;
+    
+    self.actualProjectIdent = sectionInfo.project.ident;
+    
+    [self.overviewBtn setEnabled:YES];
     
     [self.myTableView reloadData];
     
@@ -269,6 +286,10 @@ XMLProjectsParser *xmlProjectsParser;
     }
     self.openSectionIndex = NSNotFound;
     
+    self.actualProjectIdent = nil;
+    
+    [self.overviewBtn setEnabled:NO];
+    
     [self.myTableView reloadData];
 }
 
@@ -285,6 +306,12 @@ XMLProjectsParser *xmlProjectsParser;
 
 - (IBAction)overviewBtnClick:(id)sender {
     NSLog(@"overviewBtnClick-----");
+    
+    if (self.actualProjectIdent != nil) {
+        [self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+    }
+    
+
 }
 
 - (IBAction)logoutBtnClick:(id)sender {
@@ -308,6 +335,14 @@ XMLProjectsParser *xmlProjectsParser;
         ContactViewController *vc = [segue destinationViewController];
         vc.userName = self.userName;
     }
+    if([segue.identifier isEqualToString:@"fromProjectListToDailiesOverview"]){
+        
+        DailiesOverviewViewController *vc = [segue destinationViewController];
+        vc.userName = self.userName;
+        vc.userPassword = self.userPassword;
+        vc.projectIdent = self.actualProjectIdent;
+    }
+    
 }
 
 
