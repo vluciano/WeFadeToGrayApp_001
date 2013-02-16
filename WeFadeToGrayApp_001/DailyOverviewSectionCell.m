@@ -46,11 +46,12 @@
         
         
         
-        self.sectionTitel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 40.0f, 200.0f, 60.0f)];
+        self.sectionTitel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 40.0f, 135.0f, 70.0f)];
         self.sectionTitel.backgroundColor = [UIColor clearColor];
         self.sectionTitel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         self.sectionTitel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
         [self.sectionTitel setTextColor:[UIColor grayColor]];
+        
         
         //self.autoresizesSubviews = YES;
         //self.sectionTitel.textAlignment = NSTextAlignmentCenter;
@@ -58,7 +59,7 @@
         
         [self addSubview:self.sectionTitel];
         
-        self.arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(230.0f, 65.0f, 17.0f, 13.0f)];
+        self.arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(210.0f, 62.0f, 17.0f, 13.0f)];
         self.arrowView.image = [UIImage imageNamed:@"sequenz-pfeil.png"];
         [self addSubview:self.arrowView];
         

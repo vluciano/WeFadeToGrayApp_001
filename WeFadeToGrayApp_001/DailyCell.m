@@ -10,14 +10,16 @@
 
 @implementation DailyCell
 
-@synthesize dailyTitle, selectedProjectView;
+@synthesize dailyTitle, selectedProjectView, dailyCell_bg;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
         // Initialization code
+        
     }
     return self;
 }

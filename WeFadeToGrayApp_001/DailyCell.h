@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dailyTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedProjectView;
+@property (strong, nonatomic) IBOutlet UIImageView *dailyCell_bg;
 
 @end

@@ -18,7 +18,7 @@
 
 
 #define DEFAULT_ROW_HEIGHT 100
-#define HEADER_HEIGHT 145
+#define HEADER_HEIGHT 144
 
 
 @implementation ProjectsViewControllerNew
@@ -80,8 +80,10 @@ Boolean isProjectSelected = NO;
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"projectView_bg.png"]];
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
+    self.myTableView.backgroundColor = [UIColor clearColor];
     
     self.loginUserName.text = self.userName;
     
@@ -167,6 +169,8 @@ Boolean isProjectSelected = NO;
     Daily *currentDaily = [projectDailies objectAtIndex:indexPath.row];
     
     cell.dailyTitle.text = currentDaily.name;
+    
+    [cell  setBackgroundColor:[UIColor colorWithRed:255 green:237 blue:0 alpha:1]];
     
     if (indexPath.row == 0) {
         [cell.selectedProjectView setHidden:NO];

@@ -535,6 +535,7 @@ www.wefadetogrey.de</string>
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="projectViewDaily_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fuC-Nk-cGQ"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKi-XS-a1B">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="EaW-Xn-2CP"/>
@@ -550,12 +551,15 @@ www.wefadetogrey.de</string>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.92941182850000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
+                                            <constraint firstItem="fuC-Nk-cGQ" firstAttribute="leading" secondItem="Lds-hm-gBg" secondAttribute="leading" type="default" id="9gr-1T-7FF"/>
+                                            <constraint firstItem="pKi-XS-a1B" firstAttribute="top" secondItem="Lds-hm-gBg" secondAttribute="top" constant="43" id="OKw-c2-THE"/>
                                             <constraint firstItem="kUB-Xf-bM2" firstAttribute="top" secondItem="Lds-hm-gBg" secondAttribute="top" constant="-1" id="RAQ-CE-bEf"/>
-                                            <constraint firstItem="pKi-XS-a1B" firstAttribute="top" secondItem="Lds-hm-gBg" secondAttribute="top" constant="43" id="ToE-a0-FGl"/>
                                             <constraint firstAttribute="centerX" secondItem="kUB-Xf-bM2" secondAttribute="centerX" type="user" id="aEl-d3-B7Y"/>
                                             <constraint firstItem="pKi-XS-a1B" firstAttribute="leading" secondItem="Lds-hm-gBg" secondAttribute="leading" constant="30" id="bOa-nj-SGt"/>
+                                            <constraint firstItem="fuC-Nk-cGQ" firstAttribute="top" secondItem="Lds-hm-gBg" secondAttribute="top" type="default" id="ulW-QG-1Ut"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="dailyCell_bg" destination="fuC-Nk-cGQ" id="PO7-e7-amB"/>
                                             <outlet property="dailyTitle" destination="pKi-XS-a1B" id="Syr-Ff-b6C"/>
                                             <outlet property="selectedProjectView" destination="kUB-Xf-bM2" id="xGl-I6-ags"/>
                                         </connections>
@@ -568,7 +572,6 @@ www.wefadetogrey.de</string>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo_pl.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-xn-gTd" userLabel="logo"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SMN-Km-wkg" firstAttribute="trailing" secondItem="DUb-ya-QFA" secondAttribute="trailing" type="default" id="1ae-2W-QdY"/>
                             <constraint firstItem="SZ6-DV-wyO" firstAttribute="leading" secondItem="DUb-ya-QFA" secondAttribute="leading" type="default" id="3J4-AL-dyf"/>
@@ -810,6 +813,7 @@ www.wefadetogrey.de</string>
         <image name="logo_contact.png" width="103" height="103"/>
         <image name="logo_pl.png" width="103" height="103"/>
         <image name="logout.png" width="77" height="37"/>
+        <image name="projectViewDaily_bg.png" width="1024" height="100"/>
         <image name="selectedProject.png" width="23" height="11"/>
         <image name="startPage_bg.png" width="1024" height="748"/>
         <image name="start_btn.png" width="137" height="63"/>
@@ -818,6 +822,112 @@ www.wefadetogrey.de</string>
         <image name="wftg_btn_overview.png" width="135" height="99"/>
         <image name="wftg_btn_overview_active.png" width="135" height="99"/>
     </resources>
+    <classes>
+        <class className="ContactViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backBtnClick:"/>
+                <relationship kind="action" name="dailiesListBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="mailBtnClick:"/>
+                <relationship kind="action" name="mapBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="action" name="telBtnClick:"/>
+                <relationship kind="action" name="webBtnClick:"/>
+                <relationship kind="outlet" name="backBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mailBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="telBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="webBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DailiesOverviewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailiesOverviewViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DailyCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dailyCell_bg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginBtnClick:"/>
+                <relationship kind="action" name="switchTapped:"/>
+                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startLoginBtnClick:"/>
+                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -101,6 +101,8 @@ XMLDailiesParser *xmlDailiesParser;
         identifier = @"SectionCell";
         DailyOverviewSectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         
+        cell.sectionTitel.numberOfLines = 2;
+        
         [cell setTitel:currentDaily.name];
         return cell;
         
