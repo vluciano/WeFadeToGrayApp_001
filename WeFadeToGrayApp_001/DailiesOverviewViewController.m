@@ -97,6 +97,7 @@ XMLDailiesParser *xmlDailiesParser;
     
     static NSString *identifier;
     if (indexPath.row == 0) {
+        
         identifier = @"SectionCell";
         DailyOverviewSectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         
@@ -113,8 +114,13 @@ XMLDailiesParser *xmlDailiesParser;
         NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [UIImage imageWithData:data];
-        cell1.imageView.image = image;
-        */
+        cell1.clipImageView.image = image;
+         
+         if (indexPath.row == 1) {
+            cell1.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
+         }
+         */
+        
         
         // load photo images in the background
         __weak DailiesOverviewViewController *weakSelf = self;
@@ -131,13 +137,16 @@ XMLDailiesParser *xmlDailiesParser;
                     NSData *data = [NSData dataWithContentsOfURL:url];
                     UIImage *image = [UIImage imageWithData:data];
                     
-                    cell.imageView.image = image;
+                    cell.clipImageView.image = image;
+                    
+                    if (indexPath.row == 1) {
+                        cell.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
+                    }
                 }
             });
         }];
         
         [self.thumbnailQueue addOperation:operation];
-        
         
         return cell1;
 

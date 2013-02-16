@@ -11,7 +11,7 @@
 
 @implementation DailyOverviewSectionCell
 
-@synthesize sectionTitel, arrowView;
+@synthesize sectionTitel, arrowView, sectionBgView;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -19,16 +19,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self  setBackgroundColor:[UIColor colorWithRed:255 green:237 blue:0 alpha:1]];
         
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 0.5f;
-
-        
+        self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderWidth = 0.0f;
         
         /*
+         [self  setBackgroundColor:[UIColor colorWithRed:255 green:237 blue:0 alpha:1]];
         self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 3.0f;
+        self.layer.borderWidth = 0.5f;
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowRadius = 3.0f;
         self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
@@ -60,7 +58,7 @@
         
         [self addSubview:self.sectionTitel];
         
-        self.arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(230.0f, 63.0f, 17.0f, 13.0f)];
+        self.arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(230.0f, 65.0f, 17.0f, 13.0f)];
         self.arrowView.image = [UIImage imageNamed:@"sequenz-pfeil.png"];
         [self addSubview:self.arrowView];
         
@@ -70,6 +68,16 @@
         bottomBorder.backgroundColor = [UIColor grayColor];
         [self addSubview:bottomBorder];
         */
+        
+        //Section Bg
+        self.sectionBgView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.sectionBgView.contentMode = UIViewContentModeScaleAspectFill;
+        self.sectionBgView.clipsToBounds = YES;
+        self.sectionBgView.image = [UIImage imageNamed:@"sequenz-bg.png"];
+        
+        [self.contentView addSubview:self.sectionBgView];
+        
+        
         
     }
     return self;

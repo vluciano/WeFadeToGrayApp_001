@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UILabel *sectionTitel;
 @property (nonatomic, strong) UIImageView *arrowView;
+@property (strong, nonatomic) UIImageView *sectionBgView;
 
 
 

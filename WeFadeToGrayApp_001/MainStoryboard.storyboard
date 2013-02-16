@@ -713,8 +713,8 @@ www.wefadetogrey.de</string>
                                         </constraints>
                                         <size key="customSize" width="253" height="144"/>
                                         <connections>
+                                            <outlet property="clipImageView" destination="L8G-VM-hgt" id="sdU-gR-DwO"/>
                                             <outlet property="clipTitel" destination="hIl-23-v4O" id="33f-Jq-wVg"/>
-                                            <outlet property="imageView" destination="L8G-VM-hgt" id="bbZ-Mk-tsT"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -818,111 +818,6 @@ www.wefadetogrey.de</string>
         <image name="wftg_btn_overview.png" width="135" height="99"/>
         <image name="wftg_btn_overview_active.png" width="135" height="99"/>
     </resources>
-    <classes>
-        <class className="ContactViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backBtnClick:"/>
-                <relationship kind="action" name="dailiesListBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="mailBtnClick:"/>
-                <relationship kind="action" name="mapBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="action" name="telBtnClick:"/>
-                <relationship kind="action" name="webBtnClick:"/>
-                <relationship kind="outlet" name="backBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mailBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mapBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="telBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="webBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailiesOverviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailiesOverviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailyCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginBtnClick:"/>
-                <relationship kind="action" name="switchTapped:"/>
-                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startLoginBtnClick:"/>
-                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

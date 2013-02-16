@@ -11,48 +11,63 @@
 
 @interface DailyOverviewClipCell ()
 
-@property (nonatomic, strong, readwrite) UIImageView *imageView;
+@property (nonatomic, strong, readwrite) UIImageView *clipImageView;
 
 @end
 
 
 @implementation DailyOverviewClipCell
 
-@synthesize clipTitel, imageView;
+@synthesize clipTitel, clipImageView, sectionOverlayView;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
         
+        self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderWidth = 0.0f;
+
+        
+        /*
+        self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 0.5f;
-        //self.layer.shadowColor = [UIColor blackColor].CGColor;
-        //self.layer.shadowRadius = 3.0f;
-        //self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-        //self.layer.shadowOpacity = 0.5f;
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowRadius = 3.0f;
+        self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        self.layer.shadowOpacity = 0.5f;
+        */
+         
+        //Thumb
+        self.clipImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.clipImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipImageView.clipsToBounds = YES;
         
-        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.imageView.clipsToBounds = YES;
+        [self.contentView addSubview:self.clipImageView];
         
-        [self.contentView addSubview:self.imageView];
-        
-        
+        //Clip Name
         self.clipTitel = [[UILabel alloc] initWithFrame:self.bounds];
         self.clipTitel.backgroundColor = [UIColor clearColor];
-        self.autoresizesSubviews = YES;
         self.clipTitel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         self.clipTitel.font = [UIFont boldSystemFontOfSize:12];
         self.clipTitel.textAlignment = NSTextAlignmentCenter;
+        [self.clipTitel setTextColor:[UIColor grayColor]];
+        
+        //self.autoresizesSubviews = YES;
         //self.clipTitel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:self.clipTitel];
 
+        //Section Overlay
+        self.sectionOverlayView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.sectionOverlayView.contentMode = UIViewContentModeScaleAspectFill;
+        self.sectionOverlayView.clipsToBounds = YES;
         
+        [self.contentView addSubview:self.sectionOverlayView];
         
     }
+    
     return self;
 }
 
@@ -64,7 +79,9 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    self.imageView.image = nil;
+    self.clipImageView.image = nil;
+    self.sectionOverlayView.image = nil;
+    self.clipTitel.text = nil;
 }
 
 
