@@ -28,6 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 
+@property (nonatomic, strong) NSOperationQueue *thumbnailQueue;
+
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;
 - (IBAction)overviewBtnClick:(id)sender;

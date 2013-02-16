@@ -10,6 +10,7 @@
 #import "ContactViewController.h"
 #import "XMLDailiesParser.h"
 #import "DailyOverviewSectionCell.h"
+#import "DailyOverviewClipCell.h"
 
 @interface DailiesOverviewViewController ()
 @end
@@ -18,7 +19,7 @@
 
 @implementation DailiesOverviewViewController
 
-@synthesize userName, userPassword, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView;
+@synthesize userName, userPassword, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView, thumbnailQueue;
 
 XMLDailiesParser *xmlDailiesParser;
 
@@ -51,12 +52,16 @@ XMLDailiesParser *xmlDailiesParser;
     */
     
     [self.myCollectionView registerClass:[DailyOverviewSectionCell class] forCellWithReuseIdentifier:@"SectionCell"];
+    [self.myCollectionView registerClass:[DailyOverviewClipCell class] forCellWithReuseIdentifier:@"ClipCell"];
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)self.myCollectionView.collectionViewLayout;
     //flowLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
     flowLayout.itemSize = CGSizeMake(256, 144);
     flowLayout.minimumInteritemSpacing = 0;
-        
+    
+    
+    self.thumbnailQueue = [[NSOperationQueue alloc] init];
+    self.thumbnailQueue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
     
     [self.myCollectionView reloadData];
     
@@ -95,23 +100,46 @@ XMLDailiesParser *xmlDailiesParser;
         identifier = @"SectionCell";
         DailyOverviewSectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         
-        [cell setSectionTitel:currentDaily.name];
+        [cell setTitel:currentDaily.name];
         return cell;
         
     }else {
-        identifier = @"overviewCell";
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-        UILabel *dailyTitel = (UILabel *) [cell viewWithTag:110];
-        dailyTitel.text = currentClip.clipName;
+        identifier = @"ClipCell";
         
-        UIImageView *clipImageView = (UIImageView *)[cell viewWithTag:100];
+        DailyOverviewClipCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+        cell1.clipTitel.text = currentClip.clipName;
         
+        /*
         NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [UIImage imageWithData:data];
+        cell1.imageView.image = image;
+        */
         
-        clipImageView.image = image;
-        return cell;
+        // load photo images in the background
+        __weak DailiesOverviewViewController *weakSelf = self;
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // then set them via the main queue if the cell is still visible.
+                if ([weakSelf.myCollectionView.indexPathsForVisibleItems containsObject:indexPath]) {
+                
+                    DailyOverviewClipCell *cell = (DailyOverviewClipCell *)[weakSelf.myCollectionView cellForItemAtIndexPath:indexPath];
+                    
+                    
+                    NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
+                    NSData *data = [NSData dataWithContentsOfURL:url];
+                    UIImage *image = [UIImage imageWithData:data];
+                    
+                    cell.imageView.image = image;
+                }
+            });
+        }];
+        
+        [self.thumbnailQueue addOperation:operation];
+        
+        
+        return cell1;
 
     }
     

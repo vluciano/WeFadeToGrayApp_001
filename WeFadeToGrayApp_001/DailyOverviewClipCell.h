@@ -1,5 +1,5 @@
 //
-//  DailyOverviewCell.h
+//  DailyOverviewClipCell.h
 //  WeFadeToGrayApp_001
 //
 //  Created by Vladimir Luciano on 2/15/13.
@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DailyOverviewSectionCell : UICollectionViewCell
+@interface DailyOverviewClipCell : UICollectionViewCell
 
-@property (nonatomic, strong) UILabel *sectionTitel;
-@property (nonatomic, strong) UIImageView *arrowView;
-
-
+@property (strong, nonatomic, readonly) UIImageView *imageView;
+@property (strong, nonatomic)  UILabel *clipTitel;
 
 - (void)setTitel:(NSString*)titel;
 
