@@ -11,6 +11,7 @@
 #import "SectionInfo.h"
 #import "ContactViewController.h"
 #import "DailiesOverviewViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsViewControllerNew ()
 
@@ -24,6 +25,7 @@
 @implementation ProjectsViewControllerNew
 
 @synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
+@synthesize HUD;
 
 XMLProjectsParser *xmlProjectsParser;
 Boolean isProjectSelected = NO;
@@ -170,8 +172,6 @@ Boolean isProjectSelected = NO;
     
     cell.dailyTitle.text = currentDaily.name;
     
-    [cell  setBackgroundColor:[UIColor colorWithRed:255 green:237 blue:0 alpha:1]];
-    
     if (indexPath.row == 0) {
         [cell.selectedProjectView setHidden:NO];
     }else {
@@ -312,11 +312,46 @@ Boolean isProjectSelected = NO;
     NSLog(@"overviewBtnClick-----");
     
     if (self.actualProjectIdent != nil) {
-        [self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+        
+               
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDAnimationFade;
+        hud.labelText = @"Loading";
+        [hud setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:0.6]];
+        hud.dimBackground = YES;
+        
+        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            // Do task...
+            [self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        
+        //[self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
     }
     
 
 }
+
+- (void)myTask {
+	// Do something usefull in here instead of sleeping ...
+	sleep(10);
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[self.HUD removeFromSuperview];
+	self.HUD = nil;
+}
+
+
 
 - (IBAction)logoutBtnClick:(id)sender {
     

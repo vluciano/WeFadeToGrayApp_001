@@ -13,8 +13,12 @@
 #import "DailySimple.h"
 #import "DailyCell.h"
 #import "SectionHeaderView.h"
+#import "MBProgressHUD.h"
 
-@interface ProjectsViewControllerNew : UIViewController <SectionHeaderViewDelegate>
+@interface ProjectsViewControllerNew : UIViewController <SectionHeaderViewDelegate, MBProgressHUDDelegate>
+
+
+@property (weak, nonatomic) MBProgressHUD *HUD;
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 

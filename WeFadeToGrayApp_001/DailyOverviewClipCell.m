@@ -47,15 +47,15 @@
         [self.contentView addSubview:self.clipImageView];
         
         //Clip Name
-        self.clipTitel = [[UILabel alloc] initWithFrame:self.bounds];
+        //self.clipTitel = [[UILabel alloc] initWithFrame:self.bounds];
+        self.clipTitel = [[UILabel alloc] initWithFrame:CGRectMake(3.0f, 3.0f, 100.0f, 20.0f)];
         self.clipTitel.backgroundColor = [UIColor clearColor];
-        self.clipTitel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-        self.clipTitel.font = [UIFont boldSystemFontOfSize:12];
-        self.clipTitel.textAlignment = NSTextAlignmentCenter;
-        [self.clipTitel setTextColor:[UIColor grayColor]];
+        //self.clipTitel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        self.clipTitel.font = [UIFont boldSystemFontOfSize:10];
+        //self.clipTitel.textAlignment = NSTextAlignmentCenter;
+        [self.clipTitel setTextColor:[UIColor whiteColor]];
         
         //self.autoresizesSubviews = YES;
-        //self.clipTitel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:self.clipTitel];
 

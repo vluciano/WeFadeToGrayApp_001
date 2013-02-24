@@ -36,8 +36,12 @@ XMLDailiesParser *xmlDailiesParser;
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dailiesOverviewView_bg.png"]];
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
+    
+    self.myCollectionView.backgroundColor = [UIColor clearColor];
+    
     self.loginUserName.text = self.userName;
     [self.overviewBtn setSelected:YES];
     
@@ -110,7 +114,12 @@ XMLDailiesParser *xmlDailiesParser;
         identifier = @"ClipCell";
         
         DailyOverviewClipCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-        cell1.clipTitel.text = currentClip.clipName;
+        //cell1.clipTitel.text = currentClip.clipName;
+        
+        if (indexPath.row == 1) {
+            cell1.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
+        }
+        
         
         /*
         NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
@@ -141,9 +150,9 @@ XMLDailiesParser *xmlDailiesParser;
                     
                     cell.clipImageView.image = image;
                     
-                    if (indexPath.row == 1) {
+                    /*if (indexPath.row == 1) {
                         cell.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
-                    }
+                    }*/
                 }
             });
         }];

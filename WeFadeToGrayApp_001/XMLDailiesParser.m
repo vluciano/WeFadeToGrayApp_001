@@ -153,14 +153,8 @@ Clip *currentClip;
     if ([elementname isEqualToString:@"length"]) {
         currentClip.length = currentNodeContent;
     }
-    if ([elementname isEqualToString:@"path"]) {
+    if ([elementname isEqualToString:@"large"]) {
         currentClip.thumbnail_path = currentNodeContent;
-    }
-    if ([elementname isEqualToString:@"width"]) {
-        currentClip.thumbnail_size_width = currentNodeContent;
-    }
-    if ([elementname isEqualToString:@"height"]) {
-        currentClip.thumbnail_size_height = currentNodeContent;
     }
     if ([elementname isEqualToString:@"trackingclip"]) {
         currentClip.trackingclip = currentNodeContent;
