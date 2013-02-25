@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "XMLProjectsParser.h"
 #import "XMLDailiesParser.h"
+#import "XMLDailyParser.h"
 #import "Project.h"
 #import "DailySimple.h"
 #import "DailyCell.h"
 #import "SectionHeaderView.h"
 #import "MBProgressHUD.h"
+#import "Daily.h"   
 
 @interface ProjectsViewControllerNew : UIViewController <SectionHeaderViewDelegate, MBProgressHUDDelegate>
 
@@ -26,6 +28,7 @@
 @property (weak, nonatomic) NSString *userPassword;
 
 @property (weak, nonatomic) NSString *actualProjectIdent;
+@property (weak, nonatomic) Daily *daily;
 
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;

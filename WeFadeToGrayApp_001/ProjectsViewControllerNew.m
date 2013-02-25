@@ -11,6 +11,7 @@
 #import "SectionInfo.h"
 #import "ContactViewController.h"
 #import "DailiesOverviewViewController.h"
+#import "DailyViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsViewControllerNew ()
@@ -25,9 +26,11 @@
 @implementation ProjectsViewControllerNew
 
 @synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
-@synthesize HUD;
+@synthesize HUD, daily;
 
 XMLProjectsParser *xmlProjectsParser;
+XMLDailyParser *xmlDailyParser;
+
 Boolean isProjectSelected = NO;
 
 
@@ -206,6 +209,20 @@ Boolean isProjectSelected = NO;
     
     NSLog(@"-------> click row");
     
+    
+    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.section];
+    NSMutableArray *projectDailies = [currentProject dailies];
+    DailySimple *dailySimple = [projectDailies objectAtIndex:indexPath.row];
+    
+    xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:dailySimple.ident AndUserName:userName AndPassword:userPassword];
+    
+    
+    self.daily = xmlDailyParser.daily;
+    
+    
+    [self performSegueWithIdentifier:@"fromProjectListToDailyView" sender:self];
+        
+    
 }
 
 #pragma mark Section header delegate
@@ -312,9 +329,7 @@ Boolean isProjectSelected = NO;
     NSLog(@"overviewBtnClick-----");
     
     if (self.actualProjectIdent != nil) {
-        
-               
-        
+   
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDAnimationFade;
         hud.labelText = @"Loading";
@@ -333,8 +348,6 @@ Boolean isProjectSelected = NO;
         
         //[self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
     }
-    
-
 }
 
 - (void)myTask {
@@ -380,6 +393,15 @@ Boolean isProjectSelected = NO;
         vc.userName = self.userName;
         vc.userPassword = self.userPassword;
         vc.projectIdent = self.actualProjectIdent;
+    }
+    
+    if([segue.identifier isEqualToString:@"fromProjectListToDailyView"]){
+        
+        DailyViewController *vc = [segue destinationViewController];
+        vc.userName = self.userName;
+        vc.userPassword = self.userPassword;
+        vc.projectIdent = self.actualProjectIdent;
+        vc.dailyX = self.daily;
     }
     
 }

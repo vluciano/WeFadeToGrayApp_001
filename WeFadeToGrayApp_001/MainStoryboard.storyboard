@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3227" y="-3344"/>
+            <point key="canvasLocation" x="-2839" y="-3388"/>
         </scene>
         <!--Login View Controller - Login PopUp-->
         <scene sceneID="bkO-D6-FS5">
@@ -418,7 +418,7 @@ www.wefadetogrey.de</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9N2-Bp-nfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2274" y="-1800"/>
+            <point key="canvasLocation" x="-1106" y="-1988"/>
         </scene>
         <!--Projects View Controller New-->
         <scene sceneID="O8P-pZ-pcQ">
@@ -602,11 +602,12 @@ www.wefadetogrey.de</string>
                         <segue destination="2" kind="modal" identifier="fromProjectListToStart" id="pRI-Sv-f9x"/>
                         <segue destination="F4I-vg-gJS" kind="modal" identifier="fromProjectListToContact" modalTransitionStyle="crossDissolve" id="TdW-hD-e2J"/>
                         <segue destination="11O-wL-tzH" kind="modal" identifier="fromProjectListToDailiesOverview" modalTransitionStyle="crossDissolve" id="dyM-8e-O5L"/>
+                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromProjectListToDailyView" modalTransitionStyle="flipHorizontal" id="qfQ-AS-BHM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xaw-gD-JmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-84" y="-3492"/>
+            <point key="canvasLocation" x="-1172" y="-3464"/>
         </scene>
         <!--Dailies Overview View Controller-->
         <scene sceneID="zh2-1H-wqZ">
@@ -793,20 +794,87 @@ www.wefadetogrey.de</string>
                         <segue destination="F4I-vg-gJS" kind="modal" identifier="fromDailiesOverviewToContact" modalTransitionStyle="crossDissolve" id="eIy-iF-64i"/>
                         <segue destination="2" kind="modal" identifier="fromDailiesOverviewToStart" id="uUq-Bf-I3K"/>
                         <segue destination="kHY-Ue-L6K" kind="modal" identifier="fromDailiesOverviewToProjectList" modalTransitionStyle="crossDissolve" id="xn3-Zd-7eb"/>
+                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromDailiesOverviewToDailyView" id="NB6-Bv-z1G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSm-x4-fK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1272" y="-4678"/>
+            <point key="canvasLocation" x="-1172" y="-4770"/>
         </scene>
-        <!--View Controller-->
+        <!--Daily View Controller-->
         <scene sceneID="ggj-Qb-ssa">
             <objects>
-                <viewController id="ifk-xx-SSA" sceneMemberID="viewController">
+                <viewController id="ifk-xx-SSA" customClass="DailyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="97V-yg-CqK">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-4F-6KI">
+                                <color key="backgroundColor" red="1" green="0.92941182850000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSl-Q1-z7N" userLabel="Info view">
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="projectName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcd-po-L5I">
+                                        <accessibility key="accessibilityConfiguration" label="ss"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="242" id="8Ws-2E-duP"/>
+                                            <constraint firstAttribute="height" constant="21" id="zNt-RV-lgf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dailyName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJK-dq-W8k">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="SCu-zw-KrD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dailyDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjk-wf-B6Q">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="1rH-Lr-GaZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dailyLengh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv2-rI-0ra">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="bZe-V6-Sf2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="clipName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4Q-lB-7Xs">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="jAX-Gx-Qeb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <color key="textColor" red="1" green="0.92941182850000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Jjk-wf-B6Q" firstAttribute="trailing" secondItem="uv2-rI-0ra" secondAttribute="trailing" type="default" id="3Q1-oA-Jri"/>
+                                    <constraint firstItem="FJK-dq-W8k" firstAttribute="top" secondItem="kcd-po-L5I" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6jo-qJ-El5"/>
+                                    <constraint firstItem="Jjk-wf-B6Q" firstAttribute="top" secondItem="FJK-dq-W8k" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9Aa-Hu-0dl"/>
+                                    <constraint firstItem="Jjk-wf-B6Q" firstAttribute="trailing" secondItem="FJK-dq-W8k" secondAttribute="trailing" type="default" id="GuA-hz-5NK"/>
+                                    <constraint firstItem="kcd-po-L5I" firstAttribute="trailing" secondItem="FJK-dq-W8k" secondAttribute="trailing" type="default" id="PcT-0S-LxG"/>
+                                    <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="kcd-po-L5I" secondAttribute="leading" type="user" id="ZcC-ym-0tt"/>
+                                    <constraint firstItem="kcd-po-L5I" firstAttribute="leading" secondItem="KSl-Q1-z7N" secondAttribute="leading" constant="60" id="ZpA-FH-Qb5"/>
+                                    <constraint firstItem="uv2-rI-0ra" firstAttribute="trailing" secondItem="G4Q-lB-7Xs" secondAttribute="trailing" type="default" id="aqb-Bp-t37"/>
+                                    <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="FJK-dq-W8k" secondAttribute="leading" type="user" id="cio-oD-p2O"/>
+                                    <constraint firstItem="kcd-po-L5I" firstAttribute="top" secondItem="KSl-Q1-z7N" secondAttribute="top" constant="27" id="gzq-J2-5sJ"/>
+                                    <constraint firstItem="uv2-rI-0ra" firstAttribute="top" secondItem="Jjk-wf-B6Q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="iwq-t1-w2u"/>
+                                    <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="Jjk-wf-B6Q" secondAttribute="leading" type="user" id="oGa-Mk-I3E"/>
+                                    <constraint firstItem="G4Q-lB-7Xs" firstAttribute="top" secondItem="uv2-rI-0ra" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ssV-Vv-OAh"/>
+                                    <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="uv2-rI-0ra" secondAttribute="leading" type="user" id="vvW-Qf-LKd"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mQ-Eq-TCx" userLabel="View header">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vd2-i3-cIe" userLabel="Button - contact">
@@ -819,7 +887,7 @@ www.wefadetogrey.de</string>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="contactBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="cyt-zn-3Lo"/>
+                                            <action selector="contactBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="tjf-5z-jjJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFt-fv-fbR">
@@ -833,7 +901,7 @@ www.wefadetogrey.de</string>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="dailiesBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="Nqi-Kv-g6A"/>
+                                            <action selector="dailiesBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="1Uk-EQ-U2J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jw5-3B-z4r">
@@ -850,16 +918,16 @@ www.wefadetogrey.de</string>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="overviewBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="dFs-mW-vwZ"/>
+                                            <action selector="overviewBtnClick:" destination="ifk-xx-SSA" eventType="touchUpInside" id="wHq-OV-34G"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dFt-fv-fbR" secondAttribute="trailing" constant="137" id="5Ns-Yt-Qcq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Jw5-3B-z4r" secondAttribute="trailing" constant="2" id="LSL-wX-vNy"/>
                                     <constraint firstItem="dFt-fv-fbR" firstAttribute="top" secondItem="4mQ-Eq-TCx" secondAttribute="top" type="default" id="Sau-PJ-xqG"/>
                                     <constraint firstAttribute="bottom" secondItem="vd2-i3-cIe" secondAttribute="bottom" constant="10" id="Zgo-rV-nLg"/>
+                                    <constraint firstItem="Jw5-3B-z4r" firstAttribute="trailing" secondItem="4mQ-Eq-TCx" secondAttribute="trailing" type="default" id="l4B-J2-kts"/>
                                     <constraint firstItem="vd2-i3-cIe" firstAttribute="leading" secondItem="4mQ-Eq-TCx" secondAttribute="leading" constant="130" id="o4m-bf-RxB"/>
                                     <constraint firstItem="Jw5-3B-z4r" firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" type="default" id="o9F-9d-Tgq"/>
                                     <constraint firstItem="Jw5-3B-z4r" firstAttribute="top" secondItem="4mQ-Eq-TCx" secondAttribute="top" type="default" id="svp-Id-i6a"/>
@@ -868,10 +936,18 @@ www.wefadetogrey.de</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo_pl.png" translatesAutoresizingMaskIntoConstraints="NO" id="nvV-Ty-NH1" userLabel="logo"/>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="KSl-Q1-z7N" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="691" id="63V-Bg-iuD"/>
+                            <constraint firstAttribute="bottom" secondItem="Lcw-4F-6KI" secondAttribute="bottom" constant="262" id="6JV-Wn-qnF"/>
+                            <constraint firstItem="Lcw-4F-6KI" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="100" id="7EE-f5-dza"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="8dA-Gm-mzK"/>
-                            <constraint firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" constant="648" id="BTc-rf-9iC"/>
+                            <constraint firstAttribute="trailing" secondItem="KSl-Q1-z7N" secondAttribute="trailing" constant="3" id="AYF-bp-NV2"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="Bhp-qQ-c8M"/>
+                            <constraint firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" constant="648" id="C8D-tB-mMJ"/>
+                            <constraint firstItem="KSl-Q1-z7N" firstAttribute="top" secondItem="Lcw-4F-6KI" secondAttribute="top" type="default" id="M7b-Qu-YHq"/>
                             <constraint firstItem="nvV-Ty-NH1" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="11" id="Ufd-7G-NXA"/>
+                            <constraint firstAttribute="bottom" secondItem="KSl-Q1-z7N" secondAttribute="bottom" constant="384" id="aw6-hI-sdP"/>
+                            <constraint firstAttribute="trailing" secondItem="Lcw-4F-6KI" secondAttribute="trailing" constant="338" id="gmz-ud-G1h"/>
+                            <constraint firstItem="Lcw-4F-6KI" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="vFK-q8-7Ay"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" type="default" id="wXK-KV-bi7"/>
                             <constraint firstItem="nvV-Ty-NH1" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="5" id="xH7-Ek-cgJ"/>
                         </constraints>
@@ -879,15 +955,26 @@ www.wefadetogrey.de</string>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="contactBtn" destination="vd2-i3-cIe" id="Hkn-PD-LiJ"/>
-                        <outlet property="dailiesListBtn" destination="dFt-fv-fbR" id="H4M-by-lTr"/>
-                        <outlet property="headerView" destination="4mQ-Eq-TCx" id="LfL-jw-m4Z"/>
-                        <outlet property="overviewBtn" destination="Jw5-3B-z4r" id="xa8-xt-mHp"/>
+                        <outlet property="ClipName" destination="G4Q-lB-7Xs" id="C7F-uq-QRg"/>
+                        <outlet property="clipName" destination="G4Q-lB-7Xs" id="rle-Db-HtH"/>
+                        <outlet property="contactBtn" destination="vd2-i3-cIe" id="1uP-ca-OsK"/>
+                        <outlet property="dailiesListBtn" destination="dFt-fv-fbR" id="fPC-Gi-JwM"/>
+                        <outlet property="dailyDate" destination="Jjk-wf-B6Q" id="c0k-JP-knG"/>
+                        <outlet property="dailyLengh" destination="uv2-rI-0ra" id="ycy-Z3-YRV"/>
+                        <outlet property="dailyName" destination="FJK-dq-W8k" id="v6V-rF-G6X"/>
+                        <outlet property="headerView" destination="4mQ-Eq-TCx" id="UwB-mo-HxE"/>
+                        <outlet property="infoView" destination="KSl-Q1-z7N" id="z3l-ri-luY"/>
+                        <outlet property="overviewBtn" destination="Jw5-3B-z4r" id="ge1-5g-Kvx"/>
+                        <outlet property="projectName" destination="kcd-po-L5I" id="pJT-FV-EVz"/>
+                        <outlet property="videoView" destination="Lcw-4F-6KI" id="nQC-d9-PF8"/>
+                        <segue destination="kHY-Ue-L6K" kind="modal" identifier="fromDailyToProjectListView" id="7Mn-f2-c9C"/>
+                        <segue destination="11O-wL-tzH" kind="modal" identifier="fromDailyToDailiesOverviewView" id="Nxe-Yd-AhX"/>
+                        <segue destination="F4I-vg-gJS" kind="modal" identifier="fromDailyViewToContact" id="Kq8-dS-z3w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLP-vy-FbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20" y="-2140"/>
+            <point key="canvasLocation" x="640" y="-4208"/>
         </scene>
     </scenes>
     <resources>
@@ -910,120 +997,16 @@ www.wefadetogrey.de</string>
         <image name="wftg_btn_overview.png" width="135" height="99"/>
         <image name="wftg_btn_overview_active.png" width="135" height="99"/>
     </resources>
-    <classes>
-        <class className="ContactViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backBtnClick:"/>
-                <relationship kind="action" name="dailiesListBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="mailBtnClick:"/>
-                <relationship kind="action" name="mapBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="action" name="telBtnClick:"/>
-                <relationship kind="action" name="webBtnClick:"/>
-                <relationship kind="outlet" name="backBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mailBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mapBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="telBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="webBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailiesOverviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailiesOverviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailyCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dailyCell_bg" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginBtnClick:"/>
-                <relationship kind="action" name="switchTapped:"/>
-                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startLoginBtnClick:"/>
-                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pRI-Sv-f9x"/>
-        <segue reference="xn3-Zd-7eb"/>
-        <segue reference="TdW-hD-e2J"/>
+        <segue reference="Kq8-dS-z3w"/>
+        <segue reference="NB6-Bv-z1G"/>
+        <segue reference="Nxe-Yd-AhX"/>
+        <segue reference="7Mn-f2-c9C"/>
+        <segue reference="sk9-Ai-ZVq"/>
     </inferredMetricsTieBreakers>
 </document>

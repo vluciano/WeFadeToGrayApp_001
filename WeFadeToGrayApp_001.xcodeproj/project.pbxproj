@@ -13,6 +13,9 @@
 		831D696216C43F9100169061 /* start_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 831D695E16C43F9100169061 /* start_btn@2x.png */; };
 		8329B3C416B867DC00D786D3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8329B3C316B867DC00D786D3 /* MainStoryboard.storyboard */; };
 		8329B3C816B86FE500D786D3 /* ProjectsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 8329B3C716B86FE500D786D3 /* ProjectsViewControllerNew.m */; };
+		8333471E16DA57FE00956D03 /* DailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8333471D16DA57FD00956D03 /* DailyViewController.m */; };
+		8333472216DA925F00956D03 /* XMLDailyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8333472116DA925F00956D03 /* XMLDailyParser.m */; };
+		8333472416DACF8F00956D03 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8333472316DACF8E00956D03 /* MediaPlayer.framework */; };
 		8337A52C16B42AAC00C173C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A52B16B42AAC00C173C1 /* LoginViewController.m */; };
 		8337A52F16B42C4400C173C1 /* startPage_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8337A52D16B42C4400C173C1 /* startPage_bg@2x.png */; };
 		8337A53016B42C4400C173C1 /* startPage_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8337A52E16B42C4400C173C1 /* startPage_bg.png */; };
@@ -111,6 +114,11 @@
 		8329B3C316B867DC00D786D3 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8329B3C616B86FE500D786D3 /* ProjectsViewControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewControllerNew.h; sourceTree = "<group>"; };
 		8329B3C716B86FE500D786D3 /* ProjectsViewControllerNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewControllerNew.m; sourceTree = "<group>"; };
+		8333471C16DA57FD00956D03 /* DailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyViewController.h; sourceTree = "<group>"; };
+		8333471D16DA57FD00956D03 /* DailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyViewController.m; sourceTree = "<group>"; };
+		8333472016DA925E00956D03 /* XMLDailyParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDailyParser.h; sourceTree = "<group>"; };
+		8333472116DA925F00956D03 /* XMLDailyParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDailyParser.m; sourceTree = "<group>"; };
+		8333472316DACF8E00956D03 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8337A52A16B42AAC00C173C1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8337A52B16B42AAC00C173C1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8337A52D16B42C4400C173C1 /* startPage_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startPage_bg@2x.png"; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8333472416DACF8F00956D03 /* MediaPlayer.framework in Frameworks */,
 				83A280EF16BDC80800BB698A /* QuartzCore.framework in Frameworks */,
 				834B6C3D16B3477000AA00EA /* UIKit.framework in Frameworks */,
 				834B6C3F16B3477000AA00EA /* Foundation.framework in Frameworks */,
@@ -247,6 +256,8 @@
 				834B6C6E16B34E9B00AA00EA /* XMLDailiesParser.m */,
 				8337A53116B4378700C173C1 /* XMLLoginParser.h */,
 				8337A53216B4378700C173C1 /* XMLLoginParser.m */,
+				8333472016DA925E00956D03 /* XMLDailyParser.h */,
+				8333472116DA925F00956D03 /* XMLDailyParser.m */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -288,6 +299,7 @@
 		834B6C3B16B3477000AA00EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8333472316DACF8E00956D03 /* MediaPlayer.framework */,
 				83A280EE16BDC80800BB698A /* QuartzCore.framework */,
 				834B6C3C16B3477000AA00EA /* UIKit.framework */,
 				834B6C3E16B3477000AA00EA /* Foundation.framework */,
@@ -318,6 +330,8 @@
 				835DBB5E16C443DA0045458F /* ContactViewController.m */,
 				8392BC2F16C9A6340078FC49 /* DailiesOverviewViewController.h */,
 				8392BC3016C9A6340078FC49 /* DailiesOverviewViewController.m */,
+				8333471C16DA57FD00956D03 /* DailyViewController.h */,
+				8333471D16DA57FD00956D03 /* DailyViewController.m */,
 				8329B3C316B867DC00D786D3 /* MainStoryboard.storyboard */,
 			);
 			path = WeFadeToGrayApp_001;
@@ -584,6 +598,8 @@
 				8387875C16CDA7C400D9CFD8 /* DailyOverviewSectionCell.m in Sources */,
 				8387876316CEF44000D9CFD8 /* DailyOverviewClipCell.m in Sources */,
 				8387879B16D0364E00D9CFD8 /* MBProgressHUD.m in Sources */,
+				8333471E16DA57FE00956D03 /* DailyViewController.m in Sources */,
+				8333472216DA925F00956D03 /* XMLDailyParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

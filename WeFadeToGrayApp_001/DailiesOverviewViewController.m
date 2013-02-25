@@ -11,6 +11,7 @@
 #import "XMLDailiesParser.h"
 #import "DailyOverviewSectionCell.h"
 #import "DailyOverviewClipCell.h"
+#import "ProjectsViewControllerNew.h"
 
 @interface DailiesOverviewViewController ()
 @end
@@ -187,8 +188,7 @@ XMLDailiesParser *xmlDailiesParser;
 
 - (IBAction)dailiesBtnClick:(id)sender {
     NSLog(@"dailiesBtnClick-----");
-    //[self performSegueWithIdentifier:@"fromDailiesOverviewToProjectList" sender:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"fromDailiesOverviewToProjectList" sender:self];
 }
 
 - (IBAction)overviewBtnClick:(id)sender {
@@ -216,6 +216,15 @@ XMLDailiesParser *xmlDailiesParser;
         ContactViewController *vc = [segue destinationViewController];
         vc.userName = self.userName;
     }
+    
+    if([segue.identifier isEqualToString:@"fromDailiesOverviewToProjectList"]){
+        
+        ProjectsViewControllerNew *vc = [segue destinationViewController];
+        vc.userName = self.userName;
+        vc.userPassword = self.userPassword;
+        
+    }
+    
 }
 
 

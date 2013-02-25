@@ -22,13 +22,34 @@
 @synthesize startLoginBtn, popControler, userName, userPassword;
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    NSLog(@"viewDidLoad - ViewController");
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    NSLog(@"viewWillAppear - ViewController");
+    NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
+    if ([[userPref objectForKey:@"isLogin"] intValue] == 1) {
+        [self.startLoginBtn setHidden:YES];
+    }else {
+        [self.startLoginBtn setHidden:NO];
+    }
 
+    
 }
+
+- (void) viewDidAppear:(BOOL)animated {
+    NSLog(@"viewDidAppear - ViewController");
+    NSUserDefaults *userPref = [NSUserDefaults standardUserDefaults];
+    if ([[userPref objectForKey:@"isLogin"] intValue] == 1) {
+        //go to the Project List
+        [self performSegueWithIdentifier:@"fromStartToProjectListNew" sender:self];
+        
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -98,12 +119,6 @@
         
     }
 }
-
-
-
-
-
-
 
 
 

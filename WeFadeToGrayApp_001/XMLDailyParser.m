@@ -1,41 +1,39 @@
 //
-//  XMLDailiesParser.m
-//  ParseFromServerModul
+//  XMLDailyParser.m
+//  WeFadeToGrayApp_001
 //
-//  Created by Vladimir Luciano on 1/19/13.
+//  Created by Vladimir Luciano on 2/24/13.
 //  Copyright (c) 2013 Vladimir Luciano. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "XMLDailiesParser.h"
+#import "XMLDailyParser.h"
+
+@implementation XMLDailyParser
 
 
-@implementation XMLDailiesParser
-
-@synthesize dailies = _dailies;
+@synthesize daily = _daily;
 @synthesize clips = _clips;
 
 NSMutableString	*currentNodeContent;
 NSXMLParser	*parser;
 Daily	*currentDaily;
-Boolean isSequence = NO;
-Boolean isClip = NO;
+Boolean isSequenceX = NO;
+Boolean isClipX = NO;
 
 Clip *currentClip;
 
 
--(id) loadXMLByURL:(NSString *)urlString AndProjectIdent:(NSString *) ident AndUserName:(NSString *)user AndPassword:(NSString *)pass {
+-(id) loadXMLByURL:(NSString *)urlString AndDailyIdent:(NSString *) ident AndUserName:(NSString *)user AndPassword:(NSString *)pass {
     
 	NSLog(@"inside XMLDailiesParser.loadXMLByURL()");
     
-    _dailies = [[NSMutableArray alloc] init];
 	NSURL *url	= [NSURL URLWithString:urlString];
     NSError *error = nil;
     NSHTTPURLResponse *response;
     
     // assemble the POST data
     
-    NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&project=%@",user,pass,ident];
+    NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&daily=%@",user,pass,ident];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
@@ -68,18 +66,18 @@ Clip *currentClip;
 	//NSLog(@"inside didStartElement():  %@", elementname);
     if ([elementname isEqualToString:@"daily"]) {
 		currentDaily = [Daily alloc];
-        isSequence = NO;
-        isClip = NO;
+        isSequenceX = NO;
+        isClipX = NO;
 	}
     if ([elementname isEqualToString:@"sequence"]) {
-        isSequence = YES;
-        isClip = NO;
+        isSequenceX = YES;
+        isClipX = NO;
     }
-
+    
     if ([elementname isEqualToString:@"clip"]) {
         currentClip = [Clip alloc];
-        isClip = YES;
-        isSequence = NO;
+        isClipX = YES;
+        isSequenceX = NO;
     }
     
     if ([elementname isEqualToString:@"clips"]) {
@@ -97,11 +95,11 @@ Clip *currentClip;
     //NSLog(@"inside didEndElement():  %@", elementname);
     
     if ([elementname isEqualToString:@"name"]) {
-        if (!isSequence && !isClip) {
+        if (!isSequenceX && !isClipX) {
             currentDaily.name = currentNodeContent;
-        }else if (isSequence && !isClip) {
+        }else if (isSequenceX && !isClipX) {
             currentDaily.sec_name = currentNodeContent;
-        }else if (!isSequence && isClip){
+        }else if (!isSequenceX && isClipX){
             currentClip.clipName = currentNodeContent;
         }
     }
@@ -142,7 +140,7 @@ Clip *currentClip;
     }
     
     
-    if (isSequence && !isClip && [elementname isEqualToString:@"clips"]) {
+    if (isSequenceX && !isClipX && [elementname isEqualToString:@"clips"]) {
         currentDaily.sec_clips = currentNodeContent;
     }
     
@@ -166,14 +164,14 @@ Clip *currentClip;
         currentClip = nil;
     }
     
-    if (isClip && [elementname isEqualToString:@"clips"]) {
-        isClip = NO;
+    if (isClipX && [elementname isEqualToString:@"clips"]) {
+        isClipX = NO;
         currentDaily.clips = _clips;
         _clips = nil;
     }
     
 	if ([elementname isEqualToString:@"daily"]) {
-		[self.dailies addObject:currentDaily];
+		_daily = currentDaily;
 		currentDaily = nil;
 		currentNodeContent = nil;
 	}

@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *loginUserName;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
-
 @property (nonatomic, strong) NSOperationQueue *thumbnailQueue;
 
 - (IBAction)contactBtnClick:(id)sender;
