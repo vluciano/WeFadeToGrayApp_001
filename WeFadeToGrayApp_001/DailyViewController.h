@@ -35,6 +35,7 @@
 //video
 @property (strong, nonatomic) IBOutlet UIView *videoView;
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
+@property(nonatomic) NSTimeInterval currentPlaybackTime;
 
 
 - (IBAction)contactBtnClick:(id)sender;

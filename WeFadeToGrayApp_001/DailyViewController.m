@@ -20,7 +20,7 @@
 @implementation DailyViewController
 
 @synthesize userName, userPassword, projectIdent, headerView, contactBtn, dailiesListBtn, overviewBtn, dailyX;
-@synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer;
+@synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTime;
 
 
 
@@ -76,12 +76,18 @@
     
     self.moviePlayer.controlStyle = MPMovieControlStyleDefault;
 
-    self.moviePlayer.shouldAutoplay = YES;
-    [self.moviePlayer prepareToPlay];
+    self.moviePlayer.shouldAutoplay = NO;
+    
     [self.moviePlayer setFullscreen:YES animated:YES];
     
     [self.videoView addSubview: self.moviePlayer.view];
+    
+    [self.moviePlayer prepareToPlay];
+
+    [self.moviePlayer setCurrentPlaybackTime:-1];
+    [self.moviePlayer setInitialPlaybackTime:self.currentPlaybackTime];
     [self.moviePlayer play];
+    
 }
 
 
@@ -108,6 +114,9 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    [self.moviePlayer pause];
+    
     
     if([segue.identifier isEqualToString:@"fromDailyToProjectListView"]){
     

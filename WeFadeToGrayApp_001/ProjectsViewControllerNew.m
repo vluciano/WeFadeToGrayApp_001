@@ -26,7 +26,7 @@
 @implementation ProjectsViewControllerNew
 
 @synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
-@synthesize HUD, daily;
+@synthesize HUD, daily, currentPlaybackTime;
 
 XMLProjectsParser *xmlProjectsParser;
 XMLDailyParser *xmlDailyParser;
@@ -110,6 +110,8 @@ Boolean isProjectSelected = NO;
     self.myTableView.indicatorStyle=UIScrollViewIndicatorStyleWhite;
 
     [self.myTableView reloadData];
+    
+    self.currentPlaybackTime = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -402,6 +404,8 @@ Boolean isProjectSelected = NO;
         vc.userPassword = self.userPassword;
         vc.projectIdent = self.actualProjectIdent;
         vc.dailyX = self.daily;
+        
+        vc.currentPlaybackTime = self.currentPlaybackTime;
     }
     
 }

@@ -12,6 +12,7 @@
 #import "DailyOverviewSectionCell.h"
 #import "DailyOverviewClipCell.h"
 #import "ProjectsViewControllerNew.h"
+#import "DailyViewController.h"
 
 @interface DailiesOverviewViewController ()
 @end
@@ -20,9 +21,10 @@
 
 @implementation DailiesOverviewViewController
 
-@synthesize userName, userPassword, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView, thumbnailQueue;
+@synthesize userName, userPassword, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView, thumbnailQueue, currentPlaybackTime;
 
 XMLDailiesParser *xmlDailiesParser;
+XMLDailyParser *xmlDailyParser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,7 +72,7 @@ XMLDailiesParser *xmlDailiesParser;
     
     [self.myCollectionView reloadData];
     
-    NSLog(@"xmlDailiesParser finisht.........");
+    self.currentPlaybackTime = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,7 +176,36 @@ XMLDailiesParser *xmlDailiesParser;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     NSLog(@"Selected item %d", indexPath.row);
+    Daily *currentDaily = [[xmlDailiesParser dailies] objectAtIndex:indexPath.section];
+    NSMutableArray *dailyClips = [currentDaily clips];
+    Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
+    
+    
+    //------------------
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"h:m:s"];
+    NSDate *date = [formatter dateFromString:currentClip.start];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+    NSLog(@"hour: %d", [components hour]);
+    NSLog(@"minute: %d", [components minute]);
+    NSLog(@"secunde: %d", [components second]);
+    
+    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second];
+    NSTimeInterval clipInterval = timeTotal;
+
+    self.currentPlaybackTime = clipInterval;
+    
+    
+    xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:currentDaily.ident AndUserName:userName AndPassword:userPassword];
+    
+    
+    
+    [self performSegueWithIdentifier:@"fromDailiesOverviewToDailyView" sender:self];
+    
 }
 
 
@@ -224,6 +255,20 @@ XMLDailiesParser *xmlDailiesParser;
         vc.userPassword = self.userPassword;
         
     }
+    
+    if([segue.identifier isEqualToString:@"fromDailiesOverviewToDailyView"]){
+        
+        DailyViewController *vc = [segue destinationViewController];
+        vc.userName = self.userName;
+        vc.userPassword = self.userPassword;
+        vc.projectIdent = self.projectIdent;
+        
+        vc.dailyX = xmlDailyParser.daily;
+        
+        vc.currentPlaybackTime = self.currentPlaybackTime;
+    }
+    
+    
     
 }
 

@@ -602,7 +602,7 @@ www.wefadetogrey.de</string>
                         <segue destination="2" kind="modal" identifier="fromProjectListToStart" id="pRI-Sv-f9x"/>
                         <segue destination="F4I-vg-gJS" kind="modal" identifier="fromProjectListToContact" modalTransitionStyle="crossDissolve" id="TdW-hD-e2J"/>
                         <segue destination="11O-wL-tzH" kind="modal" identifier="fromProjectListToDailiesOverview" modalTransitionStyle="crossDissolve" id="dyM-8e-O5L"/>
-                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromProjectListToDailyView" modalTransitionStyle="flipHorizontal" id="qfQ-AS-BHM"/>
+                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromProjectListToDailyView" modalTransitionStyle="crossDissolve" id="qfQ-AS-BHM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xaw-gD-JmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -794,7 +794,7 @@ www.wefadetogrey.de</string>
                         <segue destination="F4I-vg-gJS" kind="modal" identifier="fromDailiesOverviewToContact" modalTransitionStyle="crossDissolve" id="eIy-iF-64i"/>
                         <segue destination="2" kind="modal" identifier="fromDailiesOverviewToStart" id="uUq-Bf-I3K"/>
                         <segue destination="kHY-Ue-L6K" kind="modal" identifier="fromDailiesOverviewToProjectList" modalTransitionStyle="crossDissolve" id="xn3-Zd-7eb"/>
-                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromDailiesOverviewToDailyView" id="NB6-Bv-z1G"/>
+                        <segue destination="ifk-xx-SSA" kind="modal" identifier="fromDailiesOverviewToDailyView" modalTransitionStyle="crossDissolve" id="NB6-Bv-z1G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSm-x4-fK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -997,15 +997,140 @@ www.wefadetogrey.de</string>
         <image name="wftg_btn_overview.png" width="135" height="99"/>
         <image name="wftg_btn_overview_active.png" width="135" height="99"/>
     </resources>
+    <classes>
+        <class className="ContactViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backBtnClick:"/>
+                <relationship kind="action" name="dailiesListBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="mailBtnClick:"/>
+                <relationship kind="action" name="mapBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="action" name="telBtnClick:"/>
+                <relationship kind="action" name="webBtnClick:"/>
+                <relationship kind="outlet" name="backBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mailBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="telBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="webBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DailiesOverviewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailiesOverviewViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DailyCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dailyCell_bg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
+        </class>
+        <class className="DailyViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="clipName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailyDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dailyLengh" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dailyName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="projectName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginBtnClick:"/>
+                <relationship kind="action" name="switchTapped:"/>
+                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loginBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveCredentials" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
+            <relationships>
+                <relationship kind="action" name="contactBtnClick:"/>
+                <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="logoutBtnClick:"/>
+                <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startLoginBtnClick:"/>
+                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Kq8-dS-z3w"/>
-        <segue reference="NB6-Bv-z1G"/>
         <segue reference="Nxe-Yd-AhX"/>
+        <segue reference="NB6-Bv-z1G"/>
+        <segue reference="Kq8-dS-z3w"/>
         <segue reference="7Mn-f2-c9C"/>
         <segue reference="sk9-Ai-ZVq"/>
     </inferredMetricsTieBreakers>

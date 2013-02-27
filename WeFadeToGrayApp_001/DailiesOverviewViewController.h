@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XMLDailiesParser.h"
+#import "XMLDailyParser.h"
 
 
 
@@ -28,6 +29,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic, strong) NSOperationQueue *thumbnailQueue;
+
+@property(nonatomic) NSTimeInterval currentPlaybackTime;
 
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;
