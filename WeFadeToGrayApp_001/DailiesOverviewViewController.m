@@ -43,7 +43,7 @@ XMLDailyParser *xmlDailyParser;
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
     
-    self.myCollectionView.backgroundColor = [UIColor clearColor];
+    
     
     self.loginUserName.text = self.userName;
     [self.overviewBtn setSelected:YES];
@@ -58,13 +58,18 @@ XMLDailyParser *xmlDailyParser;
     }
     */
     
+    
+    //UICollection
+    self.myCollectionView.backgroundColor = [UIColor clearColor];
     [self.myCollectionView registerClass:[DailyOverviewSectionCell class] forCellWithReuseIdentifier:@"SectionCell"];
     [self.myCollectionView registerClass:[DailyOverviewClipCell class] forCellWithReuseIdentifier:@"ClipCell"];
+    self.myCollectionView.pagingEnabled = NO;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)self.myCollectionView.collectionViewLayout;
     //flowLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
     flowLayout.itemSize = CGSizeMake(256, 144);
-    flowLayout.minimumInteritemSpacing = 0;
+    [flowLayout setMinimumInteritemSpacing:0.f];
+    [flowLayout setMinimumLineSpacing:0.f];
     
     
     self.thumbnailQueue = [[NSOperationQueue alloc] init];
@@ -147,7 +152,7 @@ XMLDailyParser *xmlDailyParser;
                     DailyOverviewClipCell *cell = (DailyOverviewClipCell *)[weakSelf.myCollectionView cellForItemAtIndexPath:indexPath];
                     
                     
-                    NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
+                    NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path_large];
                     NSData *data = [NSData dataWithContentsOfURL:url];
                     UIImage *image = [UIImage imageWithData:data];
                     

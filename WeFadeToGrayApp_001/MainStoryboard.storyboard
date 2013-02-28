@@ -715,10 +715,6 @@ www.wefadetogrey.de</string>
                                             <constraint firstItem="hIl-23-v4O" firstAttribute="leading" secondItem="y5i-YA-5bE" secondAttribute="leading" constant="12" id="zps-pp-vjy"/>
                                         </constraints>
                                         <size key="customSize" width="253" height="144"/>
-                                        <connections>
-                                            <outlet property="clipImageView" destination="L8G-VM-hgt" id="sdU-gR-DwO"/>
-                                            <outlet property="clipTitel" destination="hIl-23-v4O" id="33f-Jq-wVg"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -809,7 +805,7 @@ www.wefadetogrey.de</string>
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-4F-6KI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-4F-6KI" userLabel="Video View">
                                 <color key="backgroundColor" red="1" green="0.92941182850000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSl-Q1-z7N" userLabel="Info view">
@@ -934,19 +930,74 @@ www.wefadetogrey.de</string>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo_pl.png" translatesAutoresizingMaskIntoConstraints="NO" id="nvV-Ty-NH1" userLabel="logo"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fFr-6d-omn">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="105" id="1J5-oO-rwA"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Afw-tY-VHy">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="clipCell" id="VZd-dI-Dpi" customClass="DailyClipCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="105"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="135" height="105"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epF-k4-bVs">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="76" id="6Pt-W1-2Xz"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ji-T6-ydY">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="127" id="EY3-hs-7FE"/>
+                                                        <constraint firstAttribute="height" constant="17" id="N0B-Dd-xfj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="epF-k4-bVs" firstAttribute="trailing" secondItem="VZd-dI-Dpi" secondAttribute="trailing" type="default" id="1Lo-ju-l6C"/>
+                                            <constraint firstItem="epF-k4-bVs" firstAttribute="top" secondItem="VZd-dI-Dpi" secondAttribute="top" type="default" id="Dad-G9-Exj"/>
+                                            <constraint firstItem="epF-k4-bVs" firstAttribute="leading" secondItem="VZd-dI-Dpi" secondAttribute="leading" type="default" id="EMh-2T-JnC"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Ji-T6-ydY" secondAttribute="bottom" constant="6" id="gZf-as-86o"/>
+                                            <constraint firstItem="2Ji-T6-ydY" firstAttribute="leading" secondItem="VZd-dI-Dpi" secondAttribute="leading" constant="5" id="lwr-KI-lIy"/>
+                                        </constraints>
+                                        <size key="customSize" width="135" height="105"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ifk-xx-SSA" id="zgD-TG-VRL"/>
+                                    <outlet property="delegate" destination="ifk-xx-SSA" id="l4w-pT-kdP"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="691" id="63V-Bg-iuD"/>
-                            <constraint firstAttribute="bottom" secondItem="Lcw-4F-6KI" secondAttribute="bottom" constant="262" id="6JV-Wn-qnF"/>
                             <constraint firstItem="Lcw-4F-6KI" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="100" id="7EE-f5-dza"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="8dA-Gm-mzK"/>
                             <constraint firstAttribute="trailing" secondItem="KSl-Q1-z7N" secondAttribute="trailing" constant="3" id="AYF-bp-NV2"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="Bhp-qQ-c8M"/>
                             <constraint firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" constant="648" id="C8D-tB-mMJ"/>
+                            <constraint firstAttribute="bottom" secondItem="fFr-6d-omn" secondAttribute="bottom" constant="83" id="Gff-J2-vcc"/>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="top" secondItem="Lcw-4F-6KI" secondAttribute="top" type="default" id="M7b-Qu-YHq"/>
                             <constraint firstItem="nvV-Ty-NH1" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="11" id="Ufd-7G-NXA"/>
                             <constraint firstAttribute="bottom" secondItem="KSl-Q1-z7N" secondAttribute="bottom" constant="384" id="aw6-hI-sdP"/>
-                            <constraint firstAttribute="trailing" secondItem="Lcw-4F-6KI" secondAttribute="trailing" constant="338" id="gmz-ud-G1h"/>
+                            <constraint firstAttribute="bottom" secondItem="Lcw-4F-6KI" secondAttribute="bottom" constant="262" id="bk7-6U-kAp"/>
+                            <constraint firstAttribute="trailing" secondItem="Lcw-4F-6KI" secondAttribute="trailing" constant="338" id="gpt-3v-aPd"/>
+                            <constraint firstItem="fFr-6d-omn" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="mho-uX-sZI"/>
+                            <constraint firstItem="fFr-6d-omn" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="uNq-6P-Duv"/>
                             <constraint firstItem="Lcw-4F-6KI" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="vFK-q8-7Ay"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" type="default" id="wXK-KV-bi7"/>
                             <constraint firstItem="nvV-Ty-NH1" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="5" id="xH7-Ek-cgJ"/>
@@ -964,6 +1015,7 @@ www.wefadetogrey.de</string>
                         <outlet property="dailyName" destination="FJK-dq-W8k" id="v6V-rF-G6X"/>
                         <outlet property="headerView" destination="4mQ-Eq-TCx" id="UwB-mo-HxE"/>
                         <outlet property="infoView" destination="KSl-Q1-z7N" id="z3l-ri-luY"/>
+                        <outlet property="myCollectionView" destination="fFr-6d-omn" id="YJz-wK-3pS"/>
                         <outlet property="overviewBtn" destination="Jw5-3B-z4r" id="ge1-5g-Kvx"/>
                         <outlet property="projectName" destination="kcd-po-L5I" id="pJT-FV-EVz"/>
                         <outlet property="videoView" destination="Lcw-4F-6KI" id="nQC-d9-PF8"/>
@@ -1047,6 +1099,9 @@ www.wefadetogrey.de</string>
                 <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
             </relationships>
         </class>
+        <class className="DailyClipCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyClipCell.h"/>
+        </class>
         <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
         </class>
@@ -1064,6 +1119,7 @@ www.wefadetogrey.de</string>
                 <relationship kind="outlet" name="dailyName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="projectName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
@@ -1111,9 +1167,6 @@ www.wefadetogrey.de</string>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
@@ -1130,8 +1183,8 @@ www.wefadetogrey.de</string>
     <inferredMetricsTieBreakers>
         <segue reference="Nxe-Yd-AhX"/>
         <segue reference="NB6-Bv-z1G"/>
-        <segue reference="Kq8-dS-z3w"/>
         <segue reference="7Mn-f2-c9C"/>
-        <segue reference="sk9-Ai-ZVq"/>
+        <segue reference="TdW-hD-e2J"/>
+        <segue reference="uUq-Bf-I3K"/>
     </inferredMetricsTieBreakers>
 </document>

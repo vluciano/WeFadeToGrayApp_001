@@ -104,6 +104,7 @@
 		83A280EC16BDC03B00BB698A /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A280E916BDC03B00BB698A /* SectionInfo.m */; };
 		83A280ED16BDC03B00BB698A /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A280EB16BDC03B00BB698A /* SectionHeaderView.m */; };
 		83A280EF16BDC80800BB698A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A280EE16BDC80800BB698A /* QuartzCore.framework */; };
+		83B8F1C716DEC20A001C0672 /* DailyClipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B8F1C616DEC20A001C0672 /* DailyClipCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +230,8 @@
 		83A280EA16BDC03B00BB698A /* SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderView.h; sourceTree = "<group>"; };
 		83A280EB16BDC03B00BB698A /* SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderView.m; sourceTree = "<group>"; };
 		83A280EE16BDC80800BB698A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		83B8F1C516DEC20A001C0672 /* DailyClipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyClipCell.h; sourceTree = "<group>"; };
+		83B8F1C616DEC20A001C0672 /* DailyClipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyClipCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +435,8 @@
 				8387875B16CDA7C400D9CFD8 /* DailyOverviewSectionCell.m */,
 				8387876116CEF44000D9CFD8 /* DailyOverviewClipCell.h */,
 				8387876216CEF44000D9CFD8 /* DailyOverviewClipCell.m */,
+				83B8F1C516DEC20A001C0672 /* DailyClipCell.h */,
+				83B8F1C616DEC20A001C0672 /* DailyClipCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				8387879B16D0364E00D9CFD8 /* MBProgressHUD.m in Sources */,
 				8333471E16DA57FE00956D03 /* DailyViewController.m in Sources */,
 				8333472216DA925F00956D03 /* XMLDailyParser.m in Sources */,
+				83B8F1C716DEC20A001C0672 /* DailyClipCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

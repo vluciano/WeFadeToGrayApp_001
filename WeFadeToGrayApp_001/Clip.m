@@ -14,7 +14,11 @@
 @synthesize start = _start;
 @synthesize length = _length;
 
-@synthesize thumbnail_path = _thumbnail_path;
+@synthesize thumbnail_path_large = _thumbnail_path_large;
+@synthesize thumbnail_path_medium = _thumbnail_path_medium;
+@synthesize thumbnail_path_small = _thumbnail_path_small;
+
+
 @synthesize thumbnail_size_width = _thumbnail_size_width;
 @synthesize thumbnail_size_height = _thumbnail_size_height;
 @synthesize trackingclip = _trackingclip;

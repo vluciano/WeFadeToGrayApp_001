@@ -154,7 +154,13 @@ Clip *currentClip;
         currentClip.length = currentNodeContent;
     }
     if ([elementname isEqualToString:@"large"]) {
-        currentClip.thumbnail_path = currentNodeContent;
+        currentClip.thumbnail_path_large = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"small"]) {
+        currentClip.thumbnail_path_small = currentNodeContent;
+    }
+    if ([elementname isEqualToString:@"medium"]) {
+        currentClip.thumbnail_path_medium = currentNodeContent;
     }
     if ([elementname isEqualToString:@"trackingclip"]) {
         currentClip.trackingclip = currentNodeContent;

@@ -10,6 +10,7 @@
 #import "ContactViewController.h"
 #import "ProjectsViewControllerNew.h"
 #import "DailiesOverviewViewController.h"
+#import "DailyClipCell.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
@@ -21,6 +22,7 @@
 
 @synthesize userName, userPassword, projectIdent, headerView, contactBtn, dailiesListBtn, overviewBtn, dailyX;
 @synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTime;
+@synthesize myCollectionView, thumbnailQueue;
 
 
 
@@ -88,8 +90,106 @@
     [self.moviePlayer setInitialPlaybackTime:self.currentPlaybackTime];
     [self.moviePlayer play];
     
+    
+    //UICollection
+    self.myCollectionView.backgroundColor = [UIColor clearColor];
+    [self.myCollectionView registerClass:[DailyClipCell class] forCellWithReuseIdentifier:@"ClipCell"];
+    self.myCollectionView.pagingEnabled = NO;
+    
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)self.myCollectionView.collectionViewLayout;
+    flowLayout.itemSize = CGSizeMake(135, 105);
+    [flowLayout setMinimumInteritemSpacing:0.f];
+    [flowLayout setMinimumLineSpacing:0.f];
+    
+    self.thumbnailQueue = [[NSOperationQueue alloc] init];
+    self.thumbnailQueue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
+    
+    [self.myCollectionView reloadData];
+    
 }
 
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    NSInteger numClipsInDaily = [[self.dailyX clips] count];
+    return numClipsInDaily;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSMutableArray *dailyClips = [self.dailyX clips];
+    Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
+    
+    static NSString *identifier;
+    identifier = @"ClipCell";
+        
+    DailyClipCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.clipTitel.text = currentClip.clipName;
+    
+    /*
+    NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    cell.clipImageView.image = image;
+    */
+        
+        
+    // load photo images in the background
+    __weak DailyViewController *weakSelf = self;
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // then set them via the main queue if the cell is still visible.
+            if ([weakSelf.myCollectionView.indexPathsForVisibleItems containsObject:indexPath]) {
+                
+                DailyClipCell *cell = (DailyClipCell *)[weakSelf.myCollectionView cellForItemAtIndexPath:indexPath];
+                
+                NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path_large];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [UIImage imageWithData:data];
+                
+                cell.clipImageView.image = image;
+                
+            }
+        });
+    }];
+    
+        [self.thumbnailQueue addOperation:operation];
+        
+        return cell;
+    
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"Selected item %d", indexPath.row);
+    
+    NSMutableArray *dailyClips = [self.dailyX clips];
+    Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
+
+    //------------------
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"h:m:s"];
+    NSDate *date = [formatter dateFromString:currentClip.start];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+    NSLog(@"hour: %d", [components hour]);
+    NSLog(@"minute: %d", [components minute]);
+    NSLog(@"secunde: %d", [components second]);
+    
+    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second];
+    NSTimeInterval clipInterval = timeTotal;
+    
+    self.currentPlaybackTime = clipInterval;
+    
+    //[self.moviePlayer stop];
+    [self.moviePlayer setCurrentPlaybackTime:self.currentPlaybackTime];
+    [self.moviePlayer play];
+    
+}
 
 
 - (void)didReceiveMemoryWarning

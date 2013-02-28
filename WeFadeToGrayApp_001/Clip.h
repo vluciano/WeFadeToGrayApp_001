@@ -13,7 +13,11 @@
 @property (strong, nonatomic) NSString *clipName;
 @property (strong, nonatomic) NSString *start;
 @property (strong, nonatomic) NSString *length;
-@property (strong, nonatomic) NSString *thumbnail_path;
+
+@property (strong, nonatomic) NSString *thumbnail_path_large;
+@property (strong, nonatomic) NSString *thumbnail_path_medium;
+@property (strong, nonatomic) NSString *thumbnail_path_small;
+
 @property (strong, nonatomic) NSString *thumbnail_size_width;
 @property (strong, nonatomic) NSString *thumbnail_size_height;
 @property (strong, nonatomic) NSString *trackingclip;
