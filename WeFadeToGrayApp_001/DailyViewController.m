@@ -24,6 +24,8 @@
 @synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTime;
 @synthesize myCollectionView, thumbnailQueue;
 
+@synthesize commentView, commentBtn, commentWebView;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,20 +33,35 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"initWithNibName");
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.view addSubview:self.commentView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dailiesOverviewView_bg.png"]];
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.infoView.backgroundColor = [UIColor clearColor];
-    
+    self.commentView.backgroundColor = [UIColor colorWithRed:255 green:237 blue:0 alpha:1];
+    self.commentWebView.backgroundColor = [UIColor colorWithRed:255 green:237 blue:0 alpha:1];
     self.dailyName.text = self.dailyX.name;
+    
+    
+    [self.commentView setFrame:CGRectMake(0.0f, 748.0f, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+    [[self commentView] setCenter:CGPointMake(0.0f, 748.0f)];
+    self.commentView.hidden = false;
+    
+    NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
+    NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
+
     
     
     //DATE LABEL
@@ -70,6 +87,13 @@
     self.dailyLengh.text = self.dailyX.sec_duration;
     self.projectName.text = self.projectNameEx;
     self.clipName.text = self.dailyX.sec_name;
+    
+    self.commentWebView.backgroundColor  = [UIColor clearColor];
+    
+    NSLog(@"-----> %@",self.dailyX.comment);
+    NSString *commentContent = [NSString stringWithFormat:@"<html><body style=\"font-size:12px;font-family:Helvetica;\"><div id=\"content\">%@</div></body></html>", self.dailyX.comment];
+    
+    [self.commentWebView loadHTMLString:commentContent baseURL:[NSURL URLWithString:@""]];
     
     //Video
     NSURL *url = [NSURL URLWithString:self.dailyX.url];
@@ -180,7 +204,7 @@
     NSLog(@"minute: %d", [components minute]);
     NSLog(@"secunde: %d", [components second]);
     
-    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second];
+    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] + 1;
     NSTimeInterval clipInterval = timeTotal;
     
     self.currentPlaybackTime = clipInterval;
@@ -213,6 +237,36 @@
 }
 
 
+- (IBAction)showCommentViewAction:(id)sender {
+    NSLog(@"showCommentViewAction");
+    
+    //self.view.userInteractionEnabled=NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.commentView.frame = CGRectMake(0.0f, 673.0f, self.commentView.frame.size.width, self.commentView.frame.size.height);
+    } completion:^(BOOL finished) {
+        NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
+        NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
+    }];
+
+}
+- (IBAction)hideCommentViewAction:(id)sender {
+    NSLog(@"hideCommentViewAction");
+
+    //self.view.userInteractionEnabled=YES;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.commentView.frame = CGRectMake(0.0f, 748.0f, self.commentView.frame.size.width, self.commentView.frame.size.height);
+        
+    } completion:^(BOOL finished) {
+        NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
+        NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
+    }];
+
+    
+}
+
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     [self.moviePlayer pause];
@@ -242,6 +296,10 @@
         vc.userName = self.userName;
     }
 }
+
+
+
+
 
 
 @end

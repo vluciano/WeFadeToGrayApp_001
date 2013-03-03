@@ -43,6 +43,16 @@
 @property (nonatomic, strong) NSOperationQueue *thumbnailQueue;
 
 
+//Info Section
+@property (strong, nonatomic) IBOutlet UIView *commentView;
+@property (strong, nonatomic) IBOutlet UIButton *hideCommentBtn;
+@property (strong, nonatomic) IBOutlet UIWebView *commentWebView;
+
+- (IBAction)showCommentViewAction:(id)sender;
+- (IBAction)hideCommentViewAction:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *commentBtn;
+
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;
 - (IBAction)overviewBtnClick:(id)sender;

@@ -23,9 +23,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        //self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.borderWidth = 0.5f;
         [self  setBackgroundColor:[UIColor colorWithRed:255 green:237 blue:0 alpha:1]];
-        self.layer.borderWidth = 0.0f;
+        
     
         
         //Thumb

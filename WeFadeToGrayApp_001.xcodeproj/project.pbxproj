@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8306BF8616E292AE005F76E4 /* dailyCommentBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8306BF8416E292AE005F76E4 /* dailyCommentBtn@2x.png */; };
+		8306BF8716E292AE005F76E4 /* dailyCommentBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8306BF8516E292AE005F76E4 /* dailyCommentBtn.png */; };
 		831D695F16C43F9100169061 /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 831D695B16C43F9100169061 /* contact.png */; };
 		831D696016C43F9100169061 /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 831D695C16C43F9100169061 /* contact@2x.png */; };
 		831D696116C43F9100169061 /* start_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 831D695D16C43F9100169061 /* start_btn.png */; };
@@ -21,6 +23,8 @@
 		8337A53016B42C4400C173C1 /* startPage_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8337A52E16B42C4400C173C1 /* startPage_bg.png */; };
 		8337A53316B4378700C173C1 /* XMLLoginParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A53216B4378700C173C1 /* XMLLoginParser.m */; };
 		8337A53716B43CA500C173C1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337A53616B43CA500C173C1 /* User.m */; };
+		8344E99C16E2BEF400732B11 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8344E99A16E2BEF400732B11 /* CloseButton.png */; };
+		8344E99D16E2BEF400732B11 /* CloseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8344E99B16E2BEF400732B11 /* CloseButton@2x.png */; };
 		834B6C3D16B3477000AA00EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C3C16B3477000AA00EA /* UIKit.framework */; };
 		834B6C3F16B3477000AA00EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C3E16B3477000AA00EA /* Foundation.framework */; };
 		834B6C4116B3477000AA00EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B6C4016B3477000AA00EA /* CoreGraphics.framework */; };
@@ -108,6 +112,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8306BF8416E292AE005F76E4 /* dailyCommentBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dailyCommentBtn@2x.png"; sourceTree = "<group>"; };
+		8306BF8516E292AE005F76E4 /* dailyCommentBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyCommentBtn.png; sourceTree = "<group>"; };
 		831D695B16C43F9100169061 /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
 		831D695C16C43F9100169061 /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
 		831D695D16C43F9100169061 /* start_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_btn.png; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 		8337A53216B4378700C173C1 /* XMLLoginParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLLoginParser.m; sourceTree = "<group>"; };
 		8337A53516B43CA500C173C1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		8337A53616B43CA500C173C1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8344E99A16E2BEF400732B11 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		8344E99B16E2BEF400732B11 /* CloseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseButton@2x.png"; sourceTree = "<group>"; };
 		834B6C3816B3477000AA00EA /* WeFadeToGrayApp_001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeFadeToGrayApp_001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B6C3C16B3477000AA00EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834B6C3E16B3477000AA00EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -355,6 +363,10 @@
 		834B6C7D16B4052D00AA00EA /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				8344E99A16E2BEF400732B11 /* CloseButton.png */,
+				8344E99B16E2BEF400732B11 /* CloseButton@2x.png */,
+				8306BF8416E292AE005F76E4 /* dailyCommentBtn@2x.png */,
+				8306BF8516E292AE005F76E4 /* dailyCommentBtn.png */,
 				8387878E16D021B400D9CFD8 /* dailiesOverviewView_bg.png */,
 				8387878F16D021B400D9CFD8 /* dailiesOverviewView_bg@2x.png */,
 				8387878616D01D5600D9CFD8 /* projectViewDaily_bg.png */,
@@ -572,6 +584,10 @@
 				8387878916D01D5600D9CFD8 /* projectViewDaily_bg@2x.png in Resources */,
 				8387879016D021B400D9CFD8 /* dailiesOverviewView_bg.png in Resources */,
 				8387879116D021B400D9CFD8 /* dailiesOverviewView_bg@2x.png in Resources */,
+				8306BF8616E292AE005F76E4 /* dailyCommentBtn@2x.png in Resources */,
+				8306BF8716E292AE005F76E4 /* dailyCommentBtn.png in Resources */,
+				8344E99C16E2BEF400732B11 /* CloseButton.png in Resources */,
+				8344E99D16E2BEF400732B11 /* CloseButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

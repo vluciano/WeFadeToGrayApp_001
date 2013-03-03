@@ -49,8 +49,8 @@ Clip *currentClip;
     // send it
     
     NSData *serverReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
-    NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
+    //NSString *replyString = [[NSString alloc] initWithBytes:[serverReply bytes] length:[serverReply length] encoding: NSASCIIStringEncoding];
+    //NSLog(@"%@",replyString); // what ever i echo out of the php file - this is just to capture the whole output ...
     
 	parser	= [[NSXMLParser alloc] initWithData:serverReply];
 	parser.delegate = self;

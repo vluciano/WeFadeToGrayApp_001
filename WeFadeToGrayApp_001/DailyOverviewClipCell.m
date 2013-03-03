@@ -28,7 +28,6 @@
         self.layer.borderColor = [UIColor clearColor].CGColor;
         self.layer.borderWidth = 0.0f;
 
-        
         /*
         self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
         self.layer.borderColor = [UIColor whiteColor].CGColor;

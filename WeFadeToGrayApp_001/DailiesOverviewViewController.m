@@ -199,7 +199,7 @@ XMLDailyParser *xmlDailyParser;
     NSLog(@"minute: %d", [components minute]);
     NSLog(@"secunde: %d", [components second]);
     
-    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second];
+    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] +1;
     NSTimeInterval clipInterval = timeTotal;
 
     self.currentPlaybackTime = clipInterval;

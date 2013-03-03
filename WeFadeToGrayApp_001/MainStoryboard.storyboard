@@ -810,6 +810,22 @@ www.wefadetogrey.de</string>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSl-Q1-z7N" userLabel="Info view">
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ho1-MP-610">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="82" id="XwJ-iq-Pa1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="dailyCommentBtn.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showCommentViewAction:" destination="ifk-xx-SSA" eventType="touchUpInside" id="iha-4j-JX5"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="projectName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcd-po-L5I">
                                         <accessibility key="accessibilityConfiguration" label="ss"/>
                                         <constraints>
@@ -860,13 +876,15 @@ www.wefadetogrey.de</string>
                                     <constraint firstItem="Jjk-wf-B6Q" firstAttribute="top" secondItem="FJK-dq-W8k" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9Aa-Hu-0dl"/>
                                     <constraint firstItem="Jjk-wf-B6Q" firstAttribute="trailing" secondItem="FJK-dq-W8k" secondAttribute="trailing" type="default" id="GuA-hz-5NK"/>
                                     <constraint firstItem="kcd-po-L5I" firstAttribute="trailing" secondItem="FJK-dq-W8k" secondAttribute="trailing" type="default" id="PcT-0S-LxG"/>
+                                    <constraint firstItem="Ho1-MP-610" firstAttribute="leading" secondItem="G4Q-lB-7Xs" secondAttribute="leading" type="default" id="VRu-cW-e6w"/>
                                     <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="kcd-po-L5I" secondAttribute="leading" type="user" id="ZcC-ym-0tt"/>
-                                    <constraint firstItem="kcd-po-L5I" firstAttribute="leading" secondItem="KSl-Q1-z7N" secondAttribute="leading" constant="60" id="ZpA-FH-Qb5"/>
                                     <constraint firstItem="uv2-rI-0ra" firstAttribute="trailing" secondItem="G4Q-lB-7Xs" secondAttribute="trailing" type="default" id="aqb-Bp-t37"/>
                                     <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="FJK-dq-W8k" secondAttribute="leading" type="user" id="cio-oD-p2O"/>
                                     <constraint firstItem="kcd-po-L5I" firstAttribute="top" secondItem="KSl-Q1-z7N" secondAttribute="top" constant="27" id="gzq-J2-5sJ"/>
                                     <constraint firstItem="uv2-rI-0ra" firstAttribute="top" secondItem="Jjk-wf-B6Q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="iwq-t1-w2u"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ho1-MP-610" secondAttribute="bottom" constant="26" id="lJd-ZJ-k77"/>
                                     <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="Jjk-wf-B6Q" secondAttribute="leading" type="user" id="oGa-Mk-I3E"/>
+                                    <constraint firstItem="Ho1-MP-610" firstAttribute="leading" secondItem="KSl-Q1-z7N" secondAttribute="leading" constant="60" id="rBd-Tk-8DG"/>
                                     <constraint firstItem="G4Q-lB-7Xs" firstAttribute="top" secondItem="uv2-rI-0ra" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ssV-Vv-OAh"/>
                                     <constraint firstItem="G4Q-lB-7Xs" firstAttribute="leading" secondItem="uv2-rI-0ra" secondAttribute="leading" type="user" id="vvW-Qf-LKd"/>
                                 </constraints>
@@ -930,10 +948,9 @@ www.wefadetogrey.de</string>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo_pl.png" translatesAutoresizingMaskIntoConstraints="NO" id="nvV-Ty-NH1" userLabel="logo"/>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fFr-6d-omn">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fFr-6d-omn">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="105" id="1J5-oO-rwA"/>
+                                    <constraint firstAttribute="height" constant="105" id="9MH-QA-g2Q"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Afw-tY-VHy">
                                     <size key="itemSize" width="50" height="50"/>
@@ -942,7 +959,7 @@ www.wefadetogrey.de</string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="clipCell" id="VZd-dI-Dpi" customClass="DailyClipCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clipCell" id="VZd-dI-Dpi" customClass="DailyClipCell">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -966,7 +983,6 @@ www.wefadetogrey.de</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="epF-k4-bVs" firstAttribute="trailing" secondItem="VZd-dI-Dpi" secondAttribute="trailing" type="default" id="1Lo-ju-l6C"/>
                                             <constraint firstItem="epF-k4-bVs" firstAttribute="top" secondItem="VZd-dI-Dpi" secondAttribute="top" type="default" id="Dad-G9-Exj"/>
@@ -982,6 +998,38 @@ www.wefadetogrey.de</string>
                                     <outlet property="delegate" destination="ifk-xx-SSA" id="l4w-pT-kdP"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujy-tT-5tB" userLabel="comment view">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQ4-ak-50n">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="CloseButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hideCommentViewAction:" destination="ifk-xx-SSA" eventType="touchUpInside" id="JKX-bN-4nO"/>
+                                        </connections>
+                                    </button>
+                                    <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLt-wu-e37">
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="0Hd-QL-Tye"/>
+                                            <constraint firstAttribute="width" constant="900" id="97S-Dn-crp"/>
+                                        </constraints>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                    </webView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qQ4-ak-50n" secondAttribute="trailing" constant="2" id="LGz-q9-3Yy"/>
+                                    <constraint firstItem="cLt-wu-e37" firstAttribute="top" secondItem="Ujy-tT-5tB" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ah1-AR-MhC"/>
+                                    <constraint firstItem="qQ4-ak-50n" firstAttribute="top" secondItem="Ujy-tT-5tB" secondAttribute="top" constant="5" id="eaN-rf-ay8"/>
+                                    <constraint firstItem="cLt-wu-e37" firstAttribute="leading" secondItem="Ujy-tT-5tB" secondAttribute="leading" constant="5" id="iMp-H6-w7s"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="691" id="63V-Bg-iuD"/>
@@ -990,13 +1038,17 @@ www.wefadetogrey.de</string>
                             <constraint firstAttribute="trailing" secondItem="KSl-Q1-z7N" secondAttribute="trailing" constant="3" id="AYF-bp-NV2"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="Bhp-qQ-c8M"/>
                             <constraint firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" constant="648" id="C8D-tB-mMJ"/>
-                            <constraint firstAttribute="bottom" secondItem="fFr-6d-omn" secondAttribute="bottom" constant="83" id="Gff-J2-vcc"/>
+                            <constraint firstItem="Ujy-tT-5tB" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="748" id="De7-gE-47C"/>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="top" secondItem="Lcw-4F-6KI" secondAttribute="top" type="default" id="M7b-Qu-YHq"/>
+                            <constraint firstAttribute="bottom" secondItem="KSl-Q1-z7N" secondAttribute="bottom" constant="391" id="PaH-20-pJj"/>
+                            <constraint firstItem="Ujy-tT-5tB" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="Pte-jt-oHd"/>
+                            <constraint firstAttribute="bottom" secondItem="Ujy-tT-5tB" secondAttribute="bottom" constant="-75" id="Qes-ej-rMG"/>
                             <constraint firstItem="nvV-Ty-NH1" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="11" id="Ufd-7G-NXA"/>
-                            <constraint firstAttribute="bottom" secondItem="KSl-Q1-z7N" secondAttribute="bottom" constant="384" id="aw6-hI-sdP"/>
                             <constraint firstAttribute="bottom" secondItem="Lcw-4F-6KI" secondAttribute="bottom" constant="262" id="bk7-6U-kAp"/>
+                            <constraint firstAttribute="bottom" secondItem="fFr-6d-omn" secondAttribute="bottom" constant="83" id="fvP-VJ-ehg"/>
                             <constraint firstAttribute="trailing" secondItem="Lcw-4F-6KI" secondAttribute="trailing" constant="338" id="gpt-3v-aPd"/>
                             <constraint firstItem="fFr-6d-omn" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="mho-uX-sZI"/>
+                            <constraint firstItem="Ujy-tT-5tB" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="tg1-6l-fPO"/>
                             <constraint firstItem="fFr-6d-omn" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="uNq-6P-Duv"/>
                             <constraint firstItem="Lcw-4F-6KI" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="vFK-q8-7Ay"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" type="default" id="wXK-KV-bi7"/>
@@ -1006,15 +1058,18 @@ www.wefadetogrey.de</string>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="ClipName" destination="G4Q-lB-7Xs" id="C7F-uq-QRg"/>
                         <outlet property="clipName" destination="G4Q-lB-7Xs" id="rle-Db-HtH"/>
+                        <outlet property="commentBtn" destination="Ho1-MP-610" id="RJa-qR-Ju3"/>
+                        <outlet property="commentView" destination="Ujy-tT-5tB" id="Szm-vG-5Zf"/>
+                        <outlet property="commentWebView" destination="cLt-wu-e37" id="hDy-HX-v3x"/>
                         <outlet property="contactBtn" destination="vd2-i3-cIe" id="1uP-ca-OsK"/>
                         <outlet property="dailiesListBtn" destination="dFt-fv-fbR" id="fPC-Gi-JwM"/>
                         <outlet property="dailyDate" destination="Jjk-wf-B6Q" id="c0k-JP-knG"/>
                         <outlet property="dailyLengh" destination="uv2-rI-0ra" id="ycy-Z3-YRV"/>
                         <outlet property="dailyName" destination="FJK-dq-W8k" id="v6V-rF-G6X"/>
                         <outlet property="headerView" destination="4mQ-Eq-TCx" id="UwB-mo-HxE"/>
-                        <outlet property="infoView" destination="KSl-Q1-z7N" id="z3l-ri-luY"/>
+                        <outlet property="hideCommentBtn" destination="qQ4-ak-50n" id="JNc-em-rkg"/>
+                        <outlet property="infoView" destination="KSl-Q1-z7N" id="LCs-G0-UnR"/>
                         <outlet property="myCollectionView" destination="fFr-6d-omn" id="YJz-wK-3pS"/>
                         <outlet property="overviewBtn" destination="Jw5-3B-z4r" id="ge1-5g-Kvx"/>
                         <outlet property="projectName" destination="kcd-po-L5I" id="pJT-FV-EVz"/>
@@ -1030,12 +1085,14 @@ www.wefadetogrey.de</string>
         </scene>
     </scenes>
     <resources>
+        <image name="CloseButton.png" width="36" height="39"/>
         <image name="back.png" width="36" height="12"/>
         <image name="contact.png" width="56" height="12"/>
         <image name="contact_mail_btn.png" width="77" height="36"/>
         <image name="contact_map_btn.png" width="77" height="37"/>
         <image name="contact_tel_btn.png" width="77" height="37"/>
         <image name="contact_web_btn.png" width="77" height="36"/>
+        <image name="dailyCommentBtn.png" width="81" height="43"/>
         <image name="login_btn.png" width="137" height="63"/>
         <image name="logo_contact.png" width="103" height="103"/>
         <image name="logo_pl.png" width="103" height="103"/>
@@ -1110,14 +1167,20 @@ www.wefadetogrey.de</string>
             <relationships>
                 <relationship kind="action" name="contactBtnClick:"/>
                 <relationship kind="action" name="dailiesBtnClick:"/>
+                <relationship kind="action" name="hideCommentViewAction:"/>
                 <relationship kind="action" name="overviewBtnClick:"/>
+                <relationship kind="action" name="showCommentViewAction:"/>
                 <relationship kind="outlet" name="clipName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="commentBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="commentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="commentWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dailyDate" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dailyLengh" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dailyName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="hideCommentBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
@@ -1181,10 +1244,10 @@ www.wefadetogrey.de</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Nxe-Yd-AhX"/>
-        <segue reference="NB6-Bv-z1G"/>
         <segue reference="7Mn-f2-c9C"/>
-        <segue reference="TdW-hD-e2J"/>
+        <segue reference="NB6-Bv-z1G"/>
+        <segue reference="Nxe-Yd-AhX"/>
         <segue reference="uUq-Bf-I3K"/>
+        <segue reference="Kq8-dS-z3w"/>
     </inferredMetricsTieBreakers>
 </document>
