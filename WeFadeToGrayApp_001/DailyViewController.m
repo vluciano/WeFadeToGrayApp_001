@@ -91,10 +91,19 @@
     
     self.commentWebView.backgroundColor  = [UIColor clearColor];
     
-    NSLog(@"-----> %@",self.dailyX.comment);
-    NSString *commentContent = [NSString stringWithFormat:@"<html><body style=\"font-size:12px;font-family:Helvetica;\"><div id=\"content\">%@</div></body></html>", self.dailyX.comment];
+    NSLog(@"dailyX.comment -----> %@",self.dailyX.comment);
+    if (self.dailyX.comment.length > 0) {
+        NSString *commentContent = [NSString stringWithFormat:@"<html><body style=\"font-size:12px;font-family:Helvetica;\"><div id=\"content\">%@</div></body></html>", self.dailyX.comment];
+        
+        [self.commentWebView loadHTMLString:commentContent baseURL:[NSURL URLWithString:@""]];
+        self.commentBtn.enabled = YES;
+        self.commentBtn.alpha = 1;
+    }else {
+        self.commentBtn.enabled = NO;
+        self.commentBtn.alpha = 0.7f;
+        
+    }
     
-    [self.commentWebView loadHTMLString:commentContent baseURL:[NSURL URLWithString:@""]];
     
     //Video
     NSURL *url = [NSURL URLWithString:self.dailyX.url];
@@ -103,22 +112,16 @@
     [self.moviePlayer.view setFrame:CGRectMake(0, 0, 753, 424)];
     
     self.moviePlayer.controlStyle = MPMovieControlStyleDefault;
-
     self.moviePlayer.shouldAutoplay = NO;
-    
     [self.moviePlayer setFullscreen:YES animated:YES];
-    
     [self.videoView addSubview: self.moviePlayer.view];
-    
     [self.moviePlayer prepareToPlay];
-
     [self.moviePlayer setCurrentPlaybackTime:-1];
     [self.moviePlayer setInitialPlaybackTime:self.currentPlaybackTimeD];
-    [self.moviePlayer play];
+    //[self.moviePlayer play];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateChanged:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-    
     
     
     //UICollection
@@ -163,6 +166,8 @@
         
     DailyClipCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.clipTitel.text = currentClip.clipName;
+    [cell.ai startAnimating];
+    [cell.ai setHidden:NO];
     
     /*
     NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
@@ -187,12 +192,13 @@
                 UIImage *image = [UIImage imageWithData:data];
                 
                 cell.clipImageView.image = image;
+                [cell.ai stopAnimating];
                 
             }
         });
     }];
     
-        [self.thumbnailQueue addOperation:operation];
+    [self.thumbnailQueue addOperation:operation];
         
         return cell;
     
@@ -327,7 +333,7 @@
     }
     
     
-    if([segue.identifier isEqualToString:@"fromDailiesOverviewToContact"]){
+    if([segue.identifier isEqualToString:@"fromDailyViewToContact"]){
         
         ContactViewController *vc = [segue destinationViewController];
         vc.userNameC = self.userNameD;
