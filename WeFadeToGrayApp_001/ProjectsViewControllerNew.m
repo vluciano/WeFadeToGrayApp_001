@@ -31,16 +31,12 @@
 @synthesize userNameP, userPasswordP, myTableView, headerView, footerView, openSectionIndex, uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
 @synthesize HUD, daily, currentPlaybackTime, sectionIndex;
 
-@synthesize sectionInfoArray;
+@synthesize sectionInfoArray, isContactSelected;
 
 XMLProjectsParser *xmlProjectsParser;
 XMLDailyParser *xmlDailyParser;
 
 int indexPathRow;
-
-
-Boolean isContactSelected = NO;
-
 
 
 NSString *userName;
@@ -81,10 +77,9 @@ NSString *userPassword;
     
     
     // Code to Open Section when coming back
-    if(self.sectionIndex >  -1 && !isContactSelected){
+    if(self.sectionIndex >  -1 && self.sectionIndex < 2147483647 && !self.isContactSelected){
         
         NSLog(@"self.sectionIndex to Open : %i", self.sectionIndex);
-        
         
         Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:self.sectionIndex];
         SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:self.sectionIndex];
@@ -359,10 +354,17 @@ NSString *userPassword;
     
     self.openSectionIndex = sectionOpened;
     NSLog(@"openSectionIndex: %i", self.openSectionIndex);
+    NSLog(@"[[xmlProjectsParser projects] count]: %i", [[xmlProjectsParser projects] count]);
     
     self.actualProjectIdent = sectionInfo.project.ident;
     
     [self.overviewBtn setEnabled:YES];
+    
+    if (self.openSectionIndex == [[xmlProjectsParser projects] count]-1) {
+        NSIndexPath *selectedCellIndexPath = [NSIndexPath indexPathForRow:0 inSection:self.openSectionIndex];
+        
+        [self.myTableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     
     //[self.myTableView reloadData];
     
@@ -496,7 +498,7 @@ NSString *userPassword;
         
     if([segue.identifier isEqualToString:@"fromProjectListToContact"]){
         
-        isContactSelected = YES;
+        self.isContactSelected = YES;
         
         ContactViewController *vc = [segue destinationViewController];
         vc.userNameC = userNameP;
@@ -507,7 +509,7 @@ NSString *userPassword;
     
     if([segue.identifier isEqualToString:@"fromProjectListToDailiesOverview"]){
         
-        isContactSelected = NO;
+        self.isContactSelected = NO;
         
         DailiesOverviewViewController *vc = [segue destinationViewController];
         vc.userNameDO = userNameP;
@@ -519,7 +521,7 @@ NSString *userPassword;
     
     if([segue.identifier isEqualToString:@"fromProjectListToDailyView"]){
         
-        isContactSelected = NO;
+        self.isContactSelected = NO;
         
         DailyViewController *vc = [segue destinationViewController];
         vc.userNameD = userName;

@@ -37,8 +37,7 @@ XMLDailyParser *xmlDailyParser;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dailiesOverviewView_bg.png"]];
@@ -48,12 +47,8 @@ XMLDailyParser *xmlDailyParser;
     self.loginUserName.text = self.userNameDO;
     [self.overviewBtn setSelected:YES];
     
-    if(xmlDailiesParser == nil){
-        
-         xmlDailiesParser = [[XMLDailiesParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/dailies.xml" AndProjectIdent:projectIdent AndUserName:userNameDO AndPassword:userPasswordDO];
-    }
-        
-    
+    xmlDailiesParser = [[XMLDailiesParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/dailies.xml" AndProjectIdent:projectIdent AndUserName:userNameDO AndPassword:userPasswordDO];
+
     /*
     for (Daily *daily in [xmlDailiesParser dailies]) {
         for (Clip *clip in daily.clips) {

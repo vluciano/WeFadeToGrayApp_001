@@ -40,8 +40,9 @@
     self.loginUserName.text = self.userNameC;
     
     self.telBtn.hidden = YES;
-
-	// Do any additional setup after loading the view.
+    if (self.projectIdentC == nil) {
+        self.overviewBtn.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +106,7 @@
         vc.userNameP = self.userNameC;
         vc.userPasswordP = self.userPasswordC;
         vc.sectionIndex = self.openSectionIndexC;
-        
+        vc.isContactSelected = NO;
     }
     
     if([segue.identifier isEqualToString:@"fromContactToDailyOverview"]){

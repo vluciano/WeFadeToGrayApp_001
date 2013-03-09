@@ -343,7 +343,6 @@
 		834B6C2D16B3477000AA00EA = {
 			isa = PBXGroup;
 			children = (
-				835134FE16E80E7A005CF9DB /* SystemConfiguration.framework */,
 				834B6C4216B3477000AA00EA /* WeFadeToGrayApp_001 */,
 				834B6C3B16B3477000AA00EA /* Frameworks */,
 				834B6C3916B3477000AA00EA /* Products */,
@@ -361,6 +360,7 @@
 		834B6C3B16B3477000AA00EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				835134FE16E80E7A005CF9DB /* SystemConfiguration.framework */,
 				8333472316DACF8E00956D03 /* MediaPlayer.framework */,
 				83A280EE16BDC80800BB698A /* QuartzCore.framework */,
 				834B6C3C16B3477000AA00EA /* UIKit.framework */,

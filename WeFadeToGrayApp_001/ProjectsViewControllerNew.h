@@ -46,6 +46,8 @@
 
 @property(nonatomic) NSTimeInterval currentPlaybackTime;
 
+@property (assign) BOOL isContactSelected;
+
 
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;

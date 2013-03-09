@@ -947,6 +947,7 @@ www.wefadetogrey.de</string>
                                                         <constraint firstAttribute="height" constant="76" id="6Pt-W1-2Xz"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="p9D-21-H0C"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ji-T6-ydY">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="127" id="EY3-hs-7FE"/>
@@ -960,13 +961,18 @@ www.wefadetogrey.de</string>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="epF-k4-bVs" firstAttribute="trailing" secondItem="VZd-dI-Dpi" secondAttribute="trailing" type="default" id="1Lo-ju-l6C"/>
-                                            <constraint firstItem="epF-k4-bVs" firstAttribute="top" secondItem="VZd-dI-Dpi" secondAttribute="top" type="default" id="Dad-G9-Exj"/>
-                                            <constraint firstItem="epF-k4-bVs" firstAttribute="leading" secondItem="VZd-dI-Dpi" secondAttribute="leading" type="default" id="EMh-2T-JnC"/>
+                                            <constraint firstItem="epF-k4-bVs" firstAttribute="top" secondItem="VZd-dI-Dpi" secondAttribute="top" type="default" id="7n2-CF-FHx"/>
+                                            <constraint firstAttribute="centerX" secondItem="p9D-21-H0C" secondAttribute="centerX" type="user" id="FQr-Qd-mUT"/>
+                                            <constraint firstItem="p9D-21-H0C" firstAttribute="centerX" secondItem="2Ji-T6-ydY" secondAttribute="centerX" type="default" id="Zoo-4z-RF1"/>
+                                            <constraint firstItem="epF-k4-bVs" firstAttribute="leading" secondItem="VZd-dI-Dpi" secondAttribute="leading" type="default" id="d9y-Up-KpW"/>
+                                            <constraint firstItem="p9D-21-H0C" firstAttribute="top" secondItem="VZd-dI-Dpi" secondAttribute="top" constant="27" id="ets-dp-Lwx"/>
+                                            <constraint firstItem="p9D-21-H0C" firstAttribute="centerX" secondItem="epF-k4-bVs" secondAttribute="centerX" type="default" id="fdT-gs-FMi"/>
                                             <constraint firstAttribute="bottom" secondItem="2Ji-T6-ydY" secondAttribute="bottom" constant="6" id="gZf-as-86o"/>
-                                            <constraint firstItem="2Ji-T6-ydY" firstAttribute="leading" secondItem="VZd-dI-Dpi" secondAttribute="leading" constant="5" id="lwr-KI-lIy"/>
                                         </constraints>
                                         <size key="customSize" width="135" height="105"/>
+                                        <connections>
+                                            <outlet property="ai" destination="p9D-21-H0C" id="0Lf-m7-kP7"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -1175,9 +1181,6 @@ www.wefadetogrey.de</string>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
@@ -1201,10 +1204,10 @@ www.wefadetogrey.de</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ta-4q-ORZ"/>
-        <segue reference="sk9-Ai-ZVq"/>
-        <segue reference="eIy-iF-64i"/>
-        <segue reference="Zot-Ym-MYm"/>
+        <segue reference="7Mn-f2-c9C"/>
         <segue reference="qfQ-AS-BHM"/>
+        <segue reference="Nxe-Yd-AhX"/>
+        <segue reference="Kq8-dS-z3w"/>
+        <segue reference="sk9-Ai-ZVq"/>
     </inferredMetricsTieBreakers>
 </document>
