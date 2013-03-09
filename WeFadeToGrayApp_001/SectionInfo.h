@@ -25,8 +25,8 @@
 @interface SectionInfo : NSObject 
 
 @property (assign) BOOL open;
-@property (strong) Project* project;
-@property (strong) SectionHeaderView* headerView;
+@property (strong) Project *project;
+@property (strong) SectionHeaderView *headerView;
 
 @property (nonatomic,strong,readonly) NSMutableArray *rowHeights;
 
@@ -38,5 +38,8 @@
 - (void)insertRowHeights:(NSArray *)rowHeightArray atIndexes:(NSIndexSet *)indexes;
 - (void)removeRowHeightsAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceRowHeightsAtIndexes:(NSIndexSet *)indexes withRowHeights:(NSArray *)rowHeightArray;
+
+- (SectionHeaderView *) getSectionHeaderView;
+
 
 @end

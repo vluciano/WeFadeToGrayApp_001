@@ -15,8 +15,8 @@
 @interface DailiesOverviewViewController : UIViewController
 
 
-@property (weak, nonatomic) NSString *userName;
-@property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) NSString *userNameDO;
+@property (weak, nonatomic) NSString *userPasswordDO;
 @property (weak, nonatomic) NSString *projectIdent;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -30,7 +30,12 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic, strong) NSOperationQueue *thumbnailQueue;
 
-@property(nonatomic) NSTimeInterval currentPlaybackTime;
+@property(nonatomic) NSTimeInterval currentPlaybackTimeDO;
+@property (nonatomic, assign) NSInteger openSectionIndexDO;
+
+
+- (BOOL)connected;
+- (void)showNoInternetConectionAlert;
 
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;

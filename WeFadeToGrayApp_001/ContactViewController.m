@@ -7,6 +7,8 @@
 //
 
 #import "ContactViewController.h"
+#import "DailiesOverviewViewController.h"
+#import "ProjectsViewControllerNew.h"
 
 @interface ContactViewController ()
 
@@ -15,8 +17,9 @@
 @implementation ContactViewController
 
 
-@synthesize contactHeaderView, contactFooterView, logoutBtn, backBtn, loginUserName, userName;
+@synthesize contactHeaderView, contactFooterView, logoutBtn, loginUserName, userNameC, userPasswordC, openSectionIndexC, projectIdentC;
 
+@synthesize telBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,7 +37,9 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bc_contact.png"]];
     
-    self.loginUserName.text = self.userName;
+    self.loginUserName.text = self.userNameC;
+    
+    self.telBtn.hidden = YES;
 
 	// Do any additional setup after loading the view.
 }
@@ -45,9 +50,11 @@
 }
 
 - (IBAction)dailiesListBtnClick:(id)sender {
+     [self performSegueWithIdentifier:@"fromContactToProjectList" sender:self];
 }
 
 - (IBAction)overviewBtnClick:(id)sender {
+    [self performSegueWithIdentifier:@"fromContactToDailyOverview" sender:self];
 }
 
 - (IBAction)backBtnClick:(id)sender {
@@ -87,4 +94,34 @@
     NSLog(@"webBtnClick-----");
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.wefadetogrey.de/"]];
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+       
+    if([segue.identifier isEqualToString:@"fromContactToProjectList"]){
+        
+        ProjectsViewControllerNew *vc = [segue destinationViewController];
+        vc.userNameP = self.userNameC;
+        vc.userPasswordP = self.userPasswordC;
+        vc.sectionIndex = self.openSectionIndexC;
+        
+    }
+    
+    if([segue.identifier isEqualToString:@"fromContactToDailyOverview"]){
+        
+        DailiesOverviewViewController *vc = [segue destinationViewController];
+        vc.userNameDO = self.userNameC;
+        vc.userPasswordDO = self.userPasswordC;
+        vc.projectIdent = self.projectIdentC;
+        vc.openSectionIndexDO = self.openSectionIndexC;
+    }
+    
+    
+}
+
+
+
+
+
 @end

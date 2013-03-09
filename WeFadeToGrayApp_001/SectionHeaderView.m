@@ -13,8 +13,7 @@
 @implementation SectionHeaderView
 
 
-@synthesize disclosureButton=_disclosureButton, delegate=_delegate, section=_section;
-
+@synthesize disclosureButton=_disclosureButton, delegate=_delegate, section=_section, isDisclosureButtonSelected;
 
 
 -(id)initWithFrame:(CGRect)frame AndProject:(Project*)currentProject section:(NSInteger)sectionNumber delegate:(id <SectionHeaderViewDelegate>)delegate {
@@ -121,7 +120,9 @@
         
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.layer.borderWidth = 0.5f;
-                
+        
+        isDisclosureButtonSelected = NO;
+        
     }
     
     return self;
@@ -134,15 +135,21 @@
     [self toggleOpenWithUserAction:YES];
 }
 
+- (void) setDisclosureButtonSelected:(BOOL)value {
+    isDisclosureButtonSelected = value;
+}
+
 
 -(void)toggleOpenWithUserAction:(BOOL)userAction {
     
     // Toggle the disclosure button state.
-    self.disclosureButton.selected = !self.disclosureButton.selected;
+    //self.disclosureButton.selected = !self.disclosureButton.selected;
+
+    isDisclosureButtonSelected = !isDisclosureButtonSelected;
     
     // If this was a user action, send the delegate the appropriate message.
     if (userAction) {
-        if (self.disclosureButton.selected) {
+        if (isDisclosureButtonSelected) {
             if ([self.delegate respondsToSelector:@selector(sectionHeaderView:sectionOpened:)]) {
                 [self.delegate sectionHeaderView:self sectionOpened:self.section];
             }
@@ -154,6 +161,25 @@
         }
     }
 }
+
+
+
+-(void)openSection {
+    
+    if ([self.delegate respondsToSelector:@selector(sectionHeaderView:sectionOpened:)]) {
+            [self.delegate sectionHeaderView:self sectionOpened:self.section];
+    }
+    
+}
+
+-(void)closeSection {
+    
+    if ([self.delegate respondsToSelector:@selector(sectionHeaderView:sectionClosed:)]) {
+        [self.delegate sectionHeaderView:self sectionClosed:self.section];
+    }
+    
+}
+
 
 
 

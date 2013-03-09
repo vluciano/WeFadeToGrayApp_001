@@ -24,8 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
-@property (weak, nonatomic) NSString *userName;
-@property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) NSString *userNameP;
+@property (weak, nonatomic) NSString *userPasswordP;
 
 @property (weak, nonatomic) NSString *actualProjectIdent;
 @property (weak, nonatomic) Daily *daily;
@@ -42,6 +42,7 @@
 
 @property (nonatomic, strong) NSMutableArray* sectionInfoArray;
 @property (nonatomic, assign) NSInteger openSectionIndex;
+@property (nonatomic, assign) NSInteger sectionIndex;
 
 @property(nonatomic) NSTimeInterval currentPlaybackTime;
 
@@ -50,6 +51,9 @@
 - (IBAction)dailiesBtnClick:(id)sender;
 - (IBAction)overviewBtnClick:(id)sender;
 - (IBAction)logoutBtnClick:(id)sender;
+
+- (BOOL)connected;
+- (void) showNoInternetConectionAlert;
 
 @property (nonatomic, assign) NSInteger uniformRowHeight;
 

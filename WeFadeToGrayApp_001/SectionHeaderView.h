@@ -19,6 +19,12 @@
 @property (nonatomic, assign) NSInteger section;
 @property (nonatomic, weak) id <SectionHeaderViewDelegate> delegate;
 
+@property (nonatomic) Boolean isDisclosureButtonSelected;
+
+- (void) setDisclosureButtonSelected:(BOOL)value;
+- (void) openSection;
+- (void) closeSection;
+
 -(id)initWithFrame:(CGRect)frame AndProject:(Project*)project section:(NSInteger)sectionNumber delegate:(id <SectionHeaderViewDelegate>)delegate;
 -(void)toggleOpenWithUserAction:(BOOL)userAction;
 

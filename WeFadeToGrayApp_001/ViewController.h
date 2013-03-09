@@ -7,22 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginViewController.h"
+#import "BSKeyboardControls.h"
 
-@interface ViewController : UIViewController <DismissPopoverDelegate>
+@interface ViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, BSKeyboardControlsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *startLoginBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *logoStartView;
+@property (strong, nonatomic) IBOutlet UIView *loginView;
 
-@property (strong, nonatomic) UIPopoverController* popControler;
+@property (strong, nonatomic) IBOutlet UITextField *txtUserName;
+@property (strong, nonatomic) IBOutlet UITextField *txtPassword;
+@property (strong, nonatomic) IBOutlet UITextField *txtError;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *ai;
 
-@property (weak, nonatomic) NSString *userName;
-@property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) NSString *userNameS;
+@property (weak, nonatomic) NSString *userPasswordS;
 
+@property (strong, nonatomic) IBOutlet UIButton *saveCredentialsBtn;
 
--(IBAction)startLoginBtnClick:(id)sender;
+- (IBAction)saveCredentialsTapped:(UIButton *)button;
+- (IBAction)startLoginBtnClick:(id)sender;
 
-
-
-
+- (void) getLoginResponse;
+- (BOOL)connected;
+- (void) showNoInternetConectionAlert;
+- (NSString *) md5:(NSString *) input;
 
 @end

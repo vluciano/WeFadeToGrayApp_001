@@ -14,6 +14,9 @@
 #import "DailyViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+
 @interface ProjectsViewControllerNew ()
 
 @end
@@ -25,14 +28,23 @@
 
 @implementation ProjectsViewControllerNew
 
-@synthesize userName, userPassword, myTableView, headerView, footerView, sectionInfoArray, openSectionIndex,uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
-@synthesize HUD, daily, currentPlaybackTime;
+@synthesize userNameP, userPasswordP, myTableView, headerView, footerView, openSectionIndex, uniformRowHeight=rowHeight_, logoutBtn, loginUserName, actualProjectIdent;
+@synthesize HUD, daily, currentPlaybackTime, sectionIndex;
+
+@synthesize sectionInfoArray;
 
 XMLProjectsParser *xmlProjectsParser;
 XMLDailyParser *xmlDailyParser;
 
-Boolean isProjectSelected = NO;
+int indexPathRow;
 
+
+Boolean isContactSelected = NO;
+
+
+
+NSString *userName;
+NSString *userPassword;
 
 
 -(BOOL)canBecomeFirstResponder {
@@ -43,9 +55,10 @@ Boolean isProjectSelected = NO;
 	
 	[super viewWillAppear:animated];
 	
+    
     if ((self.sectionInfoArray == nil) || ([self.sectionInfoArray count] != [self numberOfSectionsInTableView:self.myTableView])) {
-		
-        // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
+        
+        // For each Daily, set up a corresponding SectionInfo object to contain the default height for each row.
 		NSMutableArray *infoArray = [[NSMutableArray alloc] init];
 		
 		for (Project *project in [xmlProjectsParser projects]) {
@@ -65,10 +78,46 @@ Boolean isProjectSelected = NO;
 		
 		self.sectionInfoArray = infoArray;
 	}
+    
+    
+    // Code to Open Section when coming back
+    if(self.sectionIndex >  -1 && !isContactSelected){
+        
+        NSLog(@"self.sectionIndex to Open : %i", self.sectionIndex);
+        
+        
+        Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:self.sectionIndex];
+        SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:self.sectionIndex];
+        
+        if (!sectionInfo.headerView) {
+            
+            sectionInfo.headerView = [[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024, HEADER_HEIGHT) AndProject:currentProject section:self.sectionIndex delegate:self];
+            
+        }
+
+        sectionInfo.open = !sectionInfo.open;
+        
+        NSLog(@"sectionInfo.headerView.disclosureButton.selected: %i", sectionInfo.headerView.isDisclosureButtonSelected);
+        
+        if (sectionInfo.headerView.isDisclosureButtonSelected) {
+            [sectionInfo.headerView setDisclosureButtonSelected:NO];
+        }else {
+            [sectionInfo.headerView setDisclosureButtonSelected:YES];
+        }
+        
+        NSLog(@"sectionInfo.headerView.disclosureButton.selected: %i", sectionInfo.headerView.isDisclosureButtonSelected);
+    
+        //[sectionInfo.headerView openSection];
+        [self sectionHeaderView:sectionInfo.headerView sectionOpened:self.sectionIndex];
+        
+        
+        NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:indexPathRow inSection:self.sectionIndex];
+        [self.myTableView selectRowAtIndexPath:selectedCellIndexPath animated:false scrollPosition:UITableViewScrollPositionTop];
+        [self.myTableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.myTableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 	
 }
-
-
 
 
 
@@ -90,28 +139,46 @@ Boolean isProjectSelected = NO;
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
     self.myTableView.backgroundColor = [UIColor clearColor];
     
-    self.loginUserName.text = self.userName;
     
-    xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
+    if(![self connected]) {
+        // not connected
+        
+        [self showNoInternetConectionAlert];
+        
+    } else {
+        // connected, do some internet stuff
+        if(xmlProjectsParser == nil){
+            
+            userName = self.userNameP;
+            userPassword = self.userPasswordP;
+            self.loginUserName.text = userName;
+            
+            
+            xmlProjectsParser = [[XMLProjectsParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/projects.xml" AnduserName:userName AndPassword:userPassword];
+            
+        }
+        
+        self.openSectionIndex = NSNotFound;
+        
+        [self.dailiesListBtn setSelected:YES];
+        [self.overviewBtn setEnabled:NO];
+        
+        
+        // Set up default values.
+        self.myTableView.sectionHeaderHeight = HEADER_HEIGHT;
+        /*
+         The section info array is thrown away in viewWillUnload, so it's OK to set the default values here. If you keep the section information etc. then set the default values in the designated initializer.
+         */
+        rowHeight_ = DEFAULT_ROW_HEIGHT;
+        
+        self.myTableView.indicatorStyle=UIScrollViewIndicatorStyleWhite;
+        
+        [self.myTableView reloadData];
+        
+        self.currentPlaybackTime = 0.0f;
+        
+    }
     
-    openSectionIndex = NSNotFound;
-    
-    [self.dailiesListBtn setSelected:YES];
-    [self.overviewBtn setEnabled:NO];
-    
-    
-    // Set up default values.
-    self.myTableView.sectionHeaderHeight = HEADER_HEIGHT;
-	/*
-     The section info array is thrown away in viewWillUnload, so it's OK to set the default values here. If you keep the section information etc. then set the default values in the designated initializer.
-     */
-    rowHeight_ = DEFAULT_ROW_HEIGHT;
-    
-    self.myTableView.indicatorStyle=UIScrollViewIndicatorStyleWhite;
-
-    [self.myTableView reloadData];
-    
-    self.currentPlaybackTime = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -212,18 +279,29 @@ Boolean isProjectSelected = NO;
     NSLog(@"-------> click row");
     
     
-    Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.section];
-    NSMutableArray *projectDailies = [currentProject dailies];
-    DailySimple *dailySimple = [projectDailies objectAtIndex:indexPath.row];
-    
-    xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:dailySimple.ident AndUserName:userName AndPassword:userPassword];
-    
-    
-    self.daily = xmlDailyParser.daily;
-    
-    
-    [self performSegueWithIdentifier:@"fromProjectListToDailyView" sender:self];
+    if(![self connected]) {
+        // not connected
+        [self showNoInternetConectionAlert];
         
+    } else {
+        
+        Project *currentProject = [[xmlProjectsParser projects] objectAtIndex:indexPath.section];
+        NSMutableArray *projectDailies = [currentProject dailies];
+        DailySimple *dailySimple = [projectDailies objectAtIndex:indexPath.row];
+        
+        
+        indexPathRow = indexPath.row;
+        
+        xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:dailySimple.ident AndUserName:userName AndPassword:userPassword];
+        
+        self.daily = xmlDailyParser.daily;
+        
+        [self performSegueWithIdentifier:@"fromProjectListToDailyView" sender:self];
+
+    }
+    
+    
+            
     
 }
 
@@ -280,12 +358,13 @@ Boolean isProjectSelected = NO;
     [self.myTableView endUpdates];
     
     self.openSectionIndex = sectionOpened;
+    NSLog(@"openSectionIndex: %i", self.openSectionIndex);
     
     self.actualProjectIdent = sectionInfo.project.ident;
     
     [self.overviewBtn setEnabled:YES];
     
-    [self.myTableView reloadData];
+    //[self.myTableView reloadData];
     
 }
 
@@ -313,7 +392,7 @@ Boolean isProjectSelected = NO;
     
     [self.overviewBtn setEnabled:NO];
     
-    [self.myTableView reloadData];
+    //[self.myTableView reloadData];
 }
 
 
@@ -330,26 +409,36 @@ Boolean isProjectSelected = NO;
 - (IBAction)overviewBtnClick:(id)sender {
     NSLog(@"overviewBtnClick-----");
     
-    if (self.actualProjectIdent != nil) {
-   
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDAnimationFade;
-        hud.labelText = @"Loading";
-        [hud setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:0.6]];
-        hud.dimBackground = YES;
+    
+    if(![self connected]) {
+        // not connected
+        [self showNoInternetConectionAlert];
         
-        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            // Do task...
-            [self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
+    } else {
         
-        //[self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+        if (self.actualProjectIdent != nil) {
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDAnimationFade;
+            hud.labelText = @"Loading";
+            [hud setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:0.6]];
+            hud.dimBackground = YES;
+            
+            //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                // Do task...
+                [self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+            
+            //[self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
+        }
+    
     }
+    
 }
 
 - (void)myTask {
@@ -381,31 +470,65 @@ Boolean isProjectSelected = NO;
 
 }
 
+
+- (void)showNoInternetConectionAlert{
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Connection Failed"
+                                                   message: @"Please connect to network and try again"
+                                                  delegate: self
+                                         cancelButtonTitle: @"Close"
+                                         otherButtonTitles:nil];
+    
+    //Show Alert On The View
+    [alert show];
+
+
+}
+
+- (BOOL)connected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
         
     if([segue.identifier isEqualToString:@"fromProjectListToContact"]){
         
+        isContactSelected = YES;
+        
         ContactViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
+        vc.userNameC = userNameP;
+        vc.userPasswordC = userPasswordP;
+        vc.projectIdentC = actualProjectIdent;
+        vc.openSectionIndexC = self.openSectionIndex;
     }
+    
     if([segue.identifier isEqualToString:@"fromProjectListToDailiesOverview"]){
         
+        isContactSelected = NO;
+        
         DailiesOverviewViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
-        vc.projectIdent = self.actualProjectIdent;
+        vc.userNameDO = userNameP;
+        vc.userPasswordDO = userPasswordP;
+        vc.projectIdent = actualProjectIdent;
+        vc.openSectionIndexDO = self.openSectionIndex;
+        
     }
     
     if([segue.identifier isEqualToString:@"fromProjectListToDailyView"]){
         
-        DailyViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
-        vc.projectIdent = self.actualProjectIdent;
-        vc.dailyX = self.daily;
+        isContactSelected = NO;
         
-        vc.currentPlaybackTime = self.currentPlaybackTime;
+        DailyViewController *vc = [segue destinationViewController];
+        vc.userNameD = userName;
+        vc.userPasswordD = userPassword;
+        vc.projectIdent = actualProjectIdent;
+        vc.dailyX = daily;
+        
+        vc.currentPlaybackTimeD = self.currentPlaybackTime;
+        vc.openSectionIndexD = self.openSectionIndex;
     }
     
 }

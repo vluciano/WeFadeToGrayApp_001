@@ -12,8 +12,8 @@
 
 @interface DailyViewController : UIViewController
 
-@property (weak, nonatomic) NSString *userName;
-@property (weak, nonatomic) NSString *userPassword;
+@property (weak, nonatomic) NSString *userNameD;
+@property (weak, nonatomic) NSString *userPasswordD;
 @property (weak, nonatomic) NSString *projectIdent;
 @property (weak, nonatomic) NSString *projectNameEx;
 
@@ -35,7 +35,7 @@
 //video
 @property (strong, nonatomic) IBOutlet UIView *videoView;
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
-@property(nonatomic) NSTimeInterval currentPlaybackTime;
+@property(nonatomic) NSTimeInterval currentPlaybackTimeD;
 
 
 //UICollection
@@ -45,17 +45,19 @@
 
 //Info Section
 @property (strong, nonatomic) IBOutlet UIView *commentView;
-@property (strong, nonatomic) IBOutlet UIButton *hideCommentBtn;
 @property (strong, nonatomic) IBOutlet UIWebView *commentWebView;
 
 - (IBAction)showCommentViewAction:(id)sender;
-- (IBAction)hideCommentViewAction:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *commentBtn;
 
 - (IBAction)contactBtnClick:(id)sender;
 - (IBAction)dailiesBtnClick:(id)sender;
 - (IBAction)overviewBtnClick:(id)sender;
+- (BOOL)connected;
+- (void)showNoInternetConectionAlert;
 
+
+@property (nonatomic, assign) NSInteger openSectionIndexD;
 
 @end

@@ -13,6 +13,8 @@
 #import "DailyOverviewClipCell.h"
 #import "ProjectsViewControllerNew.h"
 #import "DailyViewController.h"
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface DailiesOverviewViewController ()
 @end
@@ -21,7 +23,7 @@
 
 @implementation DailiesOverviewViewController
 
-@synthesize userName, userPassword, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView, thumbnailQueue, currentPlaybackTime;
+@synthesize userNameDO, userPasswordDO, headerView, footerView, logoutBtn, loginUserName, projectIdent, myCollectionView, thumbnailQueue, currentPlaybackTimeDO, openSectionIndexDO;
 
 XMLDailiesParser *xmlDailiesParser;
 XMLDailyParser *xmlDailyParser;
@@ -43,12 +45,14 @@ XMLDailyParser *xmlDailyParser;
     self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header_bg_pl.png"]];
     self.footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"footer_bg_pl.png"]];
     
-    
-    
-    self.loginUserName.text = self.userName;
+    self.loginUserName.text = self.userNameDO;
     [self.overviewBtn setSelected:YES];
     
-    xmlDailiesParser = [[XMLDailiesParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/dailies.xml" AndProjectIdent:projectIdent AndUserName:userName AndPassword:userPassword];
+    if(xmlDailiesParser == nil){
+        
+         xmlDailiesParser = [[XMLDailiesParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/dailies.xml" AndProjectIdent:projectIdent AndUserName:userNameDO AndPassword:userPasswordDO];
+    }
+        
     
     /*
     for (Daily *daily in [xmlDailiesParser dailies]) {
@@ -77,7 +81,7 @@ XMLDailyParser *xmlDailyParser;
     
     [self.myCollectionView reloadData];
     
-    self.currentPlaybackTime = 0.0f;
+    self.currentPlaybackTimeDO = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,33 +187,41 @@ XMLDailyParser *xmlDailyParser;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"Selected item %d", indexPath.row);
-    Daily *currentDaily = [[xmlDailiesParser dailies] objectAtIndex:indexPath.section];
-    NSMutableArray *dailyClips = [currentDaily clips];
-    Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
     
+    if(![self connected]) {
+        // not connected
+        [self showNoInternetConectionAlert];
+        
+    } else {
     
-    //------------------
+        Daily *currentDaily = [[xmlDailiesParser dailies] objectAtIndex:indexPath.section];
+        NSMutableArray *dailyClips = [currentDaily clips];
+        Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
+        
+        
+        //------------------
+        
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"h:m:s"];
+        NSDate *date = [formatter dateFromString:currentClip.start];
+        
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+        NSLog(@"hour: %d", [components hour]);
+        NSLog(@"minute: %d", [components minute]);
+        NSLog(@"secunde: %d", [components second]);
+        
+        double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] +1;
+        NSTimeInterval clipInterval = timeTotal;
+        
+        self.currentPlaybackTimeDO = clipInterval;
+        
+        
+        xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:currentDaily.ident AndUserName:userNameDO AndPassword:userPasswordDO];
+        
+        
+        [self performSegueWithIdentifier:@"fromDailiesOverviewToDailyView" sender:self];
     
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"h:m:s"];
-    NSDate *date = [formatter dateFromString:currentClip.start];
-    
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
-    NSLog(@"hour: %d", [components hour]);
-    NSLog(@"minute: %d", [components minute]);
-    NSLog(@"secunde: %d", [components second]);
-    
-    double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] +1;
-    NSTimeInterval clipInterval = timeTotal;
-
-    self.currentPlaybackTime = clipInterval;
-    
-    
-    xmlDailyParser = [[XMLDailyParser alloc] loadXMLByURL:@"http://dailies.wefadetogrey.de/api/get/daily.xml" AndDailyIdent:currentDaily.ident AndUserName:userName AndPassword:userPassword];
-    
-    
-    
-    [self performSegueWithIdentifier:@"fromDailiesOverviewToDailyView" sender:self];
+    }
     
 }
 
@@ -244,33 +256,59 @@ XMLDailyParser *xmlDailyParser;
     
 }
 
+
+- (void)showNoInternetConectionAlert{
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Connection Failed"
+                                                   message: @"Please connect to network and try again"
+                                                  delegate: self
+                                         cancelButtonTitle: @"Close"
+                                         otherButtonTitles:nil];
+    
+    //Show Alert On The View
+    [alert show];
+    
+    
+}
+
+- (BOOL)connected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     
     if([segue.identifier isEqualToString:@"fromDailiesOverviewToContact"]){
         
         ContactViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
+        vc.userNameC = self.userNameDO;
+        vc.userPasswordC = self.userPasswordDO;
+        vc.projectIdentC = self.projectIdent;
+        vc.openSectionIndexC = self.openSectionIndexDO;
     }
     
     if([segue.identifier isEqualToString:@"fromDailiesOverviewToProjectList"]){
         
         ProjectsViewControllerNew *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
-        
+        vc.userNameP = self.userNameDO;
+        vc.userPasswordP = self.userPasswordDO;
+        vc.sectionIndex = self.openSectionIndexDO;
     }
     
     if([segue.identifier isEqualToString:@"fromDailiesOverviewToDailyView"]){
         
         DailyViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
+        vc.userNameD = self.userNameDO;
+        vc.userPasswordD = self.userPasswordDO;
         vc.projectIdent = self.projectIdent;
         
         vc.dailyX = xmlDailyParser.daily;
         
-        vc.currentPlaybackTime = self.currentPlaybackTime;
+        vc.currentPlaybackTimeD = self.currentPlaybackTimeDO;
+        vc.openSectionIndexD = self.openSectionIndexDO;
     }
     
     

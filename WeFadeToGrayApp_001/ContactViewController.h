@@ -13,16 +13,20 @@
 @property (weak, nonatomic) IBOutlet UIView *contactFooterView;
 @property (weak, nonatomic) IBOutlet UIButton *dailiesListBtn;
 @property (weak, nonatomic) IBOutlet UIButton *overviewBtn;
-@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (weak, nonatomic) IBOutlet UILabel *loginUserName;
-@property (weak, nonatomic) NSString *userName;
 @property (weak, nonatomic) IBOutlet UIButton *telBtn;
 @property (weak, nonatomic) IBOutlet UIButton *mapBtn;
 @property (weak, nonatomic) IBOutlet UIButton *mailBtn;
 @property (weak, nonatomic) IBOutlet UIButton *webBtn;
+@property (strong, nonatomic) IBOutlet UIButton *logoBtn;
 
 
+@property (weak, nonatomic) NSString *userNameC;
+@property (weak, nonatomic) NSString *userPasswordC;
+
+@property (weak, nonatomic) NSString *projectIdentC;
+@property (nonatomic, assign) NSInteger openSectionIndexC;
 
 
 - (IBAction)dailiesListBtnClick:(id)sender;

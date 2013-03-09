@@ -12,7 +12,8 @@
 #import "DailiesOverviewViewController.h"
 #import "DailyClipCell.h"
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface DailyViewController ()
 
@@ -20,11 +21,11 @@
 
 @implementation DailyViewController
 
-@synthesize userName, userPassword, projectIdent, headerView, contactBtn, dailiesListBtn, overviewBtn, dailyX;
-@synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTime;
+@synthesize userNameD, userPasswordD, projectIdent, headerView, contactBtn, dailiesListBtn, overviewBtn, dailyX;
+@synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTimeD;
 @synthesize myCollectionView, thumbnailQueue;
 
-@synthesize commentView, commentBtn, commentWebView;
+@synthesize commentView, commentBtn, commentWebView, openSectionIndexD;
 
 
 
@@ -98,7 +99,8 @@
     //Video
     NSURL *url = [NSURL URLWithString:self.dailyX.url];
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 686, 386)];
+    //[self.moviePlayer.view setFrame:CGRectMake(0, 0, 686, 386)];
+    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 753, 424)];
     
     self.moviePlayer.controlStyle = MPMovieControlStyleDefault;
 
@@ -111,8 +113,12 @@
     [self.moviePlayer prepareToPlay];
 
     [self.moviePlayer setCurrentPlaybackTime:-1];
-    [self.moviePlayer setInitialPlaybackTime:self.currentPlaybackTime];
+    [self.moviePlayer setInitialPlaybackTime:self.currentPlaybackTimeD];
     [self.moviePlayer play];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateChanged:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+    
     
     
     //UICollection
@@ -130,6 +136,13 @@
     
     [self.myCollectionView reloadData];
     
+}
+
+-(void)moviePlayerPlaybackStateChanged:(NSNotification *)notification {
+    /*MPMoviePlayerController moviePlayer = notification.object;
+    MPMoviePlaybackState playbackState = moviePlayer.playbackState;
+    NSLog(@"playbackState: %i", playbackState);
+    */ 
 }
 
 
@@ -207,10 +220,10 @@
     double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] + 1;
     NSTimeInterval clipInterval = timeTotal;
     
-    self.currentPlaybackTime = clipInterval;
+    self.currentPlaybackTimeD = clipInterval;
     
     //[self.moviePlayer stop];
-    [self.moviePlayer setCurrentPlaybackTime:self.currentPlaybackTime];
+    [self.moviePlayer setCurrentPlaybackTime:self.currentPlaybackTimeD];
     [self.moviePlayer play];
     
 }
@@ -233,36 +246,59 @@
 
 - (IBAction)overviewBtnClick:(id)sender {
     
-    [self performSegueWithIdentifier:@"fromDailyToDailiesOverviewView" sender:self];
+    
+    if(![self connected]) {
+        // not connected
+        [self showNoInternetConectionAlert];
+        
+    } else {
+       [self performSegueWithIdentifier:@"fromDailyToDailiesOverviewView" sender:self]; 
+    }
+    
 }
 
 
 - (IBAction)showCommentViewAction:(id)sender {
+    
     NSLog(@"showCommentViewAction");
     
-    //self.view.userInteractionEnabled=NO;
+    NSLog(@"y: %f", self.commentView.frame.origin.y);
+    
+    double yAchse = 748.0f;
+    if(self.commentView.frame.origin.y == 748.0f){
+         yAchse = 673.0f;
+    }else {
+        yAchse = 748.0f;
+    }
+    
     [UIView animateWithDuration:0.3 animations:^{
-        self.commentView.frame = CGRectMake(0.0f, 673.0f, self.commentView.frame.size.width, self.commentView.frame.size.height);
+        self.commentView.frame = CGRectMake(0.0f, yAchse, self.commentView.frame.size.width, self.commentView.frame.size.height);
     } completion:^(BOOL finished) {
-        NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
-        NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
+        
     }];
 
 }
-- (IBAction)hideCommentViewAction:(id)sender {
-    NSLog(@"hideCommentViewAction");
 
-    //self.view.userInteractionEnabled=YES;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.commentView.frame = CGRectMake(0.0f, 748.0f, self.commentView.frame.size.width, self.commentView.frame.size.height);
-        
-    } completion:^(BOOL finished) {
-        NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
-        NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
-    }];
 
+
+- (void)showNoInternetConectionAlert{
     
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Connection Failed"
+                                                   message: @"Please connect to network and try again"
+                                                  delegate: self
+                                         cancelButtonTitle: @"Close"
+                                         otherButtonTitles:nil];
+    
+    //Show Alert On The View
+    [alert show];
+    
+    
+}
+
+- (BOOL)connected {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
 }
 
 
@@ -275,25 +311,29 @@
     if([segue.identifier isEqualToString:@"fromDailyToProjectListView"]){
     
         ProjectsViewControllerNew *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
+        vc.userNameP = self.userNameD;
+        vc.userPasswordP = self.userPasswordD;
+        vc.sectionIndex = self.openSectionIndexD;
      
     }
     
     if([segue.identifier isEqualToString:@"fromDailyToDailiesOverviewView"]){
         
         DailiesOverviewViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
-        vc.userPassword = self.userPassword;
+        vc.userNameDO = self.userNameD;
+        vc.userPasswordDO = self.userPasswordD;
         vc.projectIdent = self.projectIdent;
-        
+        vc.openSectionIndexDO = self.openSectionIndexD;
     }
     
     
     if([segue.identifier isEqualToString:@"fromDailiesOverviewToContact"]){
         
         ContactViewController *vc = [segue destinationViewController];
-        vc.userName = self.userName;
+        vc.userNameC = self.userNameD;
+        vc.userPasswordC = self.userPasswordD;
+        vc.projectIdentC = self.projectIdent;
+        vc.openSectionIndexC = self.openSectionIndexD;
     }
 }
 

@@ -70,6 +70,10 @@
 }
 
 
+- (SectionHeaderView *) getSectionHeaderView {
+    return headerView;
+}
+
 - (NSUInteger)countOfRowHeights {
 	return [rowHeights count];
 }
