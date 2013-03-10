@@ -13,6 +13,8 @@
 @property (strong, nonatomic, readonly) UIImageView *clipImageView;
 @property (strong, nonatomic) UIImageView *sectionOverlayView;
 @property (strong, nonatomic) UILabel *clipTitel;
+@property (strong, nonatomic) UIActivityIndicatorView *ai;
+
 
 - (void)setTitel:(NSString*)titel;
 

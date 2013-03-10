@@ -25,7 +25,7 @@
 @synthesize projectName, dailyDate, dailyLengh, dailyName, clipName, projectNameEx, infoView, videoView, moviePlayer, currentPlaybackTimeD;
 @synthesize myCollectionView, thumbnailQueue;
 
-@synthesize commentView, commentBtn, commentWebView, openSectionIndexD;
+@synthesize commentView, commentBtn, commentWebView, openSectionIndexD, selectedCellIndexPath;
 
 
 
@@ -40,7 +40,28 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [self.view addSubview:self.commentView];
+    
+    if(self.selectedCellIndexPath != nil){
+        
+        NSIndexPath *targetIndexPath = [NSIndexPath indexPathForItem:self.selectedCellIndexPath.row inSection:0];
+        
+        NSLog(@"selectedCellIndexPath.section: %i", self.selectedCellIndexPath.section);
+        NSLog(@"selectedCellIndexPath.row: %i", self.selectedCellIndexPath.row);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.myCollectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+        });
+    }
+    
+    if ([self.dailyX.sec_clips intValue] > 0) {
+        self.overviewBtn.enabled = YES;
+    }else {
+        self.overviewBtn.enabled = NO;
+
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -59,10 +80,6 @@
     [self.commentView setFrame:CGRectMake(0.0f, 748.0f, self.commentView.frame.size.width, self.commentView.frame.size.height)];
     [[self commentView] setCenter:CGPointMake(0.0f, 748.0f)];
     self.commentView.hidden = false;
-    
-    NSLog(@"self.commentView.frame.origin.x:  %f", self.commentView.frame.origin.x);
-    NSLog(@"self.commentView.frame.origin.y:  %f", self.commentView.frame.origin.y);
-
     
     
     //DATE LABEL
@@ -137,15 +154,21 @@
     self.thumbnailQueue = [[NSOperationQueue alloc] init];
     self.thumbnailQueue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
     
-    [self.myCollectionView reloadData];
+    //[self.myCollectionView reloadData];
     
 }
 
 -(void)moviePlayerPlaybackStateChanged:(NSNotification *)notification {
+    
     /*MPMoviePlayerController moviePlayer = notification.object;
     MPMoviePlaybackState playbackState = moviePlayer.playbackState;
     NSLog(@"playbackState: %i", playbackState);
     */ 
+}
+
+
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return 1;
 }
 
 
@@ -207,7 +230,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"Selected item %d", indexPath.row);
+    NSLog(@"indexPath.section: %i", indexPath.section);
+    NSLog(@"indexPath.row: %i", indexPath.row);
     
     NSMutableArray *dailyClips = [self.dailyX clips];
     Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
@@ -219,9 +243,11 @@
     NSDate *date = [formatter dateFromString:currentClip.start];
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
-    NSLog(@"hour: %d", [components hour]);
+    
+    /*NSLog(@"hour: %d", [components hour]);
     NSLog(@"minute: %d", [components minute]);
     NSLog(@"secunde: %d", [components second]);
+    */
     
     double timeTotal = ([components hour] * 3600) + ([components minute] * 60 ) + [components second] + 1;
     NSTimeInterval clipInterval = timeTotal;
@@ -258,7 +284,13 @@
         [self showNoInternetConectionAlert];
         
     } else {
-       [self performSegueWithIdentifier:@"fromDailyToDailiesOverviewView" sender:self]; 
+        
+        NSLog(@"CLips number: %@", self.dailyX.sec_clips);
+        if ([self.dailyX.sec_clips intValue] > 0) {
+            [self performSegueWithIdentifier:@"fromDailyToDailiesOverviewView" sender:self];
+        }else {
+            //show msg... no clips....
+        }
     }
     
 }
@@ -330,6 +362,7 @@
         vc.userPasswordDO = self.userPasswordD;
         vc.projectIdent = self.projectIdent;
         vc.openSectionIndexDO = self.openSectionIndexD;
+
     }
     
     
@@ -342,10 +375,6 @@
         vc.openSectionIndexC = self.openSectionIndexD;
     }
 }
-
-
-
-
 
 
 @end

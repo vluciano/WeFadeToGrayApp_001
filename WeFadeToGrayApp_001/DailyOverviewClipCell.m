@@ -42,8 +42,16 @@
         self.clipImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         self.clipImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.clipImageView.clipsToBounds = YES;
-        
         [self.contentView addSubview:self.clipImageView];
+        
+        
+        //Activitie Indicator
+        self.ai = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(116.0f, 62.0f, 20.0f, 20.0f)];
+        [self.ai startAnimating];
+        [self.ai setHidden:NO];
+        [self addSubview:self.ai];
+
+        
         
         //Clip Name
         //self.clipTitel = [[UILabel alloc] initWithFrame:self.bounds];
@@ -81,6 +89,10 @@
     self.clipImageView.image = nil;
     self.sectionOverlayView.image = nil;
     self.clipTitel.text = nil;
+    
+    [self.ai startAnimating];
+    [self.ai setHidden:NO];
+    
 }
 
 

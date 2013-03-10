@@ -37,6 +37,7 @@
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 @property(nonatomic) NSTimeInterval currentPlaybackTimeD;
 
+@property (nonatomic) NSIndexPath *selectedCellIndexPath;
 
 //UICollection
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
@@ -59,5 +60,7 @@
 
 
 @property (nonatomic, assign) NSInteger openSectionIndexD;
+
+
 
 @end

@@ -420,6 +420,7 @@ NSString *userPassword;
         
         if (self.actualProjectIdent != nil) {
             
+            
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDAnimationFade;
             hud.labelText = @"Loading";
@@ -436,7 +437,6 @@ NSString *userPassword;
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
             
-            //[self performSegueWithIdentifier:@"fromProjectListToDailiesOverview" sender:self];
         }
     
     }

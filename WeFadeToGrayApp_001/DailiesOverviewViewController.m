@@ -28,6 +28,9 @@
 XMLDailiesParser *xmlDailiesParser;
 XMLDailyParser *xmlDailyParser;
 
+NSIndexPath *selectedCellIndexPath;
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,6 +41,7 @@ XMLDailyParser *xmlDailyParser;
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dailiesOverviewView_bg.png"]];
@@ -115,6 +119,7 @@ XMLDailyParser *xmlDailyParser;
         cell.sectionTitel.numberOfLines = 2;
         
         [cell setTitel:currentDaily.name];
+        cell.UserInteractionEnabled = NO;
         return cell;
         
     }else {
@@ -127,6 +132,9 @@ XMLDailyParser *xmlDailyParser;
             cell1.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
         }
         
+        
+        [cell1.ai startAnimating];
+        [cell1.ai setHidden:NO];
         
         /*
         NSURL *url = [NSURL URLWithString:currentClip.thumbnail_path];
@@ -156,7 +164,7 @@ XMLDailyParser *xmlDailyParser;
                     UIImage *image = [UIImage imageWithData:data];
                     
                     cell.clipImageView.image = image;
-                    
+                    [cell.ai stopAnimating];
                     /*if (indexPath.row == 1) {
                         cell.sectionOverlayView.image = [UIImage imageNamed:@"sequenz-verlauf.png"];
                     }*/
@@ -181,7 +189,12 @@ XMLDailyParser *xmlDailyParser;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"Selected item %d", indexPath.row);
+    /*
+    NSLog(@"Selected item - indexPath.row %d", indexPath.row);
+    NSLog(@"Selected item - indexPath.section %d", indexPath.section);
+    */
+    
+    selectedCellIndexPath = indexPath;
     
     if(![self connected]) {
         // not connected
@@ -192,7 +205,6 @@ XMLDailyParser *xmlDailyParser;
         Daily *currentDaily = [[xmlDailiesParser dailies] objectAtIndex:indexPath.section];
         NSMutableArray *dailyClips = [currentDaily clips];
         Clip *currentClip = [dailyClips objectAtIndex:indexPath.row];
-        
         
         //------------------
         
@@ -304,6 +316,8 @@ XMLDailyParser *xmlDailyParser;
         
         vc.currentPlaybackTimeD = self.currentPlaybackTimeDO;
         vc.openSectionIndexD = self.openSectionIndexDO;
+        
+        vc.selectedCellIndexPath = selectedCellIndexPath;
     }
     
     

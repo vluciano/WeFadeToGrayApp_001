@@ -660,7 +660,12 @@ www.wefadetogrey.de</string>
                                             <rect key="frame" x="0.0" y="0.0" width="253" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8G-VM-hgt"/>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8G-VM-hgt">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="256" id="4cg-tZ-ce4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="T7W-Kb-WoG"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIl-23-v4O">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="233" id="usd-8J-xoE"/>
@@ -674,14 +679,18 @@ www.wefadetogrey.de</string>
                                         </view>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <constraints>
-                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="trailing" secondItem="y5i-YA-5bE" secondAttribute="trailing" type="default" id="EFk-K0-USg"/>
-                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="top" secondItem="y5i-YA-5bE" secondAttribute="top" type="default" id="RbE-Pi-sfI"/>
+                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="top" secondItem="y5i-YA-5bE" secondAttribute="top" type="default" id="5Xf-2j-9CP"/>
+                                            <constraint firstAttribute="centerY" secondItem="T7W-Kb-WoG" secondAttribute="centerY" type="user" id="Kcn-HT-6NE"/>
+                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="bottom" secondItem="y5i-YA-5bE" secondAttribute="bottom" type="default" id="Lgh-LJ-5ZV"/>
                                             <constraint firstItem="hIl-23-v4O" firstAttribute="top" secondItem="y5i-YA-5bE" secondAttribute="top" constant="20" type="default" id="Xe9-N6-Kvw"/>
-                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="leading" secondItem="y5i-YA-5bE" secondAttribute="leading" type="default" id="kMf-Zp-fKE"/>
-                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="bottom" secondItem="y5i-YA-5bE" secondAttribute="bottom" type="default" id="qee-FA-TPE"/>
-                                            <constraint firstItem="hIl-23-v4O" firstAttribute="leading" secondItem="y5i-YA-5bE" secondAttribute="leading" constant="12" id="zps-pp-vjy"/>
+                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="leading" secondItem="y5i-YA-5bE" secondAttribute="leading" type="default" id="dU9-ZV-UmZ"/>
+                                            <constraint firstAttribute="centerX" secondItem="T7W-Kb-WoG" secondAttribute="centerX" type="user" id="gMh-fk-GDq"/>
+                                            <constraint firstItem="L8G-VM-hgt" firstAttribute="centerX" secondItem="hIl-23-v4O" secondAttribute="centerX" type="default" id="usz-jc-fhq"/>
                                         </constraints>
                                         <size key="customSize" width="253" height="144"/>
+                                        <connections>
+                                            <outlet property="ai" destination="T7W-Kb-WoG" id="rjV-t4-9nb"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -707,6 +716,7 @@ www.wefadetogrey.de</string>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtc-PS-7vh" userLabel="Label - User Name">
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3Ze-cp-LBE"/>
                                             <constraint firstAttribute="width" constant="265" id="Nb5-4K-IWf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
@@ -719,9 +729,8 @@ www.wefadetogrey.de</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="L8R-df-kWx" firstAttribute="leading" secondItem="SjE-Gd-mEt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6kk-OW-drG"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vtc-PS-7vh" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="L6a-d7-ztE"/>
-                                    <constraint firstItem="Vtc-PS-7vh" firstAttribute="top" secondItem="SjE-Gd-mEt" secondAttribute="top" constant="20" symbolic="YES" type="default" id="cy7-Eq-jOz"/>
-                                    <constraint firstItem="L8R-df-kWx" firstAttribute="top" secondItem="SjE-Gd-mEt" secondAttribute="top" constant="15" id="sYA-m1-HQi"/>
+                                    <constraint firstItem="Vtc-PS-7vh" firstAttribute="centerY" secondItem="SjE-Gd-mEt" secondAttribute="centerY" type="default" id="BFL-Oe-AE7"/>
+                                    <constraint firstItem="L8R-df-kWx" firstAttribute="top" secondItem="SjE-Gd-mEt" secondAttribute="top" constant="16" id="bAJ-xa-Zlo"/>
                                     <constraint firstItem="Vtc-PS-7vh" firstAttribute="leading" secondItem="SjE-Gd-mEt" secondAttribute="leading" constant="128" id="snF-sr-JSo"/>
                                 </constraints>
                             </view>
@@ -740,14 +749,14 @@ www.wefadetogrey.de</string>
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="SjE-Gd-mEt" firstAttribute="top" secondItem="oVo-bi-pDO" secondAttribute="top" constant="676" id="3nm-Gw-rLB"/>
                             <constraint firstItem="Hx7-5x-EFm" firstAttribute="trailing" secondItem="oVo-bi-pDO" secondAttribute="trailing" type="default" id="DmU-dD-VnB"/>
                             <constraint firstItem="G56-Vg-UeA" firstAttribute="leading" secondItem="oVo-bi-pDO" secondAttribute="leading" type="default" id="EeZ-Lq-d1T"/>
-                            <constraint firstItem="SjE-Gd-mEt" firstAttribute="bottom" secondItem="oVo-bi-pDO" secondAttribute="bottom" type="default" id="Epl-yt-bHP"/>
                             <constraint firstItem="SjE-Gd-mEt" firstAttribute="trailing" secondItem="oVo-bi-pDO" secondAttribute="trailing" type="default" id="ItW-KG-xLH"/>
-                            <constraint firstItem="SjE-Gd-mEt" firstAttribute="top" secondItem="oVo-bi-pDO" secondAttribute="top" constant="678" id="M49-b3-uQQ"/>
                             <constraint firstItem="53N-te-kJU" firstAttribute="leading" secondItem="oVo-bi-pDO" secondAttribute="leading" constant="5" id="NFQ-k8-xf3"/>
                             <constraint firstItem="Hx7-5x-EFm" firstAttribute="leading" secondItem="oVo-bi-pDO" secondAttribute="leading" type="default" id="PBg-M7-H6m"/>
                             <constraint firstItem="G56-Vg-UeA" firstAttribute="top" secondItem="oVo-bi-pDO" secondAttribute="top" type="default" id="RDf-Zu-Rhi"/>
+                            <constraint firstItem="SjE-Gd-mEt" firstAttribute="bottom" secondItem="oVo-bi-pDO" secondAttribute="bottom" type="default" id="S2u-Vk-4Qv"/>
                             <constraint firstItem="Hx7-5x-EFm" firstAttribute="top" secondItem="oVo-bi-pDO" secondAttribute="top" constant="100" id="T5h-zL-dws"/>
                             <constraint firstItem="G56-Vg-UeA" firstAttribute="trailing" secondItem="oVo-bi-pDO" secondAttribute="trailing" type="default" id="WLn-5C-lFn"/>
                             <constraint firstAttribute="bottom" secondItem="G56-Vg-UeA" secondAttribute="bottom" constant="648" id="hqj-oR-q0l"/>
@@ -985,16 +994,16 @@ www.wefadetogrey.de</string>
                                     <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLt-wu-e37">
                                         <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="0Hd-QL-Tye"/>
-                                            <constraint firstAttribute="width" constant="900" id="97S-Dn-crp"/>
+                                            <constraint firstAttribute="width" constant="1012" id="I02-NO-6nq"/>
+                                            <constraint firstAttribute="height" constant="65" id="YxC-XT-lX1"/>
                                         </constraints>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                     </webView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="cLt-wu-e37" firstAttribute="top" secondItem="Ujy-tT-5tB" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ah1-AR-MhC"/>
-                                    <constraint firstItem="cLt-wu-e37" firstAttribute="leading" secondItem="Ujy-tT-5tB" secondAttribute="leading" constant="5" id="iMp-H6-w7s"/>
+                                    <constraint firstItem="cLt-wu-e37" firstAttribute="centerY" secondItem="Ujy-tT-5tB" secondAttribute="centerY" type="default" id="8K2-6r-oZG"/>
+                                    <constraint firstItem="cLt-wu-e37" firstAttribute="leading" secondItem="Ujy-tT-5tB" secondAttribute="leading" constant="5" id="bzp-Hr-sG3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1004,20 +1013,20 @@ www.wefadetogrey.de</string>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="Bhp-qQ-c8M"/>
                             <constraint firstAttribute="bottom" secondItem="4mQ-Eq-TCx" secondAttribute="bottom" constant="648" id="C8D-tB-mMJ"/>
                             <constraint firstAttribute="bottom" secondItem="Lcw-4F-6KI" secondAttribute="bottom" constant="224" id="Cwi-sH-S7s"/>
-                            <constraint firstItem="Ujy-tT-5tB" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="748" id="De7-gE-47C"/>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="top" secondItem="Lcw-4F-6KI" secondAttribute="top" type="default" id="M7b-Qu-YHq"/>
                             <constraint firstAttribute="trailing" secondItem="KSl-Q1-z7N" secondAttribute="trailing" constant="1" id="Mtg-SV-IB4"/>
                             <constraint firstAttribute="bottom" secondItem="KSl-Q1-z7N" secondAttribute="bottom" constant="391" id="PaH-20-pJj"/>
                             <constraint firstItem="Ujy-tT-5tB" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="Pte-jt-oHd"/>
-                            <constraint firstAttribute="bottom" secondItem="Ujy-tT-5tB" secondAttribute="bottom" constant="-75" id="Qes-ej-rMG"/>
                             <constraint firstItem="Zt8-RP-eHL" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="11" id="aEk-nO-4f9"/>
                             <constraint firstItem="Zt8-RP-eHL" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="5" id="cgO-hQ-3lP"/>
+                            <constraint firstAttribute="bottom" secondItem="Ujy-tT-5tB" secondAttribute="bottom" constant="-75" id="cms-ZY-SoZ"/>
                             <constraint firstAttribute="bottom" secondItem="fFr-6d-omn" secondAttribute="bottom" constant="83" id="fvP-VJ-ehg"/>
                             <constraint firstItem="KSl-Q1-z7N" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" constant="760" id="gen-z5-MuK"/>
                             <constraint firstItem="fFr-6d-omn" firstAttribute="trailing" secondItem="97V-yg-CqK" secondAttribute="trailing" type="default" id="mho-uX-sZI"/>
                             <constraint firstItem="Ujy-tT-5tB" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="tg1-6l-fPO"/>
                             <constraint firstItem="fFr-6d-omn" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="uNq-6P-Duv"/>
                             <constraint firstItem="Lcw-4F-6KI" firstAttribute="leading" secondItem="97V-yg-CqK" secondAttribute="leading" type="default" id="vFK-q8-7Ay"/>
+                            <constraint firstItem="Ujy-tT-5tB" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" constant="748" id="vJA-U7-LJU"/>
                             <constraint firstItem="4mQ-Eq-TCx" firstAttribute="top" secondItem="97V-yg-CqK" secondAttribute="top" type="default" id="wXK-KV-bi7"/>
                             <constraint firstAttribute="trailing" secondItem="Lcw-4F-6KI" secondAttribute="trailing" constant="271" id="zEB-dC-tYz"/>
                         </constraints>
@@ -1072,132 +1081,6 @@ www.wefadetogrey.de</string>
         <image name="wftg_btn_overview.png" width="135" height="99"/>
         <image name="wftg_btn_overview_active.png" width="135" height="99"/>
     </resources>
-    <classes>
-        <class className="ContactViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backBtnClick:"/>
-                <relationship kind="action" name="dailiesListBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="mailBtnClick:"/>
-                <relationship kind="action" name="mapBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="action" name="telBtnClick:"/>
-                <relationship kind="action" name="webBtnClick:"/>
-                <relationship kind="outlet" name="contactFooterView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="contactHeaderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mailBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mapBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="telBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="webBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailiesOverviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailiesOverviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DailyCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dailyCell_bg" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dailyTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectedProjectView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="DailyClipCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyClipCell.h"/>
-        </class>
-        <class className="DailyOverviewClipCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyOverviewClipCell.h"/>
-        </class>
-        <class className="DailyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="action" name="showCommentViewAction:"/>
-                <relationship kind="outlet" name="clipName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="commentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="commentWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailyDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dailyLengh" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dailyName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="myCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="projectName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ProjectsViewControllerNew" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsViewControllerNew.h"/>
-            <relationships>
-                <relationship kind="action" name="contactBtnClick:"/>
-                <relationship kind="action" name="dailiesBtnClick:"/>
-                <relationship kind="action" name="logoutBtnClick:"/>
-                <relationship kind="action" name="overviewBtnClick:"/>
-                <relationship kind="outlet" name="contactBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dailiesListBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loginUserName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="overviewBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveCredentialsTapped:" candidateClass="UIButton"/>
-                <relationship kind="action" name="startLoginBtnClick:"/>
-                <relationship kind="action" name="switchTapped:"/>
-                <relationship kind="outlet" name="ai" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="loginView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="logoStartView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="saveCredentialsBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="startLoginBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="txtError" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="txtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
